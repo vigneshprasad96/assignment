@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priya & Arjun - Wedding Celebration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(139, 69, 19, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffd700;
+            font-family: 'Georgia', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffd700;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ffd700;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 0px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(139, 69, 19, 0.3), rgba(218, 165, 32, 0.3)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="mandala" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="%23ffd700" opacity="0.3"/><circle cx="50" cy="50" r="20" fill="none" stroke="%23ffd700" opacity="0.2"/></pattern></defs><rect width="100%" height="100%" fill="%23d2691e"/><rect width="100%" height="100%" fill="url(%23mandala)"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(139, 69, 19, 0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .date {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #fff8e1 0%, #faf0e6 100%);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #f5f5dc 0%, #fff8dc 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #8b4513;
+            font-family: 'Georgia', serif;
+            position: relative;
+        }
+
+        h2::after {
+            content: '❀';
+            display: block;
+            color: #daa520;
+            font-size: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Events Grid */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.2);
+            transition: all 0.3s ease;
+            border: 3px solid #daa520;
+            position: relative;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #daa520, #ffd700, #daa520);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(139, 69, 19, 0.3);
+        }
+
+        .event-header {
+            background: linear-gradient(135deg, #8b4513, #daa520);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .event-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .event-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .event-date {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .event-content {
+            padding: 2rem;
+        }
+
+        .event-details {
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            background: #fff8e1;
+            border-radius: 10px;
+        }
+
+        .detail-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .event-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(135deg, #8b4513, #daa520);
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .event-btn:hover {
+            background: linear-gradient(135deg, #654321, #b8860b);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        /* Individual Event Pages */
+        .event-page {
+            background: linear-gradient(135deg, #fff8e1 0%, #faf0e6 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .event-hero {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #8b4513, #daa520);
+            color: white;
+            margin-bottom: 3rem;
+            border-radius: 0 0 50px 50px;
+        }
+
+        .event-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .event-hero .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .event-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
+            border-left: 5px solid #daa520;
+        }
+
+        .info-card h3 {
+            color: #8b4513;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #8b4513, #daa520);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        /* RSVP Form */
+        .rsvp-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #8b4513;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #daa520;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(139, 69, 19, 0.98);
+                flex-direction: column;
+                padding: 1rem 0;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .date {
+                font-size: 1.2rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .event-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .event-hero h1 {
+                font-size: 2rem;
+            }
+
+            .event-card {
+                margin: 0 auto;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #daa520;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <!-- <nav>
+        <div class="nav-container">
+            <div class="logo">M ❤ V</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('events')">Events</a></li>
+                <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
+                <li><a href="#" onclick="showPage('travel')">Travel</a></li>
+                <li><a href="#" onclick="showPage('rsvp')">RSVP</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav> -->
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Meenu & Vignesh</h1>
+                <p class="date">September 27-28, 31, 2025</p>
+                <p class="tagline">"Two hearts, one soul, endless celebrations"</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Our Wedding Celebrations</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #8b4513; margin-bottom: 3rem;">
+                    Join us for four days of love, laughter, and unforgettable memories as we celebrate our union
+                    with traditional ceremonies and joyous festivities.
+                </p>
+                
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-icon">🎵</span>
+                            <h3 class="event-title">Sangam & Mehendi</h3>
+                            <p class="event-date">December 15, 2025</p>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">⏰</span>
+                                    <span>4:00 PM - 9:00 PM</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">📍</span>
+                                    <span>Garden Pavilion, Hotel Grandeur</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">👗</span>
+                                    <span>Traditional Indian Attire</span>
+                                </div>
+                            </div>
+                            <button class="event-btn" onclick="showEventPage('sangam')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-icon">🔥</span>
+                            <h3 class="event-title">Haldi Ceremony</h3>
+                            <p class="event-date">December 16, 2025</p>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">⏰</span>
+                                    <span>10:00 AM - 1:00 PM</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">📍</span>
+                                    <span>Bride's Family Home</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">👗</span>
+                                    <span>Yellow/Orange Clothing</span>
+                                </div>
+                            </div>
+                            <button class="event-btn" onclick="showEventPage('haldi')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-icon">💒</span>
+                            <h3 class="event-title">Wedding Ceremony</h3>
+                            <p class="event-date">December 17, 2025</p>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">⏰</span>
+                                    <span>6:00 AM - 12:00 PM</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">📍</span>
+                                    <span>Grand Ballroom, Hotel Grandeur</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">👗</span>
+                                    <span>Formal Indian Wedding Attire</span>
+                                </div>
+                            </div>
+                            <button class="event-btn" onclick="showEventPage('wedding')">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-icon">🎉</span>
+                            <h3 class="event-title">Reception</h3>
+                            <p class="event-date">December 18, 2025</p>
+                        </div>
+                        <div class="event-content">
+                            <div class="event-details">
+                                <div class="detail-item">
+                                    <span class="detail-icon">⏰</span>
+                                    <span>7:00 PM - 12:00 AM</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">📍</span>
+                                    <span>Crystal Ballroom, Hotel Grandeur</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-icon">👗</span>
+                                    <span>Cocktail/Evening Wear</span>
+                                </div>
+                            </div>
+                            <button class="event-btn" onclick="showEventPage('reception')">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Events List Page -->
+    <div id="events" class="page">
+        <section class="section">
+            <div class="container">
+                <h2>All Events Schedule</h2>
+                <div style="max-width: 800px; margin: 0 auto;">
+                    <div class="info-card">
+                        <h3>📅 Complete Schedule</h3>
+                        <p><strong>December 15:</strong> Sangam & Mehendi Ceremony</p>
+                        <p><strong>December 16:</strong> Haldi Ceremony</p>
+                        <p><strong>December 17:</strong> Wedding Ceremony</p>
+                        <p><strong>December 18:</strong> Reception Party</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📍 Venue Information</h3>
+                        <p><strong>Hotel Grandeur</strong><br>
+                        123 Wedding Avenue, Mumbai, Maharashtra<br>
+                        Phone: +91 98765 43210<br>
+                        <a href="#" style="color: #daa520;">View on Google Maps</a></p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🏨 Accommodation</h3>
+                        <p>We have reserved rooms at Hotel Grandeur for out-of-town guests. 
+                        Use code "PRIYAARJUN2025" for special rates.<br>
+                        <strong>Booking Deadline:</strong> November 15, 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Individual Event Pages -->
+    <!-- Sangam Event Page -->
+    <div id="sangam" class="page">
+        <div class="event-page">
+            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
+            
+            <div class="event-hero">
+                <h1>🎵 Sangam & Mehendi</h1>
+                <p class="subtitle">December 15, 2025 | 4:00 PM - 9:00 PM</p>
+            </div>
+            
+            <div class="container">
+                <div class="event-info-grid">
+                    <div class="info-card">
+                        <h3>🎶 About Sangam</h3>
+                        <p>A beautiful evening of music, dance, and celebration where both families come together. 
+                        Enjoy traditional folk songs, dance performances, and delicious appetizers as we kick off 
+                        our wedding festivities.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🌿 Mehendi Ceremony</h3>
+                        <p>Ladies will enjoy intricate henna designs applied by professional mehendi artists. 
+                        This ancient tradition symbolizes joy, beauty, and spiritual awakening. Mehendi station 
+                        will be available throughout the event.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📍 Venue Details</h3>
+                        <p><strong>Garden Pavilion, Hotel Grandeur</strong><br>
+                        Beautiful outdoor setting with fairy lights<br>
+                        Covered pavilion (weather protected)<br>
+                        Valet parking available</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>👗 Dress Code</h3>
+                        <p><strong>Traditional Indian Attire Preferred</strong><br>
+                        Bright colors encouraged<br>
+                        Comfortable footwear recommended<br>
+                        Light fabrics suitable for evening weather</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🍽️ Refreshments</h3>
+                        <p>Evening snacks and appetizers<br>
+                        Traditional sweets and tea<br>
+                        Fresh fruit juices<br>
+                        Special dietary options available</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🎁 Special Notes</h3>
+                        <p>Photography encouraged<br>
+                        Live music performances<br>
+                        Children's activity corner<br>
+                        Mehendi artists will be available until 8 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Haldi Event Page -->
+    <div id="haldi" class="page">
+        <div class="event-page">
+            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
+            
+            <div class="event-hero">
+                <h1>🔥 Haldi Ceremony</h1>
+                <p class="subtitle">December 16, 2025 | 10:00 AM - 1:00 PM</p>
+            </div>
+            
+            <div class="container">
+                <div class="event-info-grid">
+                    <div class="info-card">
+                        <h3>🌟 Sacred Tradition</h3>
+                        <p>The Haldi ceremony is a beautiful pre-wedding ritual where turmeric paste is applied to 
+                        the bride and groom for purification and blessings. This intimate ceremony brings good luck 
+                        and a natural glow before the wedding day.</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📍 Venue</h3>
+                        <p><strong>Bride's Family Home</strong><br>
+                        Residential setting<br>
+                        Intimate family gathering<br>
+                        Garden area for ceremony</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>👗 What to Wear</h3>
+                        <p><strong>Yellow or Orange Clothing</strong><br>
+                        Old clothes recommended (turmeric stains!)<br>
+                        Cotton fabrics preferred<br>
+                        Comfortable and washable attire</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🎉 Activities</h3>
+                        <p>Traditional turmeric application<br>
+                        Singing of ceremonial songs<br>
+                        Family photos and videos<br>
+                        Blessing ceremony by elders</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🍽️ Refreshments</h3>
+                        <p>Traditional breakfast items<br>
+                        Fresh seasonal fruits<br>
+                        Homemade sweets<br>
+                        Tea, coffee, and fresh juices</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📝 Important Notes</h3>
+                        <p>Close family and friends only<br>
+                        Please arrive on time<br>
+                        Bring extra clothes if desired<br>
+                        Towels will be provided</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wedding Event Page -->
+    <div id="wedding" class="page">
+        <div class="event-page">
+            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
+            
+            <div class="event-hero">
+                <h1>💒 Wedding Ceremony</h1>
+                <p class="subtitle">December 17, 2025 | 6:00 AM - 12:00 PM</p>
+            </div>
+            
+            <div class="container">
+                <div class="event-info-grid">
+                    <div class="info-card">
+                        <h3>🕕 Ceremony Timeline</h3>
+                        <p><strong>6:00 AM:</strong> Groom's arrival (Baraat)<br>
+                        <strong>7:00 AM:</strong> Welcome ceremonies<br>
+                        <strong>8:00 AM:</strong> Main wedding rituals<br>
+                        <strong>10:30 AM:</strong> Seven vows (Saptapadi)<br>
+                        <strong>11:30 AM:</strong> Lunch service begins</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📍 Venue</h3>
+                        <p><strong>Grand Ballroom, Hotel Grandeur</strong><br>
+                        Beautifully decorated mandap<br>
+                        Air-conditioned comfort<br>
+                        Premium sound system<br>
+                        Professional photography setup</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>👗 Dress Code</h3>
+                        <p><strong>Formal Indian Wedding Attire</strong><br>
+                        Rich colors and fabrics<br>
+                        Traditional jewelry encouraged<br>
+                        Comfortable shoes for long ceremony<br>
+                        Avoid white or black colors</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🎶 Sacred Rituals</h3>
+                        <p>Vedic fire ceremony (Agni Sanskar)<br>
+                        Exchange of garlands (Jaimala)<br>
+                        Seven sacred vows (Saptapadi)<br>
+                        Blessing by fire god (Agni)<br>
+                        Sindoor and Mangalsutra ceremony</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🍽️ Wedding Feast</h3>
+                        <p>Traditional multi-course meal<br>
+                        Vegetarian and non-vegetarian options<br>
+                        Regional specialties<br>
+                        Live food counters<br>
+                        Traditional sweets and desserts</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📸 Photography</h3>
+                        <p>Professional wedding photographers<br>
+                        Videography team present<br>
+                        Guest photography encouraged<br>
+                        Live streaming for distant relatives<br>
+                        Photo booth available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reception Event Page -->
+    <div id="reception" class="page">
+        <div class="event-page">
+            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
+            
+            <div class="event-hero">
+                <h1>🎉 Wedding Reception</h1>
+                <p class="subtitle">December 18, 2025 | 7:00 PM - 12:00 AM</p>
+            </div>
+            
+            <div class="container">
+                <div class="event-info-grid">
+                    <div class="info-card">
+                        <h3>🕖 Evening Schedule</h3>
+                        <p><strong>7:00 PM:</strong> Cocktail hour begins<br>
+                        <strong>8:00 PM:</strong> Couple's grand entrance<br>
+                        <strong>8:30 PM:</strong> Dinner service<br>
+                        <strong>9:30 PM:</strong> First dance & speeches<br>
+                        <strong>10:00 PM:</strong> Dance floor opens<br>
+                        <strong>12:00 AM:</strong> Event concludes</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📍 Venue</h3>
+                        <p><strong>Crystal Ballroom, Hotel Grandeur</strong><br>
+                        Elegant crystal chandeliers<br>
+                        Professional DJ and sound system<br>
+                        Full bar service<br>
+                        Dance floor with lighting<br>
+                        VIP seating areas</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>👗 Dress Code</h3>
+                        <p><strong>Cocktail/Evening Wear</strong><br>
+                        Semi-formal to formal attire<br>
+                        Western or Indo-western outfits<br>
+                        Comfortable dancing shoes<br>
+                        Elegant accessories welcome</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🍸 Refreshments</h3>
+                        <p>Premium open bar<br>
+                        Signature cocktails<br>
+                        International cuisine buffet<br>
+                        Live cooking stations<br>
+                        Wedding cake cutting ceremony<br>
+                        Late-night snacks</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🎵 Entertainment</h3>
+                        <p>Professional DJ<br>
+                        Live band performance<br>
+                        Special dance performances<br>
+                        Photo booth with props<br>
+                        Games and activities<br>
+                        Surprise entertainment acts</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🎁 Special Features</h3>
+                        <p>Gift registration table<br>
+                        Guest book signing<br>
+                        Professional photography<br>
+                        Transportation provided<br>
+                        Coat check service<br>
+                        Wedding favors for guests</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Page -->
+    <div id="gallery" class="page">
+        <section class="section">
+            <div class="container">
+                <h2>Photo Gallery</h2>
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <p style="font-size: 1.2rem; color: #8b4513;">Our journey together captured in beautiful moments</p>
+                </div>
+                
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-icon">📸</span>
+                            <h3 class="event-title">Engagement Photos</h3>
+                        </div>
+                        <div class="event-content">
+                            <p>Beautiful moments from our engagement ceremony and photoshoot.</p>
+                            <div style="height: 200px; background: linear-gradient(45deg, #daa520, #ffd700); margin: 1rem 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                Engagement Gallery Coming Soon
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-icon">💕</span>
+                            <h3 class="event-title">Pre-Wedding Shoot</h3>
+                        </div>
+                        <div class="event-content">
+                            <p>Romantic pre-wedding photography session at scenic locations.</p>
+                            <div style="height: 200px; background: linear-gradient(45deg, #8b4513, #daa520); margin: 1rem 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                Pre-Wedding Gallery Coming Soon
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-card">
+                        <div class="event-header">
+                            <span class="event-icon">👨‍👩‍👧‍👦</span>
+                            <h3 class="event-title">Family Moments</h3>
+                        </div>
+                        <div class="event-content">
+                            <p>Cherished moments with our families and loved ones.</p>
+                            <div style="height: 200px; background: linear-gradient(45deg, #cd853f, #daa520); margin: 1rem 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
+                                Family Gallery Coming Soon
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Travel Page -->
+    <div id="travel" class="page">
+        <section class="section">
+            <div class="container">
+                <h2>Travel & Accommodation</h2>
+                
+                <div class="event-info-grid">
+                    <div class="info-card">
+                        <h3>✈️ Getting There</h3>
+                        <p><strong>By Air:</strong> Chhatrapati Shivaji Maharaj International Airport (BOM)<br>
+                        Distance from venue: 45 minutes<br>
+                        <strong>By Train:</strong> Mumbai Central Railway Station<br>
+                        Distance from venue: 20 minutes<br>
+                        <strong>By Road:</strong> Well connected by highways</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🏨 Recommended Hotels</h3>
+                        <p><strong>Hotel Grandeur</strong> (Venue Hotel)<br>
+                        Special rate: ₹8,000/night<br>
+                        Use code: PRIYAARJUN2025<br><br>
+                        <strong>Nearby Options:</strong><br>
+                        • Grand Plaza Hotel (2 km)<br>
+                        • Comfort Inn & Suites (1.5 km)<br>
+                        • Budget Stay Lodge (3 km)</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🚗 Transportation</h3>
+                        <p><strong>Airport Transfers:</strong><br>
+                        Complimentary for hotel guests<br>
+                        Taxi/Uber readily available<br><br>
+                        <strong>Local Transport:</strong><br>
+                        • Hotel shuttle service<br>
+                        • Car rental available<br>
+                        • Local taxi services</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>📍 Local Attractions</h3>
+                        <p><strong>Must-visit places:</strong><br>
+                        • Gateway of India (15 km)<br>
+                        • Marine Drive (12 km)<br>
+                        • Elephanta Caves (20 km)<br>
+                        • Juhu Beach (25 km)<br>
+                        • Shopping at Colaba Causeway<br>
+                        • Local street food tours</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>🌤️ Weather Information</h3>
+                        <p><strong>December Weather:</strong><br>
+                        Temperature: 20-28°C<br>
+                        Pleasant and mild<br>
+                        Low humidity<br>
+                        Perfect for outdoor events<br>
+                        Light jacket recommended for evenings</p>
+                    </div>
+                    
+                    <div class="info-card">
+                        <h3>💡 Travel Tips</h3>
+                        <p>• Book accommodation early<br>
+                        • Carry comfortable walking shoes<br>
+                        • Local currency: Indian Rupees<br>
+                        • Most places accept cards<br>
+                        • Try local street food<br>
+                        • Respect local customs and traditions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- RSVP Page -->
+    <div id="rsvp" class="page">
+        <section class="section">
+            <div class="container">
+                <h2>RSVP</h2>
+                <div style="text-align: center; margin-bottom: 3rem;">
+                    <p style="font-size: 1.2rem; color: #8b4513;">
+                        We're excited to celebrate with you! Please let us know which events you'll be attending.
+                    </p>
+                </div>
+                
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <form class="rsvp-form" onsubmit="handleRSVP(event)">
+                        <div class="form-group">
+                            <label for="guestName">Full Name *</label>
+                            <input type="text" id="guestName" name="guestName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Number of Guests *</label>
+                            <select id="guests" name="guests" required>
+                                <option value="">Select number of guests</option>
+                                <option value="1">1 Guest</option>
+                                <option value="2">2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5+">5+ Guests</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Which events will you attend? *</label>
+                            <div style="margin-top: 0.5rem;">
+                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                    <input type="checkbox" name="events" value="sangam" style="margin-right: 0.5rem;">
+                                    Sangam & Mehendi (Dec 15)
+                                </label>
+                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                    <input type="checkbox" name="events" value="haldi" style="margin-right: 0.5rem;">
+                                    Haldi Ceremony (Dec 16)
+                                </label>
+                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                    <input type="checkbox" name="events" value="wedding" style="margin-right: 0.5rem;">
+                                    Wedding Ceremony (Dec 17)
+                                </label>
+                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
+                                    <input type="checkbox" name="events" value="reception" style="margin-right: 0.5rem;">
+                                    Reception (Dec 18)
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dietary">Dietary Restrictions</label>
+                            <select id="dietary" name="dietary">
+                                <option value="">No restrictions</option>
+                                <option value="vegetarian">Vegetarian</option>
+                                <option value="vegan">Vegan</option>
+                                <option value="gluten-free">Gluten-free</option>
+                                <option value="other">Other (please specify in message)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="accommodation">Need Accommodation?</label>
+                            <select id="accommodation" name="accommodation">
+                                <option value="no">No, I have my own arrangements</option>
+                                <option value="yes">Yes, please reserve a room</option>
+                                <option value="info">I need more information</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Special Message or Requests</label>
+                            <textarea id="message" name="message" rows="4" placeholder="Any special requests, well wishes, or additional information..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="event-btn">Submit RSVP</button>
+                    </form>
+                    
+                    <div class="info-card" style="margin-top: 2rem;">
+                        <h3>📞 Contact Information</h3>
+                        <p>For any questions or special requests:<br>
+                        <strong>Priya:</strong> +91 98765 43210<br>
+                        <strong>Arjun:</strong> +91 98765 43211<br>
+                        <strong>Email:</strong> wedding@priyaarjun.com<br>
+                        <strong>Wedding Coordinator:</strong> +91 98765 43212</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Loading Animation -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script>
+        // Navigation functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById(pageId).classList.add('active');
+                
+                // Close mobile menu
+                navLinks.classList.remove('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 500);
+        }
+
+        // Show individual event pages
+        function showEventPage(eventId) {
+            showPage(eventId);
+        }
+
+        // RSVP form handling
+        function handleRSVP(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const rsvpData = {
+                name: formData.get('guestName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                guests: formData.get('guests'),
+                events: formData.getAll('events'),
+                dietary: formData.get('dietary'),
+                accommodation: formData.get('accommodation'),
+                message: formData.get('message')
+            };
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            
+            // Simulate form submission
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+                alert('Thank you for your RSVP! We have received your response and will contact you soon with more details.');
+                event.target.reset();
+            }, 2000);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation background change on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(139, 69, 19, 0.98)';
+            } else {
+                nav.style.background = 'rgba(139, 69, 19, 0.95)';
+            }
+        });
+
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards for animations
+        document.querySelectorAll('.event-card, .info-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure home page is shown by default
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
