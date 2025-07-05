@@ -11,32 +11,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* Carousel responsive design */
-            .carousel-slide {
-                height: 300px;
-            }
-            
-            .carousel-overlay {
-                padding: 1.5rem;
-            }
-            
-            .carousel-overlay h3 {
-                font-size: 1.8rem;
-            }
-            
-            .carousel-controls {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-            }
-            
-            .carousel-prev {
-                left: 10px;
-            }
-            
-            .carousel-next {
-                right: 10px;
-            }
         }
 
         body {
@@ -70,136 +44,6 @@
         .map-link:hover {
             color: #5a67d8;
             text-decoration: underline;
-        }
-
-        /* Photo Carousel Styles */
-        .photo-carousel-section {
-            margin: 4rem 0;
-            position: relative;
-        }
-
-        .carousel-container {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            position: relative;
-            height: 400px;
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .carousel-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            transform: translateY(0);
-            transition: transform 0.3s ease;
-        }
-
-        .carousel-overlay h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .carousel-overlay p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .carousel-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .carousel-dot.active {
-            background: #667eea;
-            transform: scale(1.2);
-        }
-
-        .carousel-controls {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-controls:hover {
-            background: rgba(0, 0, 0, 0.7);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-prev {
-            left: 20px;
-        }
-
-        .carousel-next {
-            right: 20px;
-        }
-
-        .carousel-play-pause {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-play-pause:hover {
-            background: rgba(0, 0, 0, 0.7);
         }
 
         /* Page Container */
@@ -306,10 +150,136 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
 
-        /* Couple Profile Section */
+        /* New Dynamic Scrolling Couple Section */
         .couple-section {
-            padding: 6rem 0;
+            min-height: 100vh;
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scrolling-section {
+            height: calc(100vh / 4);
+            min-height: 150px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        .scrolling-container {
+            display: flex;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            will-change: transform;
+        }
+
+        .scroll-left {
+            animation-name: scrollLeftToRight;
+        }
+
+        .scroll-right {
+            animation-name: scrollRightToLeft;
+        }
+
+        @keyframes scrollLeftToRight {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        @keyframes scrollRightToLeft {
+            0% {
+                transform: translateX(0%);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .photo-item {
+            min-width: 280px;
+            height: 160px;
+            margin: 0;
+            border-radius: 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: none;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+            border: none;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            z-index: 5;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        .photo-overlay h4 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.4rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .photo-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Section styling variations */
+        .section-1 {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(255, 154, 158, 0.1));
+        }
+
+        .section-2 {
+            background: linear-gradient(-45deg, rgba(255, 154, 158, 0.1), rgba(168, 237, 234, 0.1));
+        }
+
+        .section-3 {
+            background: linear-gradient(45deg, rgba(168, 237, 234, 0.1), rgba(254, 207, 239, 0.1));
+        }
+
+        .section-4 {
+            background: linear-gradient(-45deg, rgba(254, 207, 239, 0.1), rgba(102, 126, 234, 0.1));
+        }
+
+        /* Events Section */
+        .events-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
 
         .container {
@@ -325,168 +295,6 @@
             font-weight: 600;
             margin-bottom: 4rem;
             color: #2d3748;
-        }
-
-        /* Couple Together Photo */
-        .couple-together {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 5rem;
-        }
-
-        .couple-main-photo {
-            max-width: 600px;
-            width: 100%;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .couple-main-photo:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.2);
-        }
-
-        .couple-main-photo img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .couple-main-photo:hover img {
-            transform: scale(1.02);
-        }
-
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(102, 126, 234, 0.9));
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .couple-main-photo:hover .photo-overlay {
-            transform: translateY(0);
-        }
-
-        .photo-overlay h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .photo-overlay p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            font-style: italic;
-        }
-
-        .couple-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-
-        .couple-card {
-            background: white;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .couple-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
-        }
-
-        .couple-photo {
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .couple-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .couple-card:hover .couple-photo img {
-            transform: scale(1.05);
-        }
-
-        .bride-photo {
-            background: linear-gradient(45deg, #ff9a9e, #fecfef);
-        }
-
-        .groom-photo {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-        }
-
-        .couple-info {
-            padding: 2.5rem;
-            text-align: center;
-        }
-
-        .couple-info h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
-            color: #2d3748;
-            margin-bottom: 0.5rem;
-        }
-
-        .couple-info .role {
-            color: #667eea;
-            font-weight: 500;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .couple-info p {
-            color: #4a5568;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-style: italic;
-        }
-
-        .couple-details {
-            background: #f7fafc;
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: left;
-        }
-
-        .couple-details p {
-            margin-bottom: 0.8rem;
-            font-style: normal;
-            color: #2d3748;
-        }
-
-        .couple-details strong {
-            color: #667eea;
-        }
-
-        /* Events Section */
-        .events-section {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
         }
 
         .events-grid {
@@ -589,74 +397,6 @@
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
 
-        /* Individual Event Pages */
-        .event-page {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            min-height: 100vh;
-            padding: 2rem 0;
-        }
-
-        .event-hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            margin-bottom: 4rem;
-            border-radius: 0 0 50px 50px;
-        }
-
-        .event-hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .event-hero .subtitle {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .event-info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .info-card {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #667eea;
-        }
-
-        .info-card h3 {
-            color: #2d3748;
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .back-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            padding: 1rem 2rem;
-            border-radius: 25px;
-            display: inline-block;
-            margin-bottom: 2rem;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        .back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-        }
-
         /* Save the Date Style */
         .save-date-section {
             padding: 6rem 0;
@@ -731,6 +471,25 @@
             transform: translateY(-2px);
         }
 
+        .back-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            z-index: 10;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -744,71 +503,6 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 1200px) {
-            .container {
-                max-width: 100%;
-                padding: 0 3rem;
-            }
-            
-            .couple-cards {
-                gap: 3rem;
-            }
-            
-            .events-grid {
-                gap: 2.5rem;
-            }
-        }
-
-        @media (max-width: 992px) {
-            .welcome-text {
-                font-size: 2.5rem;
-                letter-spacing: 6px;
-            }
-
-            .couple-names {
-                font-size: 3.5rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-                margin-bottom: 3rem;
-            }
-
-            .couple-cards {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                max-width: 600px;
-                margin: 0 auto;
-            }
-
-            .couple-main-photo {
-                max-width: 80%;
-            }
-
-            .events-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .event-hero h1 {
-                font-size: 3rem;
-            }
-
-            .container {
-                padding: 0 2rem;
-            }
-
-            .hero {
-                padding: 1.5rem;
-            }
-
-            .couple-section,
-            .events-section,
-            .save-date-section {
-                padding: 4rem 0;
-            }
-        }
-
         @media (max-width: 768px) {
             .welcome-text {
                 font-size: 2rem;
@@ -826,416 +520,58 @@
                 margin-bottom: 2rem;
             }
 
-            .section-title {
+            .couple-section-title {
                 font-size: 2rem;
-                margin-bottom: 2.5rem;
+                margin-bottom: 1.5rem;
             }
 
-            .couple-cards {
-                gap: 2rem;
+            .scrolling-section {
+                height: calc((100vh - 100px) / 3);
+                min-height: 150px;
             }
 
-            .couple-main-photo {
-                max-width: 95%;
-                margin: 0 auto;
+            .photo-item {
+                min-width: 250px;
+                height: 140px;
+                margin: 0 10px;
             }
 
-            .couple-main-photo img {
-                height: 300px;
+            .photo-overlay h4 {
+                font-size: 1.2rem;
             }
 
-            .couple-photo {
-                height: 300px;
-            }
-
-            .couple-info {
-                padding: 2rem 1.5rem;
-            }
-
-            .couple-info h3 {
-                font-size: 2rem;
-            }
-
-            .events-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .event-card {
-                max-width: 100%;
-                margin: 0 auto;
-            }
-
-            .event-header {
-                padding: 2rem 1.5rem;
-            }
-
-            .event-title {
-                font-size: 1.6rem;
-            }
-
-            .event-content {
-                padding: 1.5rem;
-            }
-
-            .event-hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .event-hero {
-                padding: 3rem 1.5rem;
-            }
-
-            .event-info-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .info-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .container {
-                padding: 0 1.5rem;
-            }
-
-            .navigation-buttons {
-                max-width: 100%;
-                gap: 0.8rem;
-            }
-
-            .nav-btn {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-            }
-
-            .save-date-card {
-                margin: 0 1rem;
-                padding: 3rem 2rem;
-            }
-
-            .save-date-card h2 {
-                font-size: 2.5rem;
-            }
-
-            .save-date-card .main-date {
-                font-size: 2rem;
-            }
-
-            .couple-section,
-            .events-section,
-            .save-date-section {
-                padding: 3rem 0;
+            .photo-overlay p {
+                font-size: 0.8rem;
             }
         }
 
         @media (max-width: 576px) {
-            .welcome-text {
-                font-size: 1.8rem;
-                letter-spacing: 3px;
-                margin-bottom: 1.5rem;
+            .couple-section-title {
+                font-size: 1.6rem;
+                padding: 0.8rem 1.5rem;
             }
 
-            .couple-names {
-                font-size: 2.5rem;
-                line-height: 1.1;
+            .scrolling-section {
+                height: calc((100vh - 80px) / 3);
+                min-height: 120px;
             }
 
-            .wedding-date {
-                font-size: 1rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-            }
-
-            .couple-main-photo {
-                max-width: 100%;
-                margin: 0;
-                border-radius: 20px;
-            }
-
-            .couple-main-photo img {
-                height: 250px;
-            }
-
-            .couple-photo {
-                height: 250px;
-            }
-
-            .couple-info {
-                padding: 1.5rem 1rem;
-            }
-
-            .couple-info h3 {
-                font-size: 1.8rem;
-            }
-
-            .couple-info .role {
-                font-size: 1rem;
-            }
-
-            .couple-details {
-                padding: 1rem;
-            }
-
-            .event-header {
-                padding: 1.5rem 1rem;
-            }
-
-            .event-icon {
-                font-size: 3rem;
-            }
-
-            .event-title {
-                font-size: 1.4rem;
-            }
-
-            .event-date {
-                font-size: 1rem;
-            }
-
-            .event-content {
-                padding: 1rem;
-            }
-
-            .detail-item {
-                padding: 0.8rem;
-                margin-bottom: 0.8rem;
-            }
-
-            .detail-icon {
-                font-size: 1.2rem;
-                margin-right: 0.8rem;
-            }
-
-            .event-btn {
-                padding: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .event-hero h1 {
-                font-size: 2rem;
-            }
-
-            .event-hero .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .info-card {
-                padding: 1.5rem 1rem;
-            }
-
-            .info-card h3 {
-                font-size: 1.2rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .navigation-buttons {
-                gap: 0.6rem;
-            }
-
-            .nav-btn {
-                padding: 0.9rem 1.2rem;
-                font-size: 0.9rem;
-            }
-
-            .save-date-card {
-                margin: 0 0.5rem;
-                padding: 2.5rem 1.5rem;
-                border-radius: 20px;
-            }
-
-            .save-date-card h2 {
-                font-size: 2rem;
-            }
-
-            .save-date-card .tagline {
-                font-size: 1.1rem;
-            }
-
-            .save-date-card .main-date {
-                font-size: 1.8rem;
-                line-height: 1.2;
-            }
-
-            .save-btn {
-                padding: 0.9rem 2rem;
-                font-size: 1rem;
+            .photo-item {
+                min-width: 200px;
+                height: 110px;
+                margin: 0 8px;
             }
 
             .photo-overlay {
-                padding: 1.5rem;
+                padding: 0.8rem;
             }
 
-            .photo-overlay h3 {
-                font-size: 1.8rem;
-            }
-
-            .photo-overlay p {
+            .photo-overlay h4 {
                 font-size: 1rem;
             }
 
-            .back-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
-                margin-left: 1rem !important;
-            }
-
-            .hero {
-                padding: 1rem;
-                min-height: 100vh;
-                display: flex;
-                align-items: center;
-            }
-
-            .couple-section,
-            .events-section,
-            .save-date-section {
-                padding: 2.5rem 0;
-            }
-
-            .event-page {
-                padding: 1rem 0;
-            }
-        }
-
-            .carousel-slide {
-                height: 250px;
-            }
-            
-            .carousel-overlay {
-                padding: 1rem;
-            }
-            
-            .carousel-overlay h3 {
-                font-size: 1.5rem;
-            }
-            
-            .carousel-overlay p {
-                font-size: 0.9rem;
-            }
-            
-            .carousel-controls {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
-            }
-            
-            .carousel-play-pause {
-                width: 35px;
-                height: 35px;
-                font-size: 0.8rem;
-                top: 15px;
-                right: 15px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .welcome-text {
-                font-size: 1.5rem;
-                letter-spacing: 2px;
-            }
-
-            .couple-names {
-                font-size: 2.2rem;
-            }
-
-            .section-title {
-                font-size: 1.6rem;
-            }
-
-            .couple-main-photo img {
-                height: 220px;
-            }
-
-            .couple-photo {
-                height: 220px;
-            }
-
-            .save-date-card {
-                margin: 0 0.25rem;
-                padding: 2rem 1rem;
-            }
-
-            .save-date-card h2 {
-                font-size: 1.8rem;
-            }
-
-            .save-date-card .main-date {
-                font-size: 1.6rem;
-            }
-
-            .container {
-                padding: 0 0.5rem;
-            }
-
-            .event-hero h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        /* Landscape Mobile Orientation */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .hero {
-                min-height: auto;
-                padding: 2rem 1rem;
-            }
-
-            .welcome-text {
-                font-size: 1.8rem;
-                margin-bottom: 1rem;
-            }
-
-            .couple-names {
-                font-size: 2.5rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .wedding-date {
-                margin-bottom: 1.5rem;
-            }
-
-            .navigation-buttons {
-                gap: 0.5rem;
-            }
-
-            .nav-btn {
-                padding: 0.8rem 1.5rem;
-            }
-        }
-
-        /* Tablet Portrait */
-        @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
-            .couple-cards {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-
-            .events-grid {
-                grid-template-columns: 1fr;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-        }
-
-        /* Large Mobile / Small Tablet */
-        @media (min-width: 576px) and (max-width: 768px) {
-            .events-grid {
-                grid-template-columns: 1fr;
-                max-width: 450px;
-                margin: 0 auto;
-            }
-
-            .couple-cards {
-                max-width: 450px;
-                margin: 0 auto;
+            .photo-overlay p {
+                font-size: 0.7rem;
             }
         }
 
@@ -1296,113 +632,36 @@
     <!-- Couple Page -->
     <div id="couple" class="page">
         <section class="couple-section">
-            <div class="container">
-                <h2 class="section-title">Meet the Couple</h2>
-                
-                <!-- Couple Together Photo -->
-                <div class="couple-together">
-                    <div class="couple-main-photo">
-                        <img src="https://via.placeholder.com/600x400/667eea/ffffff?text=Meenu+%26+Vignesh+Together" alt="Meenu & Vignesh Together">
-                        <div class="photo-overlay">
-                            <h3>Our Love Story</h3>
-                            <p>Two hearts that beat as one ❤️</p>
-                        </div>
-                    </div>
+            <!-- Section 1 - Scroll Left to Right -->
+            <div class="scrolling-section section-1">
+                <div class="scrolling-container scroll-left" id="section1-container">
+                    <!-- Photos will be dynamically added here -->
                 </div>
-                <!-- Photo Carousel Section -->
-                <div class="photo-carousel-section">
-                    <h3 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #2d3748; margin-bottom: 2rem;">Our Journey Together</h3>
-                    
-                    <div class="carousel-container">
-                        <div class="carousel-track" id="carouselTrack">
-                            <div class="carousel-slide">
-                                <img src="https://via.placeholder.com/800x400/667eea/ffffff?text=Our+First+Meeting" alt="First Meeting">
-                                <div class="carousel-overlay">
-                                    <h3>First Meeting</h3>
-                                    <p>Where our beautiful story began ✨</p>
-                                </div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://via.placeholder.com/800x400/ff9a9e/ffffff?text=First+Date" alt="First Date">
-                                <div class="carousel-overlay">
-                                    <h3>First Date</h3>
-                                    <p>Coffee turned into forever 💕</p>
-                                </div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://via.placeholder.com/800x400/a8edea/ffffff?text=Proposal+Day" alt="Proposal">
-                                <div class="carousel-overlay">
-                                    <h3>The Proposal</h3>
-                                    <p>When dreams became reality 💍</p>
-                                </div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://via.placeholder.com/800x400/fecfef/ffffff?text=Engagement+Celebration" alt="Engagement">
-                                <div class="carousel-overlay">
-                                    <h3>Engagement Day</h3>
-                                    <p>Celebrating our commitment 🎉</p>
-                                </div>
-                            </div>
-                            <div class="carousel-slide">
-                                <img src="https://via.placeholder.com/800x400/fed6e3/ffffff?text=Pre+Wedding+Shoot" alt="Pre Wedding">
-                                <div class="carousel-overlay">
-                                    <h3>Pre-Wedding Memories</h3>
-                                    <p>Capturing our love story 📸</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button class="carousel-controls carousel-prev" onclick="prevSlide()">‹</button>
-                        <button class="carousel-controls carousel-next" onclick="nextSlide()">›</button>
-                        <button class="carousel-play-pause" id="playPauseBtn" onclick="toggleAutoplay()">⏸️</button>
-                    </div>
-                    
-                    <div class="carousel-indicators" id="carouselIndicators">
-                        <span class="carousel-dot active" onclick="currentSlide(1)"></span>
-                        <span class="carousel-dot" onclick="currentSlide(2)"></span>
-                        <span class="carousel-dot" onclick="currentSlide(3)"></span>
-                        <span class="carousel-dot" onclick="currentSlide(4)"></span>
-                        <span class="carousel-dot" onclick="currentSlide(5)"></span>
-                    </div>
+            </div>
+            
+            <!-- Section 2 - Scroll Right to Left -->
+            <div class="scrolling-section section-2">
+                <div class="scrolling-container scroll-right" id="section2-container">
+                    <!-- Photos will be dynamically added here -->
                 </div>
-                    <div class="couple-card">
-                        <div class="couple-photo bride-photo">
-                            <img src="https://via.placeholder.com/400x400/ff9a9e/ffffff?text=Beautiful+Bride+Meenu" alt="Bride Meenu">
-                        </div>
-                        <div class="couple-info">
-                            <h3>Meenu</h3>
-                            <p class="role">The Bride</p>
-                            <p>"A beautiful soul with a heart full of love, kindness, and dreams. Her smile lights up every room she enters."</p>
-                            
-                            <div class="couple-details">
-                                <p><strong>Profession:</strong> Software Engineer</p>
-                                <p><strong>Hobbies:</strong> Reading, Dancing, Cooking</p>
-                                <p><strong>Favorite Quote:</strong> "Love is not about finding the perfect person, but seeing an imperfect person perfectly."</p>
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            
+            <!-- Section 3 - Scroll Left to Right -->
+            <div class="scrolling-section section-3">
+                <div class="scrolling-container scroll-left" id="section3-container">
+                    <!-- Photos will be dynamically added here -->
+                </div>
+            </div>
 
-                    <div class="couple-card">
-                        <div class="couple-photo groom-photo">
-                            <img src="https://via.placeholder.com/400x400/667eea/ffffff?text=Handsome+Groom+Vignesh" alt="Groom Vignesh">
-                        </div>
-                        <div class="couple-info">
-                            <h3>Vignesh</h3>
-                            <p class="role">The Groom</p>
-                            <p>"A gentle gentleman with a warm heart and infectious laughter. His caring nature and wisdom inspire everyone around him."</p>
-                            
-                            <div class="couple-details">
-                                <p><strong>Profession:</strong> Data Analyst</p>
-                                <p><strong>Hobbies:</strong> Photography, Travel, Music</p>
-                                <p><strong>Favorite Quote:</strong> "The best thing to hold onto in life is each other."</p>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Section 4 - Scroll Right to Left (like section 2) -->
+            <div class="scrolling-section section-4">
+                <div class="scrolling-container scroll-right" id="section4-container">
+                    <!-- Photos will be dynamically added here -->
                 </div>
+            </div>
 
-                <div style="text-align: center;">
-                    <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
-                </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
             </div>
         </section>
     </div>
@@ -1523,28 +782,254 @@
     </div>
 
     <script>
-        // Page navigation
+        // Dynamic Photo Data - You can easily modify this array
+        const photoSections = {
+            section1: [
+                { 
+                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Childhood+Meenu", 
+                    title: "Little Meenu", 
+                    description: "Sweet childhood memories ✨" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=School+Days", 
+                    title: "School Days", 
+                    description: "Growing up with dreams 🎓" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=College+Life", 
+                    title: "College Years", 
+                    description: "Making lifelong friends 🎓" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=First+Job", 
+                    title: "Career Begins", 
+                    description: "Starting the journey 💼" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/fed6e3/ffffff?text=Family+Time", 
+                    title: "Family Moments", 
+                    description: "Love and togetherness ❤️" 
+                }
+            ],
+            section2: [
+                { 
+                    src: "https://via.placeholder.com/280x160/764ba2/ffffff?text=First+Meeting", 
+                    title: "First Meeting", 
+                    description: "When paths crossed 💫" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Coffee+Date", 
+                    title: "Coffee Dates", 
+                    description: "Getting to know each other ☕" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=First+Trip", 
+                    title: "First Trip Together", 
+                    description: "Adventures begin 🗺️" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=Family+Meet", 
+                    title: "Meeting Families", 
+                    description: "Bringing hearts together 👨‍👩‍👧‍👦" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=Proposal+Day", 
+                    title: "The Proposal", 
+                    description: "Forever starts now 💍" 
+                }
+            ],
+            section3: [
+                { 
+                    src: "https://via.placeholder.com/280x160/fed6e3/ffffff?text=Childhood+Vignesh", 
+                    title: "Little Vignesh", 
+                    description: "Playful childhood days 🚀" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Sports+Champion", 
+                    title: "Sports Champion", 
+                    description: "Athletic achievements 🏆" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=Engineering+Days", 
+                    title: "Engineering Days", 
+                    description: "Building the future 🔧" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=Travel+Adventures", 
+                    title: "Solo Adventures", 
+                    description: "Exploring the world 🌍" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=Ready+for+Love", 
+                    title: "Ready for Love", 
+                    description: "Waiting for the one 💕" 
+                }
+            ],
+            section4: [
+                { 
+                    src: "https://via.placeholder.com/280x160/764ba2/ffffff?text=Engagement+Prep", 
+                    title: "Engagement Preparations", 
+                    description: "Planning our future together 💍" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Wedding+Planning", 
+                    title: "Wedding Planning", 
+                    description: "Creating our dream day 📋" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=Family+Bonds", 
+                    title: "Family Bonding", 
+                    description: "Two families becoming one 👨‍👩‍👧‍👦" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=Pre+Wedding", 
+                    title: "Pre-Wedding Celebrations", 
+                    description: "The festivities begin 🎉" 
+                },
+                { 
+                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=New+Chapter", 
+                    title: "New Chapter", 
+                    description: "Ready for our forever 💕" 
+                }
+            ]
+        };
+
+        // Global photo scroller instance
+        let photoScroller;
+
+        // Dynamic Scrolling Photo System
+        class DynamicPhotoScroller {
+            constructor() {
+                this.sections = ['section1', 'section2', 'section3', 'section4'];
+                this.containers = {};
+                this.animationSpeeds = {
+                    section1: 60, // seconds for full cycle
+                    section2: 45, // faster for opposite direction
+                    section3: 55, // slightly different speed
+                    section4: 50  // similar to section2 but different speed
+                };
+                this.init();
+            }
+
+            init() {
+                console.log('Initializing photo scroller with sections:', this.sections);
+                
+                this.sections.forEach(sectionId => {
+                    const container = document.getElementById(`${sectionId}-container`);
+                    console.log(`Found container for ${sectionId}:`, !!container);
+                    
+                    this.containers[sectionId] = container;
+                    this.populateSection(sectionId);
+                    this.startAnimation(sectionId);
+                });
+
+                // Handle window resize
+                window.addEventListener('resize', () => {
+                    this.sections.forEach(sectionId => {
+                        this.adjustAnimation(sectionId);
+                    });
+                });
+            }
+
+            populateSection(sectionId) {
+                const container = this.containers[sectionId];
+                const photos = photoSections[sectionId];
+                
+                console.log(`Populating ${sectionId} with ${photos ? photos.length : 0} photos`);
+                
+                if (!container || !photos) {
+                    console.error(`Missing container or photos for ${sectionId}`);
+                    return;
+                }
+
+                // Clear existing content
+                container.innerHTML = '';
+
+                // Create exactly 2 sets for infinite scrolling (50% animation)
+                for (let set = 0; set < 2; set++) {
+                    photos.forEach(photo => {
+                        const photoElement = this.createPhotoElement(photo);
+                        container.appendChild(photoElement);
+                    });
+                }
+            }
+
+            createPhotoElement(photo) {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'photo-item';
+                
+                photoDiv.innerHTML = `
+                    <img src="${photo.src}" alt="${photo.title}" loading="lazy">
+                    <div class="photo-overlay">
+                        <h4>${photo.title}</h4>
+                        <p>${photo.description}</p>
+                    </div>
+                `;
+                
+                return photoDiv;
+            }
+
+            startAnimation(sectionId) {
+                const container = this.containers[sectionId];
+                const speed = this.animationSpeeds[sectionId];
+                
+                container.style.animationDuration = `${speed}s`;
+            }
+
+            adjustAnimation(sectionId) {
+                // Repopulate section on resize to ensure smooth scrolling
+                this.populateSection(sectionId);
+                this.startAnimation(sectionId);
+            }
+
+            // Method to add new photos dynamically
+            addPhotos(sectionId, newPhotos) {
+                if (photoSections[sectionId]) {
+                    photoSections[sectionId].push(...newPhotos);
+                    this.populateSection(sectionId);
+                    this.startAnimation(sectionId);
+                }
+            }
+
+            // Method to update animation speed
+            updateSpeed(sectionId, newSpeed) {
+                this.animationSpeeds[sectionId] = newSpeed;
+                this.startAnimation(sectionId);
+            }
+        }
+
+        // Page navigation function
         function showPage(pageId) {
+            console.log('Navigating to page:', pageId);
+            
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
 
             // Show loading
-            document.getElementById('loading').style.display = 'block';
+            const loading = document.getElementById('loading');
+            if (loading) {
+                loading.style.display = 'block';
+            }
 
             // Simulate loading delay
             setTimeout(() => {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById(pageId).classList.add('active');
+                if (loading) {
+                    loading.style.display = 'none';
+                }
+                
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                }
 
-                // Initialize carousel if switching to couple page
+                // Initialize photo scroller if switching to couple page
                 if (pageId === 'couple') {
                     setTimeout(() => {
-                        const coupleCarousel = document.getElementById('carouselTrack');
-                        if (coupleCarousel && !carousel) {
-                            carousel = new PhotoCarousel();
-                            console.log('✅ Photo carousel initialized on page switch!');
+                        if (!photoScroller) {
+                            photoScroller = new DynamicPhotoScroller();
+                            console.log('✅ Dynamic photo scroller initialized!');
                         }
                     }, 100);
                 }
@@ -1574,109 +1059,9 @@
         }, observerOptions);
 
         // Observe cards for animations
-        document.querySelectorAll('.event-card, .info-card, .couple-card').forEach(card => {
+        document.querySelectorAll('.event-card').forEach(card => {
             observer.observe(card);
         });
-
-        // Photo Carousel System
-        class PhotoCarousel {
-            constructor() {
-                this.currentSlide = 0;
-                this.totalSlides = 5;
-                this.autoplayInterval = null;
-                this.isAutoPlaying = true;
-                this.autoplayDelay = 4000; // 4 seconds
-                
-                this.track = document.getElementById('carouselTrack');
-                this.playPauseBtn = document.getElementById('playPauseBtn');
-                this.indicators = document.querySelectorAll('.carousel-dot');
-                
-                this.init();
-            }
-            
-            init() {
-                this.startAutoplay();
-                this.updateIndicators();
-            }
-            
-            goToSlide(slideIndex) {
-                this.currentSlide = slideIndex;
-                const translateX = -slideIndex * 100;
-                this.track.style.transform = `translateX(${translateX}%)`;
-                this.updateIndicators();
-            }
-            
-            nextSlide() {
-                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-                this.goToSlide(this.currentSlide);
-            }
-            
-            prevSlide() {
-                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-                this.goToSlide(this.currentSlide);
-            }
-            
-            updateIndicators() {
-                this.indicators.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === this.currentSlide);
-                });
-            }
-            
-            startAutoplay() {
-                if (this.autoplayInterval) {
-                    clearInterval(this.autoplayInterval);
-                }
-                
-                this.autoplayInterval = setInterval(() => {
-                    this.nextSlide();
-                }, this.autoplayDelay);
-                
-                this.isAutoPlaying = true;
-                if (this.playPauseBtn) {
-                    this.playPauseBtn.textContent = '⏸️';
-                }
-            }
-            
-            stopAutoplay() {
-                if (this.autoplayInterval) {
-                    clearInterval(this.autoplayInterval);
-                    this.autoplayInterval = null;
-                }
-                
-                this.isAutoPlaying = false;
-                if (this.playPauseBtn) {
-                    this.playPauseBtn.textContent = '▶️';
-                }
-            }
-            
-            toggleAutoplay() {
-                if (this.isAutoPlaying) {
-                    this.stopAutoplay();
-                } else {
-                    this.startAutoplay();
-                }
-            }
-        }
-
-        // Global carousel instance
-        let carousel;
-
-        // Carousel control functions
-        function nextSlide() {
-            if (carousel) carousel.nextSlide();
-        }
-
-        function prevSlide() {
-            if (carousel) carousel.prevSlide();
-        }
-
-        function currentSlide(slideIndex) {
-            if (carousel) carousel.goToSlide(slideIndex - 1);
-        }
-
-        function toggleAutoplay() {
-            if (carousel) carousel.toggleAutoplay();
-        }
 
         // Custom Particle System
         class ParticleSystem {
@@ -1710,8 +1095,6 @@
                 if (this.canvas.height < window.innerHeight) {
                     this.canvas.height = window.innerHeight;
                 }
-                
-                console.log(`Canvas resized to: ${this.canvas.width}x${this.canvas.height}`);
             }
             
             createParticles() {
@@ -1721,8 +1104,6 @@
                 const minParticles = 50;
                 const maxParticles = 150;
                 const finalCount = Math.max(minParticles, Math.min(maxParticles, particleCount));
-                
-                console.log(`Creating ${finalCount} particles for canvas ${this.canvas.width}x${this.canvas.height}`);
                 
                 for (let i = 0; i < finalCount; i++) {
                     this.particles.push(this.createParticle());
@@ -1824,7 +1205,7 @@
                 
                 // Pulse effect
                 const pulseSize = Math.sin(particle.pulse) * 0.5 + 1;
-                const originalSize = particle.size / pulseSize; // Get original size
+                const originalSize = particle.size / pulseSize;
                 particle.size = originalSize * pulseSize;
                 
                 // Mouse interaction
@@ -1841,7 +1222,6 @@
                 
                 // Reset particle if it goes off screen
                 if (particle.y < -50 || particle.x < -50 || particle.x > this.canvas.width + 50) {
-                    // Create a new particle at the bottom
                     const newParticle = this.createParticle();
                     Object.assign(particle, newParticle);
                 }
@@ -1868,27 +1248,38 @@
             }
         }
 
-        // Initialize particles
+        // Initialize systems
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎨 Initializing custom particle system...');
+            console.log('🎨 Initializing wedding website systems...');
             
             try {
                 // Wait a bit for the page to fully render
                 setTimeout(() => {
                     new ParticleSystem('particles-canvas');
                     console.log('✅ Custom particle system loaded successfully!');
-                    
-                    // Initialize carousel if we're on the couple page
-                    const coupleCarousel = document.getElementById('carouselTrack');
-                    if (coupleCarousel) {
-                        carousel = new PhotoCarousel();
-                        console.log('✅ Photo carousel initialized!');
-                    }
                 }, 250);
             } catch (error) {
                 console.error('❌ System initialization failed:', error);
             }
         });
+
+        // Helper function to add new photos (for future use)
+        function addNewPhotos(sectionNumber, photos) {
+            if (photoScroller) {
+                const sectionId = `section${sectionNumber}`;
+                photoScroller.addPhotos(sectionId, photos);
+                console.log(`✅ Added ${photos.length} new photos to ${sectionId}`);
+            }
+        }
+
+        // Helper function to update scroll speed (for future use)
+        function updateScrollSpeed(sectionNumber, speed) {
+            if (photoScroller) {
+                const sectionId = `section${sectionNumber}`;
+                photoScroller.updateSpeed(sectionId, speed);
+                console.log(`✅ Updated ${sectionId} speed to ${speed}s`);
+            }
+        }
     </script>
 </body>
 
