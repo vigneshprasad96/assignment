@@ -102,7 +102,7 @@
             font-family: 'Dancing Script', cursive;
             font-size: 4rem;
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 3rem;
             line-height: 1.2;
             color: #ffffff;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
@@ -410,6 +410,7 @@
         .detail-item {
             display: flex;
             align-items: center;
+            justify-content: center;
             margin-bottom: 1.5rem;
             padding: 1.5rem;
             background: rgba(45, 55, 72, 0.6);
@@ -417,6 +418,7 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            text-align: center;
         }
 
         .detail-item:hover {
@@ -497,13 +499,14 @@
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
         }
 
-        /* Modern Save the Date Style */
+        /* Modern Save the Date Style - Vertical Layout */
         .save-date-section {
-            padding: 0;
+            padding: 4rem 0;
             background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
             color: white;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
@@ -527,23 +530,36 @@
         .save-date-container {
             position: relative;
             z-index: 2;
-            max-width: 1000px;
+            max-width: 700px;
             margin: 0 auto;
             padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .save-date-content {
-            text-align: left;
-        }
-
-        .save-date-visual {
+            text-align: center;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .save-date-header {
+            margin-bottom: 2rem;
+        }
+
+        .couple-names-large {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            line-height: 1.1;
+        }
+
+        .wedding-announcement {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            color: #a0aec0;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .save-date-card {
@@ -556,10 +572,8 @@
                 0 25px 50px rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
             position: relative;
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 2rem;
         }
 
         .save-date-card::before {
@@ -580,64 +594,49 @@
                 0 0 0 1px rgba(255, 255, 255, 0.15);
         }
 
-        .couple-names-large {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4.5rem;
-            font-weight: 700;
+        .save-text {
+            font-size: 1.3rem;
             margin-bottom: 1.5rem;
-            color: #ffffff;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            line-height: 1.1;
-        }
-
-        .wedding-announcement {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            color: #a0aec0;
-            font-weight: 300;
+            color: #e2e8f0;
+            font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
 
-        .save-text {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            color: #e2e8f0;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
         .main-dates {
             font-family: 'Playfair Display', serif;
-            font-size: 3.2rem;
+            font-size: 3.8rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: #ffffff;
             text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
             line-height: 1.2;
         }
 
         .year-text {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #a0aec0;
             font-weight: 300;
             margin-bottom: 3rem;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
         }
 
         .event-preview {
             display: grid;
             grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .event-mini {
             background: rgba(45, 55, 72, 0.6);
-            padding: 1.5rem;
+            padding: 1.8rem;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .event-mini:hover {
@@ -649,45 +648,51 @@
         .event-mini-title {
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
         }
 
         .event-mini-date {
             color: #a0aec0;
-            font-size: 0.95rem;
+            font-size: 1rem;
+            font-weight: 500;
         }
 
-        .save-date-info {
-            margin-bottom: 1.5rem;
+        .save-date-description {
+            margin-bottom: 3rem;
         }
 
         .save-date-subtitle {
             font-size: 1.8rem;
             font-weight: 300;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             color: #e2e8f0;
-            line-height: 1.5;
+            line-height: 1.4;
         }
 
         .save-date-details {
             color: #a0aec0;
             font-size: 1.1rem;
             line-height: 1.7;
-            margin-bottom: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .cta-buttons {
             display: flex;
             flex-direction: column;
             gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .cta-btn {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-decoration: none;
-            padding: 1.2rem 2rem;
+            padding: 1.4rem 2.5rem;
             border-radius: 16px;
             font-weight: 600;
             font-size: 1.1rem;
@@ -728,6 +733,122 @@
         .cta-btn.secondary:hover {
             background: rgba(45, 55, 72, 1);
             border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        /* Responsive Design for Save the Date */
+        @media (max-width: 768px) {
+            .save-date-container {
+                padding: 2rem 1.5rem;
+                gap: 2.5rem;
+            }
+
+            .couple-names-large {
+                font-size: 3.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .wedding-announcement {
+                font-size: 1.2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .save-date-subtitle {
+                font-size: 1.5rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .save-date-details {
+                font-size: 1rem;
+            }
+
+            .save-date-card {
+                padding: 3rem 2.5rem;
+            }
+
+            .main-dates {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .year-text {
+                font-size: 1.7rem;
+                margin-bottom: 2.5rem;
+                letter-spacing: 3px;
+            }
+
+            .event-mini {
+                padding: 1.5rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 0.8rem;
+            }
+
+            .event-mini-title {
+                justify-content: center;
+                font-size: 1.1rem;
+            }
+
+            .event-mini-date {
+                font-size: 0.95rem;
+            }
+
+            .cta-buttons {
+                gap: 1rem;
+            }
+
+            .cta-btn {
+                padding: 1.2rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .save-date-container {
+                padding: 1.5rem 1rem;
+                gap: 2rem;
+            }
+
+            .couple-names-large {
+                font-size: 3rem;
+            }
+
+            .save-date-card {
+                padding: 2.5rem 1.8rem;
+            }
+
+            .main-dates {
+                font-size: 2.5rem;
+            }
+
+            .year-text {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .save-text {
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+
+            .event-mini {
+                padding: 1.3rem;
+            }
+
+            .event-mini-title {
+                font-size: 1rem;
+            }
+
+            .event-mini-date {
+                font-size: 0.9rem;
+            }
+
+            .save-date-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .save-date-details {
+                font-size: 0.95rem;
+            }
         }
 
         .save-btn {
@@ -813,30 +934,6 @@
 
         /* Responsive Design */
         /* Responsive Design for Save the Date */
-        @media (max-width: 992px) {
-            .save-date-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-                text-align: center;
-            }
-
-            .save-date-content {
-                text-align: center;
-                order: 2;
-            }
-
-            .save-date-visual {
-                order: 1;
-            }
-
-            .couple-names-large {
-                font-size: 3.5rem;
-            }
-
-            .save-date-subtitle {
-                font-size: 1.5rem;
-            }
-        }
 
         @media (max-width: 768px) {
             .save-date-container {
@@ -1010,14 +1107,18 @@
             }
 
             .detail-item {
+                flex-direction: column;
+                text-align: center;
                 padding: 1.2rem;
-                margin-bottom: 1.2rem;
+                align-items: center;
+                justify-content: center;
             }
 
             .detail-icon {
                 font-size: 1.3rem;
-                margin-right: 1rem;
-                width: 35px;
+                margin-right: 0;
+                margin-bottom: 0.8rem;
+                width: auto;
             }
         }
 
@@ -1121,7 +1222,6 @@
             <div class="hero-content">
                 <h1 class="welcome-text">WELCOME</h1>
                 <h2 class="couple-names">Vicky & Meenu</h2>
-                <p class="wedding-date">August 27 • 28 • 31, 2025</p>
                 
                 <div class="navigation-buttons">
                     <a href="#" onclick="showPage('couple')" class="nav-btn">Meet the Couple</a>
@@ -1216,7 +1316,7 @@
                                 <div class="detail-item">
                                     <span class="detail-icon">⏰</span>
                                     <div class="detail-text">
-                                        <span>10:00 AM - 12:00 PM</span>
+                                        <span>10:30 AM - 11:00 AM</span>
                                     </div>
                                 </div>
                                 <div class="detail-item">
@@ -1242,7 +1342,7 @@
                                 <div class="detail-item">
                                     <span class="detail-icon">⏰</span>
                                     <div class="detail-text">
-                                        <span>7:00 PM - 10:00 PM</span>
+                                        <span>6:00 PM - 9:00 PM</span>
                                     </div>
                                 </div>
                                 <div class="detail-item">
@@ -1269,47 +1369,40 @@
     <div id="savedate" class="page">
         <section class="save-date-section">
             <div class="save-date-container">
-                <div class="save-date-content">
+                <div class="save-date-header">
                     <h1 class="couple-names-large">Vicky & Meenu</h1>
                     <p class="wedding-announcement">We're getting married</p>
-                    
-                    <div class="save-date-info">
-                        <h2 class="save-date-subtitle">Three days of love, tradition & celebration</h2>
-                        <p class="save-date-details">
-                            Join us as we embark on this beautiful journey together. Our wedding celebration will span three magical days filled with traditional ceremonies, joyous festivities, and unforgettable memories.
-                        </p>
-                    </div>
+                </div>
 
-                    <div class="cta-buttons">
-                        <!-- <a href="#" onclick="showPage('events')" class="cta-btn">View All Events</a> -->
-                        <!-- <a href="#" onclick="showPage('couple')" class="cta-btn secondary">Meet the Couple</a> -->
+                <div class="save-date-card">
+                    <p class="save-text">Save the Date</p>
+                    <div class="main-dates">
+                        August<br>
+                        27 • 28 • 31
+                    </div>
+                    <p class="year-text">2025</p>
+                    
+                    <div class="event-preview">
+                        <div class="event-mini">
+                            <div class="event-mini-title">💍 Engagement</div>
+                            <div class="event-mini-date">August 27, 2025</div>
+                        </div>
+                        <div class="event-mini">
+                            <div class="event-mini-title">📿 Muhurtam</div>
+                            <div class="event-mini-date">August 28, 2025</div>
+                        </div>
+                        <div class="event-mini">
+                            <div class="event-mini-title">🎉 Reception</div>
+                            <div class="event-mini-date">August 31, 2025</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="save-date-visual">
-                    <div class="save-date-card">
-                        <p class="save-text">Save the Date</p>
-                        <div class="main-dates">
-                            August<br>
-                            27 • 28 • 31
-                        </div>
-                        <p class="year-text">2025</p>
-                        
-                        <div class="event-preview">
-                            <div class="event-mini">
-                                <div class="event-mini-title">💍 Engagement</div>
-                                <div class="event-mini-date">August 27, 2025</div>
-                            </div>
-                            <div class="event-mini">
-                                <div class="event-mini-title">📿 Muhurtam</div>
-                                <div class="event-mini-date">August 28, 2025</div>
-                            </div>
-                            <div class="event-mini">
-                                <div class="event-mini-title">🎉 Reception</div>
-                                <div class="event-mini-date">August 31, 2025</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="save-date-description">
+                    <h2 class="save-date-subtitle">Three days of love, tradition & celebration</h2>
+                    <p class="save-date-details">
+                        Join us as we embark on this beautiful journey together. Our wedding celebration will span three magical days filled with traditional ceremonies, joyous festivities, and unforgettable memories.
+                    </p>
                 </div>
             </div>
             
