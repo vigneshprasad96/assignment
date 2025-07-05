@@ -1,110 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priya & Arjun - Wedding Celebration</title>
+    <title>Meenu & Vignesh - Wedding Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            /* Carousel responsive design */
+            .carousel-slide {
+                height: 300px;
+            }
+            
+            .carousel-overlay {
+                padding: 1.5rem;
+            }
+            
+            .carousel-overlay h3 {
+                font-size: 1.8rem;
+            }
+            
+            .carousel-controls {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .carousel-prev {
+                left: 10px;
+            }
+            
+            .carousel-next {
+                right: 10px;
+            }
         }
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             color: #333;
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
+        /* Custom Particle System */
+        #particles-js {
+            position: absolute;
             width: 100%;
-            background: rgba(139, 69, 19, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow: hidden;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ffd700;
-            font-family: 'Georgia', serif;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
+        .map-link {
+            color: #667eea;
             text-decoration: none;
-            color: #ffd700;
+            font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-top: 0.3rem;
+        }
+
+        .map-link:hover {
+            color: #5a67d8;
+            text-decoration: underline;
+        }
+
+        /* Photo Carousel Styles */
+        .photo-carousel-section {
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            height: 400px;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-overlay h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-overlay p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .nav-links a:hover {
-            background: rgba(255, 215, 0, 0.2);
-            transform: translateY(-2px);
+        .carousel-dot.active {
+            background: #667eea;
+            transform: scale(1.2);
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.2rem;
             cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #ffd700;
-            margin: 3px 0;
-            transition: 0.3s;
+        .carousel-controls:hover {
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+            left: 20px;
+        }
+
+        .carousel-next {
+            right: 20px;
+        }
+
+        .carousel-play-pause {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-play-pause:hover {
+            background: rgba(0, 0, 0, 0.7);
         }
 
         /* Page Container */
         .page {
             display: none;
             min-height: 100vh;
-            padding-top: 0px;
         }
 
         .page.active {
             display: block;
         }
 
-        /* Hero Section */
+        /* Hero Section - Welcome Style */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(139, 69, 19, 0.3), rgba(218, 165, 32, 0.3)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="mandala" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="2" fill="%23ffd700" opacity="0.3"/><circle cx="50" cy="50" r="20" fill="none" stroke="%23ffd700" opacity="0.2"/></pattern></defs><rect width="100%" height="100%" fill="%23d2691e"/><rect width="100%" height="100%" fill="url(%23mandala)"/></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             position: relative;
+            padding: 2rem;
         }
 
         .hero::before {
@@ -114,46 +232,84 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at center, transparent 30%, rgba(139, 69, 19, 0.4) 100%);
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 2rem;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            font-family: 'Georgia', serif;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 3;
+            max-width: 600px;
             animation: fadeInUp 1s ease-out;
         }
 
-        .hero .date {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: #ffd700;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-
-        .hero .tagline {
-            font-size: 1.2rem;
-            font-style: italic;
+        .welcome-text {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 8px;
             margin-bottom: 3rem;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
 
-        /* Section Styling */
-        .section {
-            padding: 5rem 0;
-            background: linear-gradient(135deg, #fff8e1 0%, #faf0e6 100%);
+        .couple-names {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
 
-        .section:nth-child(even) {
-            background: linear-gradient(135deg, #f5f5dc 0%, #fff8dc 100%);
+        .wedding-date {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            letter-spacing: 2px;
+            color: #f7fafc;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .nav-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            text-decoration: none;
+            display: block;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Couple Profile Section */
+        .couple-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
         }
 
         .container {
@@ -162,79 +318,227 @@
             padding: 0 2rem;
         }
 
-        h2 {
+        .section-title {
             text-align: center;
+            font-family: 'Playfair Display', serif;
             font-size: 3rem;
-            margin-bottom: 3rem;
-            color: #8b4513;
-            font-family: 'Georgia', serif;
+            font-weight: 600;
+            margin-bottom: 4rem;
+            color: #2d3748;
+        }
+
+        /* Couple Together Photo */
+        .couple-together {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5rem;
+        }
+
+        .couple-main-photo {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
             position: relative;
         }
 
-        h2::after {
-            content: '❀';
-            display: block;
-            color: #daa520;
-            font-size: 2rem;
-            margin-top: 0.5rem;
+        .couple-main-photo:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.2);
         }
 
-        /* Events Grid */
-        .events-grid {
+        .couple-main-photo img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .couple-main-photo:hover img {
+            transform: scale(1.02);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(102, 126, 234, 0.9));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .couple-main-photo:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        .photo-overlay h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .photo-overlay p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .couple-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .couple-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .couple-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+        }
+
+        .couple-photo {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .couple-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .couple-card:hover .couple-photo img {
+            transform: scale(1.05);
+        }
+
+        .bride-photo {
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+        }
+
+        .groom-photo {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .couple-info {
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .couple-info h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .couple-info .role {
+            color: #667eea;
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .couple-info p {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .couple-details {
+            background: #f7fafc;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .couple-details p {
+            margin-bottom: 0.8rem;
+            font-style: normal;
+            color: #2d3748;
+        }
+
+        .couple-details strong {
+            color: #667eea;
+        }
+
+        /* Events Section */
+        .events-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 2rem;
-            margin-top: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .event-card {
             background: white;
-            border-radius: 20px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.2);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            border: 3px solid #daa520;
             position: relative;
-        }
-
-        .event-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #daa520, #ffd700, #daa520);
         }
 
         .event-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(139, 69, 19, 0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
         }
 
         .event-header {
-            background: linear-gradient(135deg, #8b4513, #daa520);
-            color: white;
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             text-align: center;
             position: relative;
+            color: white;
         }
 
+        .engagement-bg { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .muhurtam-bg { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+        .reception-bg { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+
         .event-icon {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-bottom: 1rem;
             display: block;
         }
 
         .event-title {
-            font-size: 1.8rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            font-family: 'Georgia', serif;
         }
 
         .event-date {
             font-size: 1.1rem;
             opacity: 0.9;
+            font-weight: 300;
         }
 
         .event-content {
@@ -242,35 +546,37 @@
         }
 
         .event-details {
-            margin-bottom: 2rem;
+            margin-bottom: 0;
         }
 
         .detail-item {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
-            padding: 0.5rem;
-            background: #fff8e1;
-            border-radius: 10px;
+            padding: 1rem;
+            background: #f7fafc;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
         }
 
         .detail-icon {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-right: 1rem;
             width: 30px;
             text-align: center;
+            color: #667eea;
         }
 
         .event-btn {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, #8b4513, #daa520);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             text-decoration: none;
-            padding: 1rem;
-            border-radius: 50px;
+            padding: 1.2rem;
+            border-radius: 25px;
             text-align: center;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
@@ -278,36 +584,38 @@
         }
 
         .event-btn:hover {
-            background: linear-gradient(135deg, #654321, #b8860b);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.3);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
 
         /* Individual Event Pages */
         .event-page {
-            background: linear-gradient(135deg, #fff8e1 0%, #faf0e6 100%);
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             min-height: 100vh;
             padding: 2rem 0;
         }
 
         .event-hero {
             text-align: center;
-            padding: 3rem 0;
-            background: linear-gradient(135deg, #8b4513, #daa520);
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             border-radius: 0 0 50px 50px;
         }
 
         .event-hero h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
+            font-weight: 600;
             margin-bottom: 1rem;
-            font-family: 'Georgia', serif;
         }
 
         .event-hero .subtitle {
             font-size: 1.3rem;
             opacity: 0.9;
+            font-weight: 300;
         }
 
         .event-info-grid {
@@ -319,70 +627,108 @@
 
         .info-card {
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.1);
-            border-left: 5px solid #daa520;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #667eea;
         }
 
         .info-card h3 {
-            color: #8b4513;
+            color: #2d3748;
             margin-bottom: 1rem;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         .back-btn {
-            background: linear-gradient(135deg, #8b4513, #daa520);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             text-decoration: none;
             padding: 1rem 2rem;
-            border-radius: 50px;
+            border-radius: 25px;
             display: inline-block;
             margin-bottom: 2rem;
             transition: all 0.3s ease;
+            font-weight: 500;
         }
 
         .back-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(139, 69, 19, 0.3);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
         }
 
-        /* RSVP Form */
-        .rsvp-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
-            margin-top: 2rem;
+        /* Save the Date Style */
+        .save-date-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .save-date-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #8b4513;
+        .save-date-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+        .save-date-card .tagline {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            color: #f7fafc;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #daa520;
+        .save-date-card .date-text {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #f7fafc;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .save-date-card .main-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .save-btn {
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: #ffffff;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+        }
+
+        .save-btn:hover {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            transform: translateY(-2px);
         }
 
         /* Animations */
@@ -397,68 +743,498 @@
             }
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 100%;
+                padding: 0 3rem;
+            }
+            
+            .couple-cards {
+                gap: 3rem;
+            }
+            
+            .events-grid {
+                gap: 2.5rem;
+            }
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(139, 69, 19, 0.98);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .hero h1 {
+        @media (max-width: 992px) {
+            .welcome-text {
                 font-size: 2.5rem;
+                letter-spacing: 6px;
             }
 
-            .hero .date {
-                font-size: 1.2rem;
+            .couple-names {
+                font-size: 3.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .couple-cards {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .couple-main-photo {
+                max-width: 80%;
             }
 
             .events-grid {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .event-hero h1 {
+                font-size: 3rem;
+            }
+
+            .container {
+                padding: 0 2rem;
+            }
+
+            .hero {
+                padding: 1.5rem;
+            }
+
+            .couple-section,
+            .events-section,
+            .save-date-section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-text {
+                font-size: 2rem;
+                letter-spacing: 4px;
+                margin-bottom: 2rem;
+            }
+
+            .couple-names {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+
+            .wedding-date {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .couple-cards {
+                gap: 2rem;
+            }
+
+            .couple-main-photo {
+                max-width: 95%;
+                margin: 0 auto;
+            }
+
+            .couple-main-photo img {
+                height: 300px;
+            }
+
+            .couple-photo {
+                height: 300px;
+            }
+
+            .couple-info {
+                padding: 2rem 1.5rem;
+            }
+
+            .couple-info h3 {
+                font-size: 2rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .event-card {
+                max-width: 100%;
+                margin: 0 auto;
+            }
+
+            .event-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .event-title {
+                font-size: 1.6rem;
+            }
+
+            .event-content {
+                padding: 1.5rem;
             }
 
             .event-hero h1 {
                 font-size: 2.5rem;
             }
 
-            h2 {
+            .event-hero {
+                padding: 3rem 1.5rem;
+            }
+
+            .event-info-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .info-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .navigation-buttons {
+                max-width: 100%;
+                gap: 0.8rem;
+            }
+
+            .nav-btn {
+                padding: 1rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .save-date-card {
+                margin: 0 1rem;
+                padding: 3rem 2rem;
+            }
+
+            .save-date-card h2 {
+                font-size: 2.5rem;
+            }
+
+            .save-date-card .main-date {
                 font-size: 2rem;
+            }
+
+            .couple-section,
+            .events-section,
+            .save-date-section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .welcome-text {
+                font-size: 1.8rem;
+                letter-spacing: 3px;
+                margin-bottom: 1.5rem;
+            }
+
+            .couple-names {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+
+            .wedding-date {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .couple-main-photo {
+                max-width: 100%;
+                margin: 0;
+                border-radius: 20px;
+            }
+
+            .couple-main-photo img {
+                height: 250px;
+            }
+
+            .couple-photo {
+                height: 250px;
+            }
+
+            .couple-info {
+                padding: 1.5rem 1rem;
+            }
+
+            .couple-info h3 {
+                font-size: 1.8rem;
+            }
+
+            .couple-info .role {
+                font-size: 1rem;
+            }
+
+            .couple-details {
+                padding: 1rem;
+            }
+
+            .event-header {
+                padding: 1.5rem 1rem;
+            }
+
+            .event-icon {
+                font-size: 3rem;
+            }
+
+            .event-title {
+                font-size: 1.4rem;
+            }
+
+            .event-date {
+                font-size: 1rem;
+            }
+
+            .event-content {
+                padding: 1rem;
+            }
+
+            .detail-item {
+                padding: 0.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .detail-icon {
+                font-size: 1.2rem;
+                margin-right: 0.8rem;
+            }
+
+            .event-btn {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .event-hero h1 {
+                font-size: 2rem;
+            }
+
+            .event-hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .info-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .info-card h3 {
+                font-size: 1.2rem;
             }
 
             .container {
                 padding: 0 1rem;
             }
+
+            .navigation-buttons {
+                gap: 0.6rem;
+            }
+
+            .nav-btn {
+                padding: 0.9rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .save-date-card {
+                margin: 0 0.5rem;
+                padding: 2.5rem 1.5rem;
+                border-radius: 20px;
+            }
+
+            .save-date-card h2 {
+                font-size: 2rem;
+            }
+
+            .save-date-card .tagline {
+                font-size: 1.1rem;
+            }
+
+            .save-date-card .main-date {
+                font-size: 1.8rem;
+                line-height: 1.2;
+            }
+
+            .save-btn {
+                padding: 0.9rem 2rem;
+                font-size: 1rem;
+            }
+
+            .photo-overlay {
+                padding: 1.5rem;
+            }
+
+            .photo-overlay h3 {
+                font-size: 1.8rem;
+            }
+
+            .photo-overlay p {
+                font-size: 1rem;
+            }
+
+            .back-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+                margin-left: 1rem !important;
+            }
+
+            .hero {
+                padding: 1rem;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+            }
+
+            .couple-section,
+            .events-section,
+            .save-date-section {
+                padding: 2.5rem 0;
+            }
+
+            .event-page {
+                padding: 1rem 0;
+            }
         }
 
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
+            .carousel-slide {
+                height: 250px;
+            }
+            
+            .carousel-overlay {
+                padding: 1rem;
+            }
+            
+            .carousel-overlay h3 {
+                font-size: 1.5rem;
+            }
+            
+            .carousel-overlay p {
+                font-size: 0.9rem;
+            }
+            
+            .carousel-controls {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            
+            .carousel-play-pause {
+                width: 35px;
+                height: 35px;
+                font-size: 0.8rem;
+                top: 15px;
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .welcome-text {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .couple-names {
+                font-size: 2.2rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .couple-main-photo img {
+                height: 220px;
+            }
+
+            .couple-photo {
+                height: 220px;
+            }
+
+            .save-date-card {
+                margin: 0 0.25rem;
+                padding: 2rem 1rem;
+            }
+
+            .save-date-card h2 {
+                font-size: 1.8rem;
+            }
+
+            .save-date-card .main-date {
+                font-size: 1.6rem;
+            }
+
+            .container {
+                padding: 0 0.5rem;
             }
 
             .event-hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Landscape Mobile Orientation */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 2rem 1rem;
             }
 
-            .event-card {
+            .welcome-text {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
+            .couple-names {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .wedding-date {
+                margin-bottom: 1.5rem;
+            }
+
+            .navigation-buttons {
+                gap: 0.5rem;
+            }
+
+            .nav-btn {
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        /* Tablet Portrait */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+            .couple-cards {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Large Mobile / Small Tablet */
+        @media (min-width: 576px) and (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .couple-cards {
+                max-width: 450px;
                 margin: 0 auto;
             }
         }
@@ -468,13 +1244,21 @@
             display: none;
             text-align: center;
             padding: 2rem;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
         }
 
         .spinner {
             width: 50px;
             height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #daa520;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
@@ -486,677 +1270,247 @@
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <!-- <nav>
-        <div class="nav-container">
-            <div class="logo">M ❤ V</div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" onclick="showPage('home')">Home</a></li>
-                <li><a href="#" onclick="showPage('events')">Events</a></li>
-                <li><a href="#" onclick="showPage('gallery')">Gallery</a></li>
-                <li><a href="#" onclick="showPage('travel')">Travel</a></li>
-                <li><a href="#" onclick="showPage('rsvp')">RSVP</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav> -->
 
+<body>
     <!-- Home Page -->
     <div id="home" class="page active">
+        <!-- Hero Welcome Section -->
         <section class="hero">
+            <div id="particles-js">
+                <canvas id="particles-canvas"></canvas>
+            </div>
             <div class="hero-content">
-                <h1>Meenu & Vignesh</h1>
-                <p class="date">September 27-28, 31, 2025</p>
-                <p class="tagline">"Two hearts, one soul, endless celebrations"</p>
+                <h1 class="welcome-text">WELCOME</h1>
+                <h2 class="couple-names">Meenu & Vignesh</h2>
+                <p class="wedding-date">September 27-28, 31, 2025</p>
+                
+                <div class="navigation-buttons">
+                    <a href="#" onclick="showPage('couple')" class="nav-btn">Meet the Couple</a>
+                    <a href="#" onclick="showPage('events')" class="nav-btn">Wedding Events</a>
+                    <a href="#" onclick="showPage('savedate')" class="nav-btn">Save the Date</a>
+                </div>
             </div>
         </section>
+    </div>
 
-        <section class="section">
+    <!-- Couple Page -->
+    <div id="couple" class="page">
+        <section class="couple-section">
             <div class="container">
-                <h2>Our Wedding Celebrations</h2>
-                <p style="text-align: center; font-size: 1.2rem; color: #8b4513; margin-bottom: 3rem;">
-                    Join us for four days of love, laughter, and unforgettable memories as we celebrate our union
-                    with traditional ceremonies and joyous festivities.
-                </p>
+                <h2 class="section-title">Meet the Couple</h2>
                 
+                <!-- Couple Together Photo -->
+                <div class="couple-together">
+                    <div class="couple-main-photo">
+                        <img src="https://via.placeholder.com/600x400/667eea/ffffff?text=Meenu+%26+Vignesh+Together" alt="Meenu & Vignesh Together">
+                        <div class="photo-overlay">
+                            <h3>Our Love Story</h3>
+                            <p>Two hearts that beat as one ❤️</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Photo Carousel Section -->
+                <div class="photo-carousel-section">
+                    <h3 style="text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: #2d3748; margin-bottom: 2rem;">Our Journey Together</h3>
+                    
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="carouselTrack">
+                            <div class="carousel-slide">
+                                <img src="https://via.placeholder.com/800x400/667eea/ffffff?text=Our+First+Meeting" alt="First Meeting">
+                                <div class="carousel-overlay">
+                                    <h3>First Meeting</h3>
+                                    <p>Where our beautiful story began ✨</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://via.placeholder.com/800x400/ff9a9e/ffffff?text=First+Date" alt="First Date">
+                                <div class="carousel-overlay">
+                                    <h3>First Date</h3>
+                                    <p>Coffee turned into forever 💕</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://via.placeholder.com/800x400/a8edea/ffffff?text=Proposal+Day" alt="Proposal">
+                                <div class="carousel-overlay">
+                                    <h3>The Proposal</h3>
+                                    <p>When dreams became reality 💍</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://via.placeholder.com/800x400/fecfef/ffffff?text=Engagement+Celebration" alt="Engagement">
+                                <div class="carousel-overlay">
+                                    <h3>Engagement Day</h3>
+                                    <p>Celebrating our commitment 🎉</p>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="https://via.placeholder.com/800x400/fed6e3/ffffff?text=Pre+Wedding+Shoot" alt="Pre Wedding">
+                                <div class="carousel-overlay">
+                                    <h3>Pre-Wedding Memories</h3>
+                                    <p>Capturing our love story 📸</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="carousel-controls carousel-prev" onclick="prevSlide()">‹</button>
+                        <button class="carousel-controls carousel-next" onclick="nextSlide()">›</button>
+                        <button class="carousel-play-pause" id="playPauseBtn" onclick="toggleAutoplay()">⏸️</button>
+                    </div>
+                    
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <span class="carousel-dot active" onclick="currentSlide(1)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(2)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(3)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(4)"></span>
+                        <span class="carousel-dot" onclick="currentSlide(5)"></span>
+                    </div>
+                </div>
+                    <div class="couple-card">
+                        <div class="couple-photo bride-photo">
+                            <img src="https://via.placeholder.com/400x400/ff9a9e/ffffff?text=Beautiful+Bride+Meenu" alt="Bride Meenu">
+                        </div>
+                        <div class="couple-info">
+                            <h3>Meenu</h3>
+                            <p class="role">The Bride</p>
+                            <p>"A beautiful soul with a heart full of love, kindness, and dreams. Her smile lights up every room she enters."</p>
+                            
+                            <div class="couple-details">
+                                <p><strong>Profession:</strong> Software Engineer</p>
+                                <p><strong>Hobbies:</strong> Reading, Dancing, Cooking</p>
+                                <p><strong>Favorite Quote:</strong> "Love is not about finding the perfect person, but seeing an imperfect person perfectly."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="couple-card">
+                        <div class="couple-photo groom-photo">
+                            <img src="https://via.placeholder.com/400x400/667eea/ffffff?text=Handsome+Groom+Vignesh" alt="Groom Vignesh">
+                        </div>
+                        <div class="couple-info">
+                            <h3>Vignesh</h3>
+                            <p class="role">The Groom</p>
+                            <p>"A gentle gentleman with a warm heart and infectious laughter. His caring nature and wisdom inspire everyone around him."</p>
+                            
+                            <div class="couple-details">
+                                <p><strong>Profession:</strong> Data Analyst</p>
+                                <p><strong>Hobbies:</strong> Photography, Travel, Music</p>
+                                <p><strong>Favorite Quote:</strong> "The best thing to hold onto in life is each other."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Events Page -->
+    <div id="events" class="page">
+        <section class="events-section">
+            <div class="container">
+                <h2 class="section-title">Wedding Functions</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #2d3748; margin-bottom: 4rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Join us for three days of love, laughter, and unforgettable memories as we celebrate our union with traditional ceremonies and joyous festivities.
+                </p>
+
                 <div class="events-grid">
                     <div class="event-card">
-                        <div class="event-header">
-                            <span class="event-icon">🎵</span>
-                            <h3 class="event-title">Sangam & Mehendi</h3>
-                            <p class="event-date">December 15, 2025</p>
+                        <div class="event-header engagement-bg">
+                            <span class="event-icon">💍</span>
+                            <h3 class="event-title">Engagement</h3>
+                            <p class="event-date">August 27, 2025</p>
                         </div>
                         <div class="event-content">
                             <div class="event-details">
                                 <div class="detail-item">
                                     <span class="detail-icon">⏰</span>
-                                    <span>4:00 PM - 9:00 PM</span>
+                                    <span>6:00 PM - 8:00 PM</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-icon">📍</span>
-                                    <span>Garden Pavilion, Hotel Grandeur</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">👗</span>
-                                    <span>Traditional Indian Attire</span>
+                                    <div>
+                                        <span>Abirami Mahal, Thoothukudi</span>
+                                        <br>
+                                        <a href="https://maps.google.com/?q=Abirami+Mahal+Thoothukudi" target="_blank" class="map-link">📍 View on Google Maps</a>
+                                    </div>
                                 </div>
                             </div>
-                            <button class="event-btn" onclick="showEventPage('sangam')">View Details</button>
                         </div>
                     </div>
 
                     <div class="event-card">
-                        <div class="event-header">
-                            <span class="event-icon">🔥</span>
-                            <h3 class="event-title">Haldi Ceremony</h3>
-                            <p class="event-date">December 16, 2025</p>
+                        <div class="event-header muhurtam-bg">
+                            <span class="event-icon">📿</span>
+                            <h3 class="event-title">Muhurtam</h3>
+                            <p class="event-date">August 28, 2025</p>
                         </div>
                         <div class="event-content">
                             <div class="event-details">
                                 <div class="detail-item">
                                     <span class="detail-icon">⏰</span>
-                                    <span>10:00 AM - 1:00 PM</span>
+                                    <span>10:00 AM - 12:00 PM</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-icon">📍</span>
-                                    <span>Bride's Family Home</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">👗</span>
-                                    <span>Yellow/Orange Clothing</span>
+                                    <div>
+                                        <span>Abirami Mahal, Thoothukudi</span>
+                                        <br>
+                                        <a href="https://maps.google.com/?q=Abirami+Mahal+Thoothukudi" target="_blank" class="map-link">📍 View on Google Maps</a>
+                                    </div>
                                 </div>
                             </div>
-                            <button class="event-btn" onclick="showEventPage('haldi')">View Details</button>
                         </div>
                     </div>
 
                     <div class="event-card">
-                        <div class="event-header">
-                            <span class="event-icon">💒</span>
-                            <h3 class="event-title">Wedding Ceremony</h3>
-                            <p class="event-date">December 17, 2025</p>
-                        </div>
-                        <div class="event-content">
-                            <div class="event-details">
-                                <div class="detail-item">
-                                    <span class="detail-icon">⏰</span>
-                                    <span>6:00 AM - 12:00 PM</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">📍</span>
-                                    <span>Grand Ballroom, Hotel Grandeur</span>
-                                </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">👗</span>
-                                    <span>Formal Indian Wedding Attire</span>
-                                </div>
-                            </div>
-                            <button class="event-btn" onclick="showEventPage('wedding')">View Details</button>
-                        </div>
-                    </div>
-
-                    <div class="event-card">
-                        <div class="event-header">
+                        <div class="event-header reception-bg">
                             <span class="event-icon">🎉</span>
                             <h3 class="event-title">Reception</h3>
-                            <p class="event-date">December 18, 2025</p>
+                            <p class="event-date">August 31, 2025</p>
                         </div>
                         <div class="event-content">
                             <div class="event-details">
                                 <div class="detail-item">
                                     <span class="detail-icon">⏰</span>
-                                    <span>7:00 PM - 12:00 AM</span>
+                                    <span>7:00 PM - 10:00 PM</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-icon">📍</span>
-                                    <span>Crystal Ballroom, Hotel Grandeur</span>
+                                    <div>
+                                        <span>Vasavi Mithra Mahal, Coimbatore</span>
+                                        <br>
+                                        <a href="https://maps.google.com/?q=Vasavi+Mithra+Mahal+Coimbatore" target="_blank" class="map-link">📍 View on Google Maps</a>
+                                    </div>
                                 </div>
-                                <div class="detail-item">
-                                    <span class="detail-icon">👗</span>
-                                    <span>Cocktail/Evening Wear</span>
-                                </div>
                             </div>
-                            <button class="event-btn" onclick="showEventPage('reception')">View Details</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
 
-    <!-- Events List Page -->
-    <div id="events" class="page">
-        <section class="section">
-            <div class="container">
-                <h2>All Events Schedule</h2>
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <div class="info-card">
-                        <h3>📅 Complete Schedule</h3>
-                        <p><strong>December 15:</strong> Sangam & Mehendi Ceremony</p>
-                        <p><strong>December 16:</strong> Haldi Ceremony</p>
-                        <p><strong>December 17:</strong> Wedding Ceremony</p>
-                        <p><strong>December 18:</strong> Reception Party</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📍 Venue Information</h3>
-                        <p><strong>Hotel Grandeur</strong><br>
-                        123 Wedding Avenue, Mumbai, Maharashtra<br>
-                        Phone: +91 98765 43210<br>
-                        <a href="#" style="color: #daa520;">View on Google Maps</a></p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🏨 Accommodation</h3>
-                        <p>We have reserved rooms at Hotel Grandeur for out-of-town guests. 
-                        Use code "PRIYAARJUN2025" for special rates.<br>
-                        <strong>Booking Deadline:</strong> November 15, 2025</p>
-                    </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Individual Event Pages -->
-    <!-- Sangam Event Page -->
-    <div id="sangam" class="page">
-        <div class="event-page">
-            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
-            
-            <div class="event-hero">
-                <h1>🎵 Sangam & Mehendi</h1>
-                <p class="subtitle">December 15, 2025 | 4:00 PM - 9:00 PM</p>
-            </div>
-            
+    <!-- Save the Date Page -->
+    <div id="savedate" class="page">
+        <section class="save-date-section">
             <div class="container">
-                <div class="event-info-grid">
-                    <div class="info-card">
-                        <h3>🎶 About Sangam</h3>
-                        <p>A beautiful evening of music, dance, and celebration where both families come together. 
-                        Enjoy traditional folk songs, dance performances, and delicious appetizers as we kick off 
-                        our wedding festivities.</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🌿 Mehendi Ceremony</h3>
-                        <p>Ladies will enjoy intricate henna designs applied by professional mehendi artists. 
-                        This ancient tradition symbolizes joy, beauty, and spiritual awakening. Mehendi station 
-                        will be available throughout the event.</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📍 Venue Details</h3>
-                        <p><strong>Garden Pavilion, Hotel Grandeur</strong><br>
-                        Beautiful outdoor setting with fairy lights<br>
-                        Covered pavilion (weather protected)<br>
-                        Valet parking available</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>👗 Dress Code</h3>
-                        <p><strong>Traditional Indian Attire Preferred</strong><br>
-                        Bright colors encouraged<br>
-                        Comfortable footwear recommended<br>
-                        Light fabrics suitable for evening weather</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🍽️ Refreshments</h3>
-                        <p>Evening snacks and appetizers<br>
-                        Traditional sweets and tea<br>
-                        Fresh fruit juices<br>
-                        Special dietary options available</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🎁 Special Notes</h3>
-                        <p>Photography encouraged<br>
-                        Live music performances<br>
-                        Children's activity corner<br>
-                        Mehendi artists will be available until 8 PM</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Haldi Event Page -->
-    <div id="haldi" class="page">
-        <div class="event-page">
-            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
-            
-            <div class="event-hero">
-                <h1>🔥 Haldi Ceremony</h1>
-                <p class="subtitle">December 16, 2025 | 10:00 AM - 1:00 PM</p>
-            </div>
-            
-            <div class="container">
-                <div class="event-info-grid">
-                    <div class="info-card">
-                        <h3>🌟 Sacred Tradition</h3>
-                        <p>The Haldi ceremony is a beautiful pre-wedding ritual where turmeric paste is applied to 
-                        the bride and groom for purification and blessings. This intimate ceremony brings good luck 
-                        and a natural glow before the wedding day.</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📍 Venue</h3>
-                        <p><strong>Bride's Family Home</strong><br>
-                        Residential setting<br>
-                        Intimate family gathering<br>
-                        Garden area for ceremony</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>👗 What to Wear</h3>
-                        <p><strong>Yellow or Orange Clothing</strong><br>
-                        Old clothes recommended (turmeric stains!)<br>
-                        Cotton fabrics preferred<br>
-                        Comfortable and washable attire</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🎉 Activities</h3>
-                        <p>Traditional turmeric application<br>
-                        Singing of ceremonial songs<br>
-                        Family photos and videos<br>
-                        Blessing ceremony by elders</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🍽️ Refreshments</h3>
-                        <p>Traditional breakfast items<br>
-                        Fresh seasonal fruits<br>
-                        Homemade sweets<br>
-                        Tea, coffee, and fresh juices</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📝 Important Notes</h3>
-                        <p>Close family and friends only<br>
-                        Please arrive on time<br>
-                        Bring extra clothes if desired<br>
-                        Towels will be provided</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Wedding Event Page -->
-    <div id="wedding" class="page">
-        <div class="event-page">
-            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
-            
-            <div class="event-hero">
-                <h1>💒 Wedding Ceremony</h1>
-                <p class="subtitle">December 17, 2025 | 6:00 AM - 12:00 PM</p>
-            </div>
-            
-            <div class="container">
-                <div class="event-info-grid">
-                    <div class="info-card">
-                        <h3>🕕 Ceremony Timeline</h3>
-                        <p><strong>6:00 AM:</strong> Groom's arrival (Baraat)<br>
-                        <strong>7:00 AM:</strong> Welcome ceremonies<br>
-                        <strong>8:00 AM:</strong> Main wedding rituals<br>
-                        <strong>10:30 AM:</strong> Seven vows (Saptapadi)<br>
-                        <strong>11:30 AM:</strong> Lunch service begins</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📍 Venue</h3>
-                        <p><strong>Grand Ballroom, Hotel Grandeur</strong><br>
-                        Beautifully decorated mandap<br>
-                        Air-conditioned comfort<br>
-                        Premium sound system<br>
-                        Professional photography setup</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>👗 Dress Code</h3>
-                        <p><strong>Formal Indian Wedding Attire</strong><br>
-                        Rich colors and fabrics<br>
-                        Traditional jewelry encouraged<br>
-                        Comfortable shoes for long ceremony<br>
-                        Avoid white or black colors</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🎶 Sacred Rituals</h3>
-                        <p>Vedic fire ceremony (Agni Sanskar)<br>
-                        Exchange of garlands (Jaimala)<br>
-                        Seven sacred vows (Saptapadi)<br>
-                        Blessing by fire god (Agni)<br>
-                        Sindoor and Mangalsutra ceremony</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🍽️ Wedding Feast</h3>
-                        <p>Traditional multi-course meal<br>
-                        Vegetarian and non-vegetarian options<br>
-                        Regional specialties<br>
-                        Live food counters<br>
-                        Traditional sweets and desserts</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📸 Photography</h3>
-                        <p>Professional wedding photographers<br>
-                        Videography team present<br>
-                        Guest photography encouraged<br>
-                        Live streaming for distant relatives<br>
-                        Photo booth available</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Reception Event Page -->
-    <div id="reception" class="page">
-        <div class="event-page">
-            <a href="#" onclick="showPage('home')" class="back-btn" style="margin-left: 2rem;">← Back to Home</a>
-            
-            <div class="event-hero">
-                <h1>🎉 Wedding Reception</h1>
-                <p class="subtitle">December 18, 2025 | 7:00 PM - 12:00 AM</p>
-            </div>
-            
-            <div class="container">
-                <div class="event-info-grid">
-                    <div class="info-card">
-                        <h3>🕖 Evening Schedule</h3>
-                        <p><strong>7:00 PM:</strong> Cocktail hour begins<br>
-                        <strong>8:00 PM:</strong> Couple's grand entrance<br>
-                        <strong>8:30 PM:</strong> Dinner service<br>
-                        <strong>9:30 PM:</strong> First dance & speeches<br>
-                        <strong>10:00 PM:</strong> Dance floor opens<br>
-                        <strong>12:00 AM:</strong> Event concludes</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📍 Venue</h3>
-                        <p><strong>Crystal Ballroom, Hotel Grandeur</strong><br>
-                        Elegant crystal chandeliers<br>
-                        Professional DJ and sound system<br>
-                        Full bar service<br>
-                        Dance floor with lighting<br>
-                        VIP seating areas</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>👗 Dress Code</h3>
-                        <p><strong>Cocktail/Evening Wear</strong><br>
-                        Semi-formal to formal attire<br>
-                        Western or Indo-western outfits<br>
-                        Comfortable dancing shoes<br>
-                        Elegant accessories welcome</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🍸 Refreshments</h3>
-                        <p>Premium open bar<br>
-                        Signature cocktails<br>
-                        International cuisine buffet<br>
-                        Live cooking stations<br>
-                        Wedding cake cutting ceremony<br>
-                        Late-night snacks</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🎵 Entertainment</h3>
-                        <p>Professional DJ<br>
-                        Live band performance<br>
-                        Special dance performances<br>
-                        Photo booth with props<br>
-                        Games and activities<br>
-                        Surprise entertainment acts</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🎁 Special Features</h3>
-                        <p>Gift registration table<br>
-                        Guest book signing<br>
-                        Professional photography<br>
-                        Transportation provided<br>
-                        Coat check service<br>
-                        Wedding favors for guests</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gallery Page -->
-    <div id="gallery" class="page">
-        <section class="section">
-            <div class="container">
-                <h2>Photo Gallery</h2>
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <p style="font-size: 1.2rem; color: #8b4513;">Our journey together captured in beautiful moments</p>
+                <div class="save-date-card">
+                    <h2>Meenu & Vignesh</h2>
+                    <p class="tagline">We're getting married</p>
+                    <p class="date-text">save the date</p>
+                    <p class="main-date">27-28, 31 August<br>2025</p>
+                    <a href="#" onclick="showPage('events')" class="save-btn">View Functions</a>
                 </div>
                 
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-header">
-                            <span class="event-icon">📸</span>
-                            <h3 class="event-title">Engagement Photos</h3>
-                        </div>
-                        <div class="event-content">
-                            <p>Beautiful moments from our engagement ceremony and photoshoot.</p>
-                            <div style="height: 200px; background: linear-gradient(45deg, #daa520, #ffd700); margin: 1rem 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
-                                Engagement Gallery Coming Soon
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-card">
-                        <div class="event-header">
-                            <span class="event-icon">💕</span>
-                            <h3 class="event-title">Pre-Wedding Shoot</h3>
-                        </div>
-                        <div class="event-content">
-                            <p>Romantic pre-wedding photography session at scenic locations.</p>
-                            <div style="height: 200px; background: linear-gradient(45deg, #8b4513, #daa520); margin: 1rem 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
-                                Pre-Wedding Gallery Coming Soon
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-card">
-                        <div class="event-header">
-                            <span class="event-icon">👨‍👩‍👧‍👦</span>
-                            <h3 class="event-title">Family Moments</h3>
-                        </div>
-                        <div class="event-content">
-                            <p>Cherished moments with our families and loved ones.</p>
-                            <div style="height: 200px; background: linear-gradient(45deg, #cd853f, #daa520); margin: 1rem 0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
-                                Family Gallery Coming Soon
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Travel Page -->
-    <div id="travel" class="page">
-        <section class="section">
-            <div class="container">
-                <h2>Travel & Accommodation</h2>
-                
-                <div class="event-info-grid">
-                    <div class="info-card">
-                        <h3>✈️ Getting There</h3>
-                        <p><strong>By Air:</strong> Chhatrapati Shivaji Maharaj International Airport (BOM)<br>
-                        Distance from venue: 45 minutes<br>
-                        <strong>By Train:</strong> Mumbai Central Railway Station<br>
-                        Distance from venue: 20 minutes<br>
-                        <strong>By Road:</strong> Well connected by highways</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🏨 Recommended Hotels</h3>
-                        <p><strong>Hotel Grandeur</strong> (Venue Hotel)<br>
-                        Special rate: ₹8,000/night<br>
-                        Use code: PRIYAARJUN2025<br><br>
-                        <strong>Nearby Options:</strong><br>
-                        • Grand Plaza Hotel (2 km)<br>
-                        • Comfort Inn & Suites (1.5 km)<br>
-                        • Budget Stay Lodge (3 km)</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🚗 Transportation</h3>
-                        <p><strong>Airport Transfers:</strong><br>
-                        Complimentary for hotel guests<br>
-                        Taxi/Uber readily available<br><br>
-                        <strong>Local Transport:</strong><br>
-                        • Hotel shuttle service<br>
-                        • Car rental available<br>
-                        • Local taxi services</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>📍 Local Attractions</h3>
-                        <p><strong>Must-visit places:</strong><br>
-                        • Gateway of India (15 km)<br>
-                        • Marine Drive (12 km)<br>
-                        • Elephanta Caves (20 km)<br>
-                        • Juhu Beach (25 km)<br>
-                        • Shopping at Colaba Causeway<br>
-                        • Local street food tours</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>🌤️ Weather Information</h3>
-                        <p><strong>December Weather:</strong><br>
-                        Temperature: 20-28°C<br>
-                        Pleasant and mild<br>
-                        Low humidity<br>
-                        Perfect for outdoor events<br>
-                        Light jacket recommended for evenings</p>
-                    </div>
-                    
-                    <div class="info-card">
-                        <h3>💡 Travel Tips</h3>
-                        <p>• Book accommodation early<br>
-                        • Carry comfortable walking shoes<br>
-                        • Local currency: Indian Rupees<br>
-                        • Most places accept cards<br>
-                        • Try local street food<br>
-                        • Respect local customs and traditions</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- RSVP Page -->
-    <div id="rsvp" class="page">
-        <section class="section">
-            <div class="container">
-                <h2>RSVP</h2>
-                <div style="text-align: center; margin-bottom: 3rem;">
-                    <p style="font-size: 1.2rem; color: #8b4513;">
-                        We're excited to celebrate with you! Please let us know which events you'll be attending.
-                    </p>
-                </div>
-                
-                <div style="max-width: 600px; margin: 0 auto;">
-                    <form class="rsvp-form" onsubmit="handleRSVP(event)">
-                        <div class="form-group">
-                            <label for="guestName">Full Name *</label>
-                            <input type="text" id="guestName" name="guestName" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="guests">Number of Guests *</label>
-                            <select id="guests" name="guests" required>
-                                <option value="">Select number of guests</option>
-                                <option value="1">1 Guest</option>
-                                <option value="2">2 Guests</option>
-                                <option value="3">3 Guests</option>
-                                <option value="4">4 Guests</option>
-                                <option value="5+">5+ Guests</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label>Which events will you attend? *</label>
-                            <div style="margin-top: 0.5rem;">
-                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
-                                    <input type="checkbox" name="events" value="sangam" style="margin-right: 0.5rem;">
-                                    Sangam & Mehendi (Dec 15)
-                                </label>
-                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
-                                    <input type="checkbox" name="events" value="haldi" style="margin-right: 0.5rem;">
-                                    Haldi Ceremony (Dec 16)
-                                </label>
-                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
-                                    <input type="checkbox" name="events" value="wedding" style="margin-right: 0.5rem;">
-                                    Wedding Ceremony (Dec 17)
-                                </label>
-                                <label style="display: flex; align-items: center; margin-bottom: 0.5rem; font-weight: normal;">
-                                    <input type="checkbox" name="events" value="reception" style="margin-right: 0.5rem;">
-                                    Reception (Dec 18)
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="dietary">Dietary Restrictions</label>
-                            <select id="dietary" name="dietary">
-                                <option value="">No restrictions</option>
-                                <option value="vegetarian">Vegetarian</option>
-                                <option value="vegan">Vegan</option>
-                                <option value="gluten-free">Gluten-free</option>
-                                <option value="other">Other (please specify in message)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="accommodation">Need Accommodation?</label>
-                            <select id="accommodation" name="accommodation">
-                                <option value="no">No, I have my own arrangements</option>
-                                <option value="yes">Yes, please reserve a room</option>
-                                <option value="info">I need more information</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Special Message or Requests</label>
-                            <textarea id="message" name="message" rows="4" placeholder="Any special requests, well wishes, or additional information..."></textarea>
-                        </div>
-                        
-                        <button type="submit" class="event-btn">Submit RSVP</button>
-                    </form>
-                    
-                    <div class="info-card" style="margin-top: 2rem;">
-                        <h3>📞 Contact Information</h3>
-                        <p>For any questions or special requests:<br>
-                        <strong>Priya:</strong> +91 98765 43210<br>
-                        <strong>Arjun:</strong> +91 98765 43211<br>
-                        <strong>Email:</strong> wedding@priyaarjun.com<br>
-                        <strong>Wedding Coordinator:</strong> +91 98765 43212</p>
-                    </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
                 </div>
             </div>
         </section>
@@ -1169,32 +1523,32 @@
     </div>
 
     <script>
-        // Navigation functionality
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
         // Page navigation
         function showPage(pageId) {
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            
+
             // Show loading
             document.getElementById('loading').style.display = 'block';
-            
+
             // Simulate loading delay
             setTimeout(() => {
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById(pageId).classList.add('active');
-                
-                // Close mobile menu
-                navLinks.classList.remove('active');
-                
+
+                // Initialize carousel if switching to couple page
+                if (pageId === 'couple') {
+                    setTimeout(() => {
+                        const coupleCarousel = document.getElementById('carouselTrack');
+                        if (coupleCarousel && !carousel) {
+                            carousel = new PhotoCarousel();
+                            console.log('✅ Photo carousel initialized on page switch!');
+                        }
+                    }, 100);
+                }
+
                 // Scroll to top
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 500);
@@ -1204,58 +1558,6 @@
         function showEventPage(eventId) {
             showPage(eventId);
         }
-
-        // RSVP form handling
-        function handleRSVP(event) {
-            event.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(event.target);
-            const rsvpData = {
-                name: formData.get('guestName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                guests: formData.get('guests'),
-                events: formData.getAll('events'),
-                dietary: formData.get('dietary'),
-                accommodation: formData.get('accommodation'),
-                message: formData.get('message')
-            };
-            
-            // Show loading
-            document.getElementById('loading').style.display = 'block';
-            
-            // Simulate form submission
-            setTimeout(() => {
-                document.getElementById('loading').style.display = 'none';
-                alert('Thank you for your RSVP! We have received your response and will contact you soon with more details.');
-                event.target.reset();
-            }, 2000);
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Navigation background change on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(139, 69, 19, 0.98)';
-            } else {
-                nav.style.background = 'rgba(139, 69, 19, 0.95)';
-            }
-        });
 
         // Add entrance animations
         const observerOptions = {
@@ -1272,15 +1574,322 @@
         }, observerOptions);
 
         // Observe cards for animations
-        document.querySelectorAll('.event-card, .info-card').forEach(card => {
+        document.querySelectorAll('.event-card, .info-card, .couple-card').forEach(card => {
             observer.observe(card);
         });
 
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            // Ensure home page is shown by default
-            showPage('home');
+        // Photo Carousel System
+        class PhotoCarousel {
+            constructor() {
+                this.currentSlide = 0;
+                this.totalSlides = 5;
+                this.autoplayInterval = null;
+                this.isAutoPlaying = true;
+                this.autoplayDelay = 4000; // 4 seconds
+                
+                this.track = document.getElementById('carouselTrack');
+                this.playPauseBtn = document.getElementById('playPauseBtn');
+                this.indicators = document.querySelectorAll('.carousel-dot');
+                
+                this.init();
+            }
+            
+            init() {
+                this.startAutoplay();
+                this.updateIndicators();
+            }
+            
+            goToSlide(slideIndex) {
+                this.currentSlide = slideIndex;
+                const translateX = -slideIndex * 100;
+                this.track.style.transform = `translateX(${translateX}%)`;
+                this.updateIndicators();
+            }
+            
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.goToSlide(this.currentSlide);
+            }
+            
+            prevSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.goToSlide(this.currentSlide);
+            }
+            
+            updateIndicators() {
+                this.indicators.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+            
+            startAutoplay() {
+                if (this.autoplayInterval) {
+                    clearInterval(this.autoplayInterval);
+                }
+                
+                this.autoplayInterval = setInterval(() => {
+                    this.nextSlide();
+                }, this.autoplayDelay);
+                
+                this.isAutoPlaying = true;
+                if (this.playPauseBtn) {
+                    this.playPauseBtn.textContent = '⏸️';
+                }
+            }
+            
+            stopAutoplay() {
+                if (this.autoplayInterval) {
+                    clearInterval(this.autoplayInterval);
+                    this.autoplayInterval = null;
+                }
+                
+                this.isAutoPlaying = false;
+                if (this.playPauseBtn) {
+                    this.playPauseBtn.textContent = '▶️';
+                }
+            }
+            
+            toggleAutoplay() {
+                if (this.isAutoPlaying) {
+                    this.stopAutoplay();
+                } else {
+                    this.startAutoplay();
+                }
+            }
+        }
+
+        // Global carousel instance
+        let carousel;
+
+        // Carousel control functions
+        function nextSlide() {
+            if (carousel) carousel.nextSlide();
+        }
+
+        function prevSlide() {
+            if (carousel) carousel.prevSlide();
+        }
+
+        function currentSlide(slideIndex) {
+            if (carousel) carousel.goToSlide(slideIndex - 1);
+        }
+
+        function toggleAutoplay() {
+            if (carousel) carousel.toggleAutoplay();
+        }
+
+        // Custom Particle System
+        class ParticleSystem {
+            constructor(canvasId) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouseX = 0;
+                this.mouseY = 0;
+                
+                this.setupCanvas();
+                this.createParticles();
+                this.setupEventListeners();
+                this.animate();
+            }
+            
+            setupCanvas() {
+                this.resizeCanvas();
+                window.addEventListener('resize', () => this.resizeCanvas());
+                
+                // Force initial resize after a short delay to ensure parent dimensions are set
+                setTimeout(() => this.resizeCanvas(), 100);
+            }
+            
+            resizeCanvas() {
+                const container = this.canvas.parentElement;
+                this.canvas.width = container.offsetWidth || window.innerWidth;
+                this.canvas.height = container.offsetHeight || window.innerHeight;
+                
+                // Ensure minimum height for hero sections
+                if (this.canvas.height < window.innerHeight) {
+                    this.canvas.height = window.innerHeight;
+                }
+                
+                console.log(`Canvas resized to: ${this.canvas.width}x${this.canvas.height}`);
+            }
+            
+            createParticles() {
+                const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 12000);
+                
+                // Ensure minimum particles for visual impact
+                const minParticles = 50;
+                const maxParticles = 150;
+                const finalCount = Math.max(minParticles, Math.min(maxParticles, particleCount));
+                
+                console.log(`Creating ${finalCount} particles for canvas ${this.canvas.width}x${this.canvas.height}`);
+                
+                for (let i = 0; i < finalCount; i++) {
+                    this.particles.push(this.createParticle());
+                }
+            }
+            
+            createParticle() {
+                const colors = ['rgba(255, 255, 255, 0.8)', 'rgba(255, 215, 0, 0.6)', 'rgba(255, 182, 193, 0.7)', 'rgba(230, 230, 250, 0.6)'];
+                const shapes = ['circle', 'star'];
+                
+                return {
+                    x: Math.random() * this.canvas.width,
+                    y: this.canvas.height + Math.random() * 200,
+                    size: Math.random() * 4 + 1,
+                    speedX: (Math.random() - 0.5) * 2,
+                    speedY: Math.random() * 3 + 1,
+                    opacity: Math.random() * 0.8 + 0.2,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    shape: shapes[Math.floor(Math.random() * shapes.length)],
+                    rotation: Math.random() * Math.PI * 2,
+                    rotationSpeed: (Math.random() - 0.5) * 0.1,
+                    pulse: Math.random() * Math.PI * 2,
+                    pulseSpeed: Math.random() * 0.02 + 0.01
+                };
+            }
+            
+            setupEventListeners() {
+                this.canvas.addEventListener('mousemove', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    this.mouseX = e.clientX - rect.left;
+                    this.mouseY = e.clientY - rect.top;
+                });
+                
+                this.canvas.addEventListener('click', () => {
+                    for (let i = 0; i < 5; i++) {
+                        const particle = this.createParticle();
+                        particle.x = this.mouseX + (Math.random() - 0.5) * 50;
+                        particle.y = this.mouseY + (Math.random() - 0.5) * 50;
+                        particle.speedY = -(Math.random() * 3 + 2);
+                        this.particles.push(particle);
+                    }
+                });
+            }
+            
+            drawCircle(particle) {
+                this.ctx.beginPath();
+                this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                this.ctx.fillStyle = particle.color;
+                this.ctx.fill();
+                
+                // Add glow effect
+                this.ctx.shadowBlur = 15;
+                this.ctx.shadowColor = particle.color;
+                this.ctx.fill();
+                this.ctx.shadowBlur = 0;
+            }
+            
+            drawStar(particle) {
+                const spikes = 5;
+                const outerRadius = particle.size;
+                const innerRadius = particle.size * 0.5;
+                
+                this.ctx.save();
+                this.ctx.translate(particle.x, particle.y);
+                this.ctx.rotate(particle.rotation);
+                
+                this.ctx.beginPath();
+                for (let i = 0; i < spikes * 2; i++) {
+                    const radius = i % 2 === 0 ? outerRadius : innerRadius;
+                    const angle = (i * Math.PI) / spikes;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    
+                    if (i === 0) {
+                        this.ctx.moveTo(x, y);
+                    } else {
+                        this.ctx.lineTo(x, y);
+                    }
+                }
+                this.ctx.closePath();
+                
+                this.ctx.fillStyle = particle.color;
+                this.ctx.shadowBlur = 10;
+                this.ctx.shadowColor = particle.color;
+                this.ctx.fill();
+                this.ctx.shadowBlur = 0;
+                
+                this.ctx.restore();
+            }
+            
+            updateParticle(particle) {
+                // Update position
+                particle.y -= particle.speedY;
+                particle.x += particle.speedX;
+                
+                // Update rotation and pulse
+                particle.rotation += particle.rotationSpeed;
+                particle.pulse += particle.pulseSpeed;
+                
+                // Pulse effect
+                const pulseSize = Math.sin(particle.pulse) * 0.5 + 1;
+                const originalSize = particle.size / pulseSize; // Get original size
+                particle.size = originalSize * pulseSize;
+                
+                // Mouse interaction
+                const dx = this.mouseX - particle.x;
+                const dy = this.mouseY - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 100) {
+                    const force = (100 - distance) / 100;
+                    particle.x -= (dx / distance) * force * 2;
+                    particle.y -= (dy / distance) * force * 2;
+                    particle.opacity = Math.min(1, particle.opacity + force * 0.3);
+                }
+                
+                // Reset particle if it goes off screen
+                if (particle.y < -50 || particle.x < -50 || particle.x > this.canvas.width + 50) {
+                    // Create a new particle at the bottom
+                    const newParticle = this.createParticle();
+                    Object.assign(particle, newParticle);
+                }
+            }
+            
+            animate() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                this.particles.forEach(particle => {
+                    this.updateParticle(particle);
+                    
+                    this.ctx.globalAlpha = particle.opacity;
+                    
+                    if (particle.shape === 'star') {
+                        this.drawStar(particle);
+                    } else {
+                        this.drawCircle(particle);
+                    }
+                });
+                
+                this.ctx.globalAlpha = 1;
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+
+        // Initialize particles
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎨 Initializing custom particle system...');
+            
+            try {
+                // Wait a bit for the page to fully render
+                setTimeout(() => {
+                    new ParticleSystem('particles-canvas');
+                    console.log('✅ Custom particle system loaded successfully!');
+                    
+                    // Initialize carousel if we're on the couple page
+                    const coupleCarousel = document.getElementById('carouselTrack');
+                    if (coupleCarousel) {
+                        carousel = new PhotoCarousel();
+                        console.log('✅ Photo carousel initialized!');
+                    }
+                }, 250);
+            } catch (error) {
+                console.error('❌ System initialization failed:', error);
+            }
         });
     </script>
 </body>
+
 </html>
