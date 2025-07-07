@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TheVickyMeenuStory</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -166,7 +168,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 154, 158, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 50% 50%, rgba(168, 237, 234, 0.05) 0%, transparent 70%);
@@ -204,7 +206,7 @@
             border-radius: 32px;
             padding: 3rem 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
+            box-shadow:
                 0 25px 50px rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
             position: relative;
@@ -232,7 +234,7 @@
 
         .couple-card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 
+            box-shadow:
                 0 35px 80px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.15);
         }
@@ -316,8 +318,14 @@
         }
 
         .scrolling-carousel-section {
-            position: relative;
-            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+            opacity: 0.3;
         }
 
         .scrolling-section {
@@ -348,6 +356,7 @@
             0% {
                 transform: translateX(-50%);
             }
+
             100% {
                 transform: translateX(0%);
             }
@@ -357,6 +366,7 @@
             0% {
                 transform: translateX(0%);
             }
+
             100% {
                 transform: translateX(-50%);
             }
@@ -452,7 +462,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(255, 154, 158, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 50% 50%, rgba(168, 237, 234, 0.05) 0%, transparent 70%);
@@ -501,7 +511,7 @@
             background: rgba(26, 32, 44, 0.95);
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: 
+            box-shadow:
                 0 25px 50px rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -523,7 +533,7 @@
 
         .event-card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 
+            box-shadow:
                 0 35px 80px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.1);
         }
@@ -681,7 +691,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 30% 30%, rgba(255, 154, 158, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 70% 70%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 50% 80%, rgba(168, 237, 234, 0.08) 0%, transparent 60%);
@@ -729,7 +739,7 @@
             border-radius: 32px;
             padding: 4rem 3rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 
+            box-shadow:
                 0 25px 50px rgba(0, 0, 0, 0.4),
                 0 0 0 1px rgba(255, 255, 255, 0.05);
             position: relative;
@@ -750,7 +760,7 @@
 
         .save-date-card:hover {
             transform: translateY(-8px) scale(1.02);
-            box-shadow: 
+            box-shadow:
                 0 35px 80px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.15);
         }
@@ -1061,6 +1071,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1072,6 +1083,7 @@
                 opacity: 0;
                 transform: translateX(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
@@ -1108,7 +1120,12 @@
 
         @media (max-width: 768px) {
             .couple-about-section {
-                padding: 0 1.5rem 3rem;
+                position: relative;
+                z-index: 3;
+                /* Higher than carousel */
+                padding: 0 2rem 4rem;
+                max-width: 1200px;
+                margin: 0 auto;
             }
 
             .couple-section-title {
@@ -1117,7 +1134,11 @@
             }
 
             .couple-card {
-                padding: 2.5rem 2rem;
+                background: rgba(26, 32, 44, 0.98);
+                /* More opaque */
+                backdrop-filter: blur(25px);
+                /* Stronger blur */
+                /* rest of existing styles */
             }
 
             .couple-avatar {
@@ -1155,6 +1176,18 @@
         @media (max-width: 576px) {
             .couple-about-section {
                 padding: 0 1rem 2.5rem;
+            }
+
+            .couple-about-section::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 2;
+                pointer-events: none;
             }
 
             .couple-section-title {
@@ -1198,6 +1231,7 @@
                 font-size: 0.9rem;
             }
         }
+
         /* Responsive Design for Save the Date */
 
         @media (max-width: 768px) {
@@ -1289,102 +1323,103 @@
                 font-size: 0.9rem;
             }
         }
-            .welcome-text {
-                font-size: 2rem;
-                letter-spacing: 4px;
-                margin-bottom: 2rem;
-            }
 
-            .couple-names {
-                font-size: 3rem;
-                margin-bottom: 1rem;
-            }
+        .welcome-text {
+            font-size: 2rem;
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
+        }
 
-            .wedding-date {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
+        .couple-names {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
 
-            .couple-section-title {
-                font-size: 2rem;
-                margin-bottom: 1.5rem;
-            }
+        .wedding-date {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
 
-            .scrolling-section {
-                height: calc((100vh - 100px) / 3);
-                min-height: 150px;
-            }
+        .couple-section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
 
-            .photo-item {
-                min-width: 250px;
-                height: 140px;
-                margin: 0 10px;
-            }
+        .scrolling-section {
+            height: calc((100vh - 100px) / 3);
+            min-height: 150px;
+        }
 
-            .photo-overlay h4 {
-                font-size: 1.2rem;
-            }
+        .photo-item {
+            min-width: 250px;
+            height: 140px;
+            margin: 0 10px;
+        }
 
-            .photo-overlay p {
-                font-size: 0.8rem;
-            }
+        .photo-overlay h4 {
+            font-size: 1.2rem;
+        }
 
-            /* Events mobile styling */
-            .events-section {
-                padding: 4rem 0;
-            }
+        .photo-overlay p {
+            font-size: 0.8rem;
+        }
 
-            .section-title {
-                font-size: 2.5rem;
-                margin-bottom: 1.5rem;
-            }
+        /* Events mobile styling */
+        .events-section {
+            padding: 4rem 0;
+        }
 
-            .section-subtitle {
-                font-size: 1.1rem;
-                margin-bottom: 3rem;
-                padding: 0 1rem;
-            }
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
 
-            .events-grid {
-                gap: 2rem;
-            }
+        .section-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
 
-            .event-header {
-                padding: 2rem 1.5rem 1.5rem;
-            }
+        .events-grid {
+            gap: 2rem;
+        }
 
-            .event-icon {
-                font-size: 3.5rem;
-                margin-bottom: 1rem;
-            }
+        .event-header {
+            padding: 2rem 1.5rem 1.5rem;
+        }
 
-            .event-title {
-                font-size: 1.8rem;
-                margin-bottom: 0.5rem;
-            }
+        .event-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
 
-            .event-date {
-                font-size: 1.1rem;
-            }
+        .event-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
 
-            .event-content {
-                padding: 2rem 1.5rem;
-            }
+        .event-date {
+            font-size: 1.1rem;
+        }
 
-            .detail-item {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.2rem;
-                align-items: center;
-                justify-content: center;
-            }
+        .event-content {
+            padding: 2rem 1.5rem;
+        }
 
-            .detail-icon {
-                font-size: 1.3rem;
-                margin-right: 0;
-                margin-bottom: 0.8rem;
-                width: auto;
-            }
+        .detail-item {
+            flex-direction: column;
+            text-align: center;
+            padding: 1.2rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-icon {
+            font-size: 1.3rem;
+            margin-right: 0;
+            margin-bottom: 0.8rem;
+            width: auto;
+        }
         }
 
         @media (max-width: 576px) {
@@ -1470,8 +1505,13 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
@@ -1487,7 +1527,7 @@
             <div class="hero-content">
                 <h1 class="welcome-text">WELCOME</h1>
                 <h2 class="couple-names">Vicky & Meenu</h2>
-                
+
                 <div class="navigation-buttons">
                     <a href="#" onclick="showPage('couple')" class="nav-btn">Meet the Couple</a>
                     <a href="#" onclick="showPage('savedate')" class="nav-btn">Save the Date</a>
@@ -1500,10 +1540,18 @@
     <!-- Couple Page -->
     <div id="couple" class="page">
         <section class="couple-section">
-            <!-- About Section -->
+            <!-- About Section with Background Carousel -->
             <div class="couple-about-section">
+                <!-- Background Carousel -->
+                <div class="scrolling-carousel-section">
+                    <div class="scrolling-container scroll-left" id="section1">
+                        <!-- Photos will be dynamically added here -->
+                    </div>
+                </div>
+
+                <!-- Content overlay -->
                 <h2 class="couple-section-title">Meet the Couple</h2>
-                
+
                 <div class="couple-cards-container">
                     <!-- Bride Card -->
                     <div class="couple-card bride-card">
@@ -1511,7 +1559,8 @@
                         <h3 class="couple-name">Meenu</h3>
                         <p class="couple-title">The Bride</p>
                         <p class="couple-description">
-                            A beautiful soul with a heart full of dreams and a smile that lights up every room. Meenu brings joy, warmth, and endless love to everyone around her.
+                            A beautiful soul with a heart full of dreams and a smile that lights up every room. Meenu
+                            brings joy, warmth, and endless love to everyone around her.
                         </p>
                         <div class="couple-details">
                             <div class="detail-row">
@@ -1535,7 +1584,8 @@
                         <h3 class="couple-name">Vicky</h3>
                         <p class="couple-title">The Groom</p>
                         <p class="couple-description">
-                            A kind-hearted gentleman with a passion for life and an unwavering commitment to his loved ones. Vicky's strength and humor make every day brighter.
+                            A kind-hearted gentleman with a passion for life and an unwavering commitment to his loved
+                            ones. Vicky's strength and humor make every day brighter.
                         </p>
                         <div class="couple-details">
                             <div class="detail-row">
@@ -1553,41 +1603,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Scrolling Photo Carousel -->
-            <div class="scrolling-carousel-section">
-                <!-- Section 1 - Scroll Left to Right -->
-                <div class="scrolling-section section-1">
-                    <div class="scrolling-container scroll-left" id="section1-container">
-                        <!-- Photos will be dynamically added here -->
-                    </div>
+                <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 2;">
+                    <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
                 </div>
-                
-                <!-- Section 2 - Scroll Right to Left -->
-                <div class="scrolling-section section-2">
-                    <div class="scrolling-container scroll-right" id="section2-container">
-                        <!-- Photos will be dynamically added here -->
-                    </div>
-                </div>
-                
-                <!-- Section 3 - Scroll Left to Right -->
-                <div class="scrolling-section section-3">
-                    <div class="scrolling-container scroll-left" id="section3-container">
-                        <!-- Photos will be dynamically added here -->
-                    </div>
-                </div>
-
-                <!-- Section 4 - Scroll Right to Left (like section 2) -->
-                <div class="scrolling-section section-4">
-                    <div class="scrolling-container scroll-right" id="section4-container">
-                        <!-- Photos will be dynamically added here -->
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 2;">
-                <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
             </div>
         </section>
     </div>
@@ -1598,7 +1617,8 @@
             <div class="container">
                 <h2 class="section-title">Wedding Functions</h2>
                 <p class="section-subtitle">
-                    Join us for three days of love, laughter, and unforgettable memories as we celebrate our union with traditional ceremonies and joyous festivities.
+                    Join us for three days of love, laughter, and unforgettable memories as we celebrate our union with
+                    traditional ceremonies and joyous festivities.
                 </p>
 
                 <div class="events-grid">
@@ -1621,7 +1641,8 @@
                                     <div class="detail-text">
                                         <span>Abirami Mahal, Thoothukudi</span>
                                         <br>
-                                        <a href="https://maps.google.com/?q=Abirami+Mahal+Thoothukudi" target="_blank" class="map-link">View on Google Maps</a>
+                                        <a href="https://maps.google.com/?q=Abirami+Mahal+Thoothukudi" target="_blank"
+                                            class="map-link">View on Google Maps</a>
                                     </div>
                                 </div>
                             </div>
@@ -1647,7 +1668,8 @@
                                     <div class="detail-text">
                                         <span>Abirami Mahal, Thoothukudi</span>
                                         <br>
-                                        <a href="https://maps.google.com/?q=Abirami+Mahal+Thoothukudi" target="_blank" class="map-link">View on Google Maps</a>
+                                        <a href="https://maps.google.com/?q=Abirami+Mahal+Thoothukudi" target="_blank"
+                                            class="map-link">View on Google Maps</a>
                                     </div>
                                 </div>
                             </div>
@@ -1673,7 +1695,8 @@
                                     <div class="detail-text">
                                         <span>Vasavi Mithra Mahal, Coimbatore</span>
                                         <br>
-                                        <a href="https://maps.google.com/?q=Vasavi+Mithra+Mahal+Coimbatore" target="_blank" class="map-link">View on Google Maps</a>
+                                        <a href="https://maps.google.com/?q=Vasavi+Mithra+Mahal+Coimbatore"
+                                            target="_blank" class="map-link">View on Google Maps</a>
                                     </div>
                                 </div>
                             </div>
@@ -1704,7 +1727,7 @@
                         27 • 28 • 31
                     </div>
                     <p class="year-text">2025</p>
-                    
+
                     <div class="event-preview">
                         <div class="event-mini">
                             <div class="event-mini-title">💍 Engagement</div>
@@ -1724,11 +1747,12 @@
                 <div class="save-date-description">
                     <h2 class="save-date-subtitle">Three days of love, tradition & celebration</h2>
                     <p class="save-date-details">
-                        Join us as we embark on this beautiful journey together. Our wedding celebration will span three magical days filled with traditional ceremonies, joyous festivities, and unforgettable memories.
+                        Join us as we embark on this beautiful journey together. Our wedding celebration will span three
+                        magical days filled with traditional ceremonies, joyous festivities, and unforgettable memories.
                     </p>
                 </div>
             </div>
-            
+
             <div style="text-align: center; margin-top: 3rem; position: relative; z-index: 2;">
                 <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
             </div>
@@ -1745,111 +1769,30 @@
         // Dynamic Photo Data - You can easily modify this array
         const photoSections = {
             section1: [
-                { 
-                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Childhood+Meenu", 
-                    title: "Little Meenu", 
-                    description: "Sweet childhood memories ✨" 
+                {
+                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Childhood+Meenu",
+                    title: "Little Meenu",
+                    description: "Sweet childhood memories ✨"
                 },
-                { 
-                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=School+Days", 
-                    title: "School Days", 
-                    description: "Growing up with dreams 🎓" 
+                {
+                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=School+Days",
+                    title: "School Days",
+                    description: "Growing up with dreams 🎓"
                 },
-                { 
-                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=College+Life", 
-                    title: "College Years", 
-                    description: "Making lifelong friends 🎓" 
+                {
+                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=College+Life",
+                    title: "College Years",
+                    description: "Making lifelong friends 🎓"
                 },
-                { 
-                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=First+Job", 
-                    title: "Career Begins", 
-                    description: "Starting the journey 💼" 
+                {
+                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=First+Job",
+                    title: "Career Begins",
+                    description: "Starting the journey 💼"
                 },
-                { 
-                    src: "https://via.placeholder.com/280x160/fed6e3/ffffff?text=Family+Time", 
-                    title: "Family Moments", 
-                    description: "Love and togetherness ❤️" 
-                }
-            ],
-            section2: [
-                { 
-                    src: "https://via.placeholder.com/280x160/764ba2/ffffff?text=First+Meeting", 
-                    title: "First Meeting", 
-                    description: "When paths crossed 💫" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Coffee+Date", 
-                    title: "Coffee Dates", 
-                    description: "Getting to know each other ☕" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=First+Trip", 
-                    title: "First Trip Together", 
-                    description: "Adventures begin 🗺️" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=Family+Meet", 
-                    title: "Meeting Families", 
-                    description: "Bringing hearts together 👨‍👩‍👧‍👦" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=Proposal+Day", 
-                    title: "The Proposal", 
-                    description: "Forever starts now 💍" 
-                }
-            ],
-            section3: [
-                { 
-                    src: "https://via.placeholder.com/280x160/fed6e3/ffffff?text=Childhood+Vignesh", 
-                    title: "Little Vignesh", 
-                    description: "Playful childhood days 🚀" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Sports+Champion", 
-                    title: "Sports Champion", 
-                    description: "Athletic achievements 🏆" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=Engineering+Days", 
-                    title: "Engineering Days", 
-                    description: "Building the future 🔧" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=Travel+Adventures", 
-                    title: "Solo Adventures", 
-                    description: "Exploring the world 🌍" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=Ready+for+Love", 
-                    title: "Ready for Love", 
-                    description: "Waiting for the one 💕" 
-                }
-            ],
-            section4: [
-                { 
-                    src: "https://via.placeholder.com/280x160/764ba2/ffffff?text=Engagement+Prep", 
-                    title: "Engagement Preparations", 
-                    description: "Planning our future together 💍" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Wedding+Planning", 
-                    title: "Wedding Planning", 
-                    description: "Creating our dream day 📋" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=Family+Bonds", 
-                    title: "Family Bonding", 
-                    description: "Two families becoming one 👨‍👩‍👧‍👦" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=Pre+Wedding", 
-                    title: "Pre-Wedding Celebrations", 
-                    description: "The festivities begin 🎉" 
-                },
-                { 
-                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=New+Chapter", 
-                    title: "New Chapter", 
-                    description: "Ready for our forever 💕" 
+                {
+                    src: "https://via.placeholder.com/280x160/fed6e3/ffffff?text=Family+Time",
+                    title: "Family Moments",
+                    description: "Love and togetherness ❤️"
                 }
             ]
         };
@@ -1860,43 +1803,38 @@
         // Dynamic Scrolling Photo System
         class DynamicPhotoScroller {
             constructor() {
-                this.sections = ['section1', 'section2', 'section3', 'section4'];
+                this.sections = ['section1'];
                 this.containers = {};
                 this.animationSpeeds = {
                     section1: 60, // seconds for full cycle
-                    section2: 45, // faster for opposite direction
-                    section3: 55, // slightly different speed
-                    section4: 50  // similar to section2 but different speed
                 };
                 this.init();
             }
 
             init() {
                 console.log('Initializing photo scroller with sections:', this.sections);
-                
+
                 this.sections.forEach(sectionId => {
-                    const container = document.getElementById(`${sectionId}-container`);
-                    console.log(`Found container for ${sectionId}:`, !!container);
-                    
+                    const container = document.getElementById(sectionId); // Make sure this matches your HTML id
+                    console.log(`Found container for ${sectionId}:`, container); // This should show the actual element
+
+                    if (!container) {
+                        console.error(`Container not found: ${sectionId}`);
+                        return;
+                    }
+
                     this.containers[sectionId] = container;
                     this.populateSection(sectionId);
                     this.startAnimation(sectionId);
-                });
-
-                // Handle window resize
-                window.addEventListener('resize', () => {
-                    this.sections.forEach(sectionId => {
-                        this.adjustAnimation(sectionId);
-                    });
                 });
             }
 
             populateSection(sectionId) {
                 const container = this.containers[sectionId];
                 const photos = photoSections[sectionId];
-                
+
                 console.log(`Populating ${sectionId} with ${photos ? photos.length : 0} photos`);
-                
+
                 if (!container || !photos) {
                     console.error(`Missing container or photos for ${sectionId}`);
                     return;
@@ -1917,7 +1855,7 @@
             createPhotoElement(photo) {
                 const photoDiv = document.createElement('div');
                 photoDiv.className = 'photo-item';
-                
+
                 photoDiv.innerHTML = `
                     <img src="${photo.src}" alt="${photo.title}" loading="lazy">
                     <div class="photo-overlay">
@@ -1925,14 +1863,16 @@
                         <p>${photo.description}</p>
                     </div>
                 `;
-                
+
                 return photoDiv;
             }
 
             startAnimation(sectionId) {
                 const container = this.containers[sectionId];
                 const speed = this.animationSpeeds[sectionId];
-                
+
+                // Add the scroll animation class
+                container.classList.add('scroll-left');
                 container.style.animationDuration = `${speed}s`;
             }
 
@@ -1961,7 +1901,7 @@
         // Page navigation function
         function showPage(pageId) {
             console.log('Navigating to page:', pageId);
-            
+
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -1978,7 +1918,7 @@
                 if (loading) {
                     loading.style.display = 'none';
                 }
-                
+
                 const targetPage = document.getElementById(pageId);
                 if (targetPage) {
                     targetPage.classList.add('active');
@@ -2031,49 +1971,49 @@
                 this.particles = [];
                 this.mouseX = 0;
                 this.mouseY = 0;
-                
+
                 this.setupCanvas();
                 this.createParticles();
                 this.setupEventListeners();
                 this.animate();
             }
-            
+
             setupCanvas() {
                 this.resizeCanvas();
                 window.addEventListener('resize', () => this.resizeCanvas());
-                
+
                 // Force initial resize after a short delay to ensure parent dimensions are set
                 setTimeout(() => this.resizeCanvas(), 100);
             }
-            
+
             resizeCanvas() {
                 const container = this.canvas.parentElement;
                 this.canvas.width = container.offsetWidth || window.innerWidth;
                 this.canvas.height = container.offsetHeight || window.innerHeight;
-                
+
                 // Ensure minimum height for hero sections
                 if (this.canvas.height < window.innerHeight) {
                     this.canvas.height = window.innerHeight;
                 }
             }
-            
+
             createParticles() {
                 const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 12000);
-                
+
                 // Ensure minimum particles for visual impact
                 const minParticles = 50;
                 const maxParticles = 150;
                 const finalCount = Math.max(minParticles, Math.min(maxParticles, particleCount));
-                
+
                 for (let i = 0; i < finalCount; i++) {
                     this.particles.push(this.createParticle());
                 }
             }
-            
+
             createParticle() {
                 const colors = ['rgba(255, 255, 255, 0.8)', 'rgba(255, 215, 0, 0.6)', 'rgba(255, 182, 193, 0.7)', 'rgba(230, 230, 250, 0.6)'];
                 const shapes = ['circle', 'star'];
-                
+
                 return {
                     x: Math.random() * this.canvas.width,
                     y: this.canvas.height + Math.random() * 200,
@@ -2089,14 +2029,14 @@
                     pulseSpeed: Math.random() * 0.02 + 0.01
                 };
             }
-            
+
             setupEventListeners() {
                 this.canvas.addEventListener('mousemove', (e) => {
                     const rect = this.canvas.getBoundingClientRect();
                     this.mouseX = e.clientX - rect.left;
                     this.mouseY = e.clientY - rect.top;
                 });
-                
+
                 this.canvas.addEventListener('click', () => {
                     for (let i = 0; i < 5; i++) {
                         const particle = this.createParticle();
@@ -2107,36 +2047,36 @@
                     }
                 });
             }
-            
+
             drawCircle(particle) {
                 this.ctx.beginPath();
                 this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
                 this.ctx.fillStyle = particle.color;
                 this.ctx.fill();
-                
+
                 // Add glow effect
                 this.ctx.shadowBlur = 15;
                 this.ctx.shadowColor = particle.color;
                 this.ctx.fill();
                 this.ctx.shadowBlur = 0;
             }
-            
+
             drawStar(particle) {
                 const spikes = 5;
                 const outerRadius = particle.size;
                 const innerRadius = particle.size * 0.5;
-                
+
                 this.ctx.save();
                 this.ctx.translate(particle.x, particle.y);
                 this.ctx.rotate(particle.rotation);
-                
+
                 this.ctx.beginPath();
                 for (let i = 0; i < spikes * 2; i++) {
                     const radius = i % 2 === 0 ? outerRadius : innerRadius;
                     const angle = (i * Math.PI) / spikes;
                     const x = Math.cos(angle) * radius;
                     const y = Math.sin(angle) * radius;
-                    
+
                     if (i === 0) {
                         this.ctx.moveTo(x, y);
                     } else {
@@ -2144,74 +2084,74 @@
                     }
                 }
                 this.ctx.closePath();
-                
+
                 this.ctx.fillStyle = particle.color;
                 this.ctx.shadowBlur = 10;
                 this.ctx.shadowColor = particle.color;
                 this.ctx.fill();
                 this.ctx.shadowBlur = 0;
-                
+
                 this.ctx.restore();
             }
-            
+
             updateParticle(particle) {
                 // Update position
                 particle.y -= particle.speedY;
                 particle.x += particle.speedX;
-                
+
                 // Update rotation and pulse
                 particle.rotation += particle.rotationSpeed;
                 particle.pulse += particle.pulseSpeed;
-                
+
                 // Pulse effect
                 const pulseSize = Math.sin(particle.pulse) * 0.5 + 1;
                 const originalSize = particle.size / pulseSize;
                 particle.size = originalSize * pulseSize;
-                
+
                 // Mouse interaction
                 const dx = this.mouseX - particle.x;
                 const dy = this.mouseY - particle.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                
+
                 if (distance < 100) {
                     const force = (100 - distance) / 100;
                     particle.x -= (dx / distance) * force * 2;
                     particle.y -= (dy / distance) * force * 2;
                     particle.opacity = Math.min(1, particle.opacity + force * 0.3);
                 }
-                
+
                 // Reset particle if it goes off screen
                 if (particle.y < -50 || particle.x < -50 || particle.x > this.canvas.width + 50) {
                     const newParticle = this.createParticle();
                     Object.assign(particle, newParticle);
                 }
             }
-            
+
             animate() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
+
                 this.particles.forEach(particle => {
                     this.updateParticle(particle);
-                    
+
                     this.ctx.globalAlpha = particle.opacity;
-                    
+
                     if (particle.shape === 'star') {
                         this.drawStar(particle);
                     } else {
                         this.drawCircle(particle);
                     }
                 });
-                
+
                 this.ctx.globalAlpha = 1;
-                
+
                 requestAnimationFrame(() => this.animate());
             }
         }
 
         // Initialize systems
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('🎨 Initializing wedding website systems...');
-            
+
             try {
                 // Wait a bit for the page to fully render
                 setTimeout(() => {
