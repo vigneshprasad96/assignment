@@ -372,35 +372,252 @@
             font-weight: 300;
         }
 
-        .photo-gallery {
+        /* Funky Video Section */
+        .video-section {
             position: relative;
             z-index: 2;
-            margin: 2rem 0;
+            margin: 3rem 0 4rem;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 
+                0 30px 80px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            background: rgba(26, 32, 44, 0.95);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: rotate(-1deg);
+        }
+
+        .video-container:hover {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 
+                0 40px 100px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #667eea);
+            z-index: 1;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+        }
+
+        .video-title {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            right: 30px;
+            z-index: 10;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover .video-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .video-title h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .video-title p {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            font-weight: 300;
+        }
+
+        /* Video placeholder styling */
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea, #764ba2, #ff9a9e);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .video-placeholder-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .video-placeholder h4 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-placeholder p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            max-width: 400px;
+        }
+
+        /* Mobile responsive video */
+        @media (max-width: 768px) {
+            .video-container {
+                margin: 0 1rem;
+                border-radius: 20px;
+                transform: rotate(0deg);
+            }
+
+            .video-title h3 {
+                font-size: 2rem;
+            }
+
+            .video-title p {
+                font-size: 1rem;
+            }
+
+            .video-placeholder-icon {
+                font-size: 4rem;
+            }
+
+            .video-placeholder h4 {
+                font-size: 2rem;
+            }
+
+            .video-placeholder p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .video-container {
+                border-radius: 15px;
+            }
+
+            .video-title {
+                top: 15px;
+                left: 20px;
+                right: 20px;
+            }
+
+            .video-placeholder {
+                padding: 1.5rem;
+            }
+
+            .video-placeholder-icon {
+                font-size: 3rem;
+            }
+
+            .video-placeholder h4 {
+                font-size: 1.8rem;
+            }
         }
 
         .photo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 1rem;
+            grid-auto-rows: 200px;
         }
 
         .gallery-photo {
             background: rgba(26, 32, 44, 0.95);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            aspect-ratio: 4/3;
+            cursor: pointer;
         }
 
+        /* Funky size variations */
+        .gallery-photo:nth-child(3n+1) {
+            grid-row: span 2;
+            grid-column: span 2;
+        }
+
+        .gallery-photo:nth-child(5n+2) {
+            grid-row: span 1;
+            grid-column: span 2;
+            transform: rotate(-2deg);
+        }
+
+        .gallery-photo:nth-child(7n+3) {
+            grid-row: span 2;
+            grid-column: span 1;
+            transform: rotate(3deg);
+        }
+
+        .gallery-photo:nth-child(11n+4) {
+            grid-row: span 1;
+            grid-column: span 1;
+            transform: rotate(-1deg);
+        }
+
+        .gallery-photo:nth-child(13n+5) {
+            grid-row: span 3;
+            grid-column: span 1;
+            transform: rotate(1deg);
+        }
+
+        /* Funky border variations */
         .gallery-photo::before {
             content: '';
             position: absolute;
@@ -408,28 +625,59 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2, #ff9a9e);
             z-index: 1;
         }
 
-        .gallery-photo:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow:
-                0 35px 80px rgba(0, 0, 0, 0.5),
-                0 0 0 1px rgba(255, 255, 255, 0.15);
+        .gallery-photo:nth-child(4n+1)::before {
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            height: 6px;
         }
 
+        .gallery-photo:nth-child(4n+2)::before {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 4px;
+        }
+
+        .gallery-photo:nth-child(4n+3)::before {
+            background: linear-gradient(135deg, #ff9a9e, #fecfef);
+            height: 8px;
+        }
+
+        .gallery-photo:nth-child(4n+4)::before {
+            background: linear-gradient(180deg, #a8edea, #fed6e3);
+            height: 5px;
+        }
+
+        /* Funky hover effects */
+        .gallery-photo:hover {
+            transform: translateY(-15px) scale(1.05) rotate(0deg) !important;
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.6);
+            z-index: 100;
+        }
+
+        .gallery-photo:nth-child(odd):hover {
+            transform: translateY(-15px) scale(1.05) rotate(5deg) !important;
+        }
+
+        .gallery-photo:nth-child(even):hover {
+            transform: translateY(-15px) scale(1.05) rotate(-5deg) !important;
+        }
+
+        /* Funky image effects */
         .gallery-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            filter: saturate(0.8) contrast(1.1);
         }
 
         .gallery-photo:hover img {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            filter: saturate(1.2) contrast(1.2) brightness(1.1);
         }
 
+        /* Funky photo overlays with different styles */
         .photo-overlay {
             position: absolute;
             bottom: 0;
@@ -437,10 +685,22 @@
             right: 0;
             background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
             color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
             transform: translateY(100%);
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-photo:nth-child(3n+1) .photo-overlay {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.9), rgba(0, 0, 0, 0.9));
+        }
+
+        .gallery-photo:nth-child(3n+2) .photo-overlay {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(0, 0, 0, 0.9));
+        }
+
+        .gallery-photo:nth-child(3n+3) .photo-overlay {
+            background: linear-gradient(90deg, rgba(255, 154, 158, 0.9), rgba(0, 0, 0, 0.9));
         }
 
         .gallery-photo:hover .photo-overlay {
@@ -452,12 +712,92 @@
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
             color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .photo-overlay p {
             font-size: 1rem;
             opacity: 0.9;
             color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Funky entrance animations */
+        .gallery-photo {
+            opacity: 0;
+            transform: translateY(50px) rotate(10deg) scale(0.8);
+            animation: funkyComeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes funkyComeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) rotate(10deg) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(var(--rotation, 0deg)) scale(1);
+            }
+        }
+
+        .gallery-photo:nth-child(1) { animation-delay: 0.1s; --rotation: -2deg; }
+        .gallery-photo:nth-child(2) { animation-delay: 0.2s; --rotation: 1deg; }
+        .gallery-photo:nth-child(3) { animation-delay: 0.3s; --rotation: 3deg; }
+        .gallery-photo:nth-child(4) { animation-delay: 0.4s; --rotation: -1deg; }
+        .gallery-photo:nth-child(5) { animation-delay: 0.5s; --rotation: 2deg; }
+        .gallery-photo:nth-child(6) { animation-delay: 0.6s; --rotation: -3deg; }
+        .gallery-photo:nth-child(7) { animation-delay: 0.7s; --rotation: 1deg; }
+        .gallery-photo:nth-child(8) { animation-delay: 0.8s; --rotation: -2deg; }
+        .gallery-photo:nth-child(9) { animation-delay: 0.9s; --rotation: 3deg; }
+        .gallery-photo:nth-child(10) { animation-delay: 1.0s; --rotation: -1deg; }
+        .gallery-photo:nth-child(n+11) { animation-delay: 1.1s; --rotation: 0deg; }
+
+        /* Funky floating animation */
+        @keyframes funkyFloat {
+            0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
+            50% { transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) + 2deg)); }
+        }
+
+        .gallery-photo:nth-child(odd) {
+            animation: funkyComeIn 0.8s ease-out forwards, funkyFloat 6s ease-in-out infinite;
+        }
+
+        .gallery-photo:nth-child(even) {
+            animation: funkyComeIn 0.8s ease-out forwards, funkyFloat 8s ease-in-out infinite reverse;
+        }
+
+        /* Mobile responsive funky adjustments */
+        @media (max-width: 768px) {
+            .photo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-auto-rows: 150px;
+                gap: 0.8rem;
+            }
+            
+            .gallery-photo:nth-child(3n+1) {
+                grid-row: span 2;
+                grid-column: span 1;
+            }
+            
+            .gallery-photo:nth-child(5n+2) {
+                grid-row: span 1;
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 120px;
+            }
+            
+            .gallery-photo:nth-child(3n+1),
+            .gallery-photo:nth-child(5n+2),
+            .gallery-photo:nth-child(7n+3),
+            .gallery-photo:nth-child(13n+5) {
+                grid-row: span 2;
+                grid-column: span 1;
+            }
         }
 
         /* Modern Events Section */
@@ -1071,6 +1411,30 @@
                 <p class="section-subtitle">
                     A beautiful journey of love, laughter, and unforgettable memories that brought us together.
                 </p>
+
+                <div class="video-section">
+                    <div class="video-container">
+                        <div class="video-title">
+                            <h3>Our Love Story</h3>
+                            <p>A beautiful journey captured in moments</p>
+                        </div>
+                        <div class="video-wrapper">
+                            <!-- Placeholder for now - replace with actual video later -->
+                            <div class="video-placeholder">
+                                <div class="video-placeholder-icon">🎬</div>
+                                <h4>Your Video Here</h4>
+                                <p>This is where your beautiful love story video will appear. Upload your video and replace this placeholder!</p>
+                            </div>
+                            <!-- 
+                            Future video element:
+                            <video class="video-player" controls>
+                                <source src="your-video.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            -->
+                        </div>
+                    </div>
+                </div>
 
                 <div class="photo-gallery">
                     <div class="photo-grid" id="photoGrid">
