@@ -194,10 +194,13 @@
         }
 
         .couple-cards-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 3rem;
             margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .couple-card {
@@ -317,145 +320,15 @@
             font-size: 1rem;
         }
 
-        .scrolling-carousel-section {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-            opacity: 0.3;
-        }
-
-        .scrolling-section {
-            height: calc(100vh / 4);
-            min-height: 150px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
-
-        .scrolling-container {
-            display: flex;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            will-change: transform;
-        }
-
-        .scroll-left {
-            animation-name: scrollLeftToRight;
-        }
-
-        .scroll-right {
-            animation-name: scrollRightToLeft;
-        }
-
-        @keyframes scrollLeftToRight {
-            0% {
-                transform: translateX(-50%);
-            }
-
-            100% {
-                transform: translateX(0%);
-            }
-        }
-
-        @keyframes scrollRightToLeft {
-            0% {
-                transform: translateX(0%);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        .photo-item {
-            min-width: 280px;
-            height: 160px;
-            margin: 0;
-            border-radius: 0;
-            overflow: hidden;
-            position: relative;
-            box-shadow: none;
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            border: none;
-        }
-
-        .photo-item:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            z-index: 5;
-        }
-
-        .photo-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .photo-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .photo-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .photo-item:hover .photo-overlay {
-            transform: translateY(0);
-        }
-
-        .photo-overlay h4 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .photo-overlay p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Section styling variations */
-        .section-1 {
-            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(255, 154, 158, 0.1));
-        }
-
-        .section-2 {
-            background: linear-gradient(-45deg, rgba(255, 154, 158, 0.1), rgba(168, 237, 234, 0.1));
-        }
-
-        .section-3 {
-            background: linear-gradient(45deg, rgba(168, 237, 234, 0.1), rgba(254, 207, 239, 0.1));
-        }
-
-        .section-4 {
-            background: linear-gradient(-45deg, rgba(254, 207, 239, 0.1), rgba(102, 126, 234, 0.1));
-        }
-
-        /* Modern Events Section */
-        .events-section {
-            padding: 8rem 0;
+        /* Our Story Section - Clean photo-only layout */
+        .story-section {
+            padding: 4rem 0;
             background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
             position: relative;
             min-height: 100vh;
         }
 
-        .events-section::before {
+        .story-section::before {
             content: '';
             position: absolute;
             top: 0;
@@ -497,6 +370,116 @@
             margin-right: auto;
             line-height: 1.7;
             font-weight: 300;
+        }
+
+        .photo-gallery {
+            position: relative;
+            z-index: 2;
+            margin: 2rem 0;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .gallery-photo {
+            background: rgba(26, 32, 44, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #ff9a9e);
+            z-index: 1;
+        }
+
+        .gallery-photo:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow:
+                0 35px 80px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.15);
+        }
+
+        .gallery-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-photo:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-photo:hover .photo-overlay {
+            transform: translateY(0);
+        }
+
+        .photo-overlay h4 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .photo-overlay p {
+            font-size: 1rem;
+            opacity: 0.9;
+            color: #e2e8f0;
+        }
+
+        /* Modern Events Section */
+        .events-section {
+            padding: 8rem 0;
+            background: linear-gradient(135deg, #0f1419 0%, #1a202c 100%);
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .events-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 154, 158, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(168, 237, 234, 0.05) 0%, transparent 70%);
+            z-index: 1;
         }
 
         .events-grid {
@@ -629,45 +612,6 @@
             color: #9f7aea;
             border-bottom-color: #667eea;
             transform: translateX(4px);
-        }
-
-        .event-btn {
-            display: block;
-            width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            padding: 1.5rem;
-            border-radius: 16px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .event-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .event-btn:hover::before {
-            left: 100%;
-        }
-
-        .event-btn:hover {
-            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
         }
 
         /* Modern Save the Date Style - Vertical Layout */
@@ -851,200 +795,6 @@
             margin: 0 auto;
         }
 
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        .cta-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            padding: 1.4rem 2.5rem;
-            border-radius: 16px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .cta-btn:hover::before {
-            left: 100%;
-        }
-
-        .cta-btn:hover {
-            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        .cta-btn.secondary {
-            background: rgba(45, 55, 72, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-btn.secondary:hover {
-            background: rgba(45, 55, 72, 1);
-            border-color: rgba(102, 126, 234, 0.5);
-        }
-
-        /* Responsive Design for Save the Date */
-        @media (max-width: 768px) {
-            .save-date-container {
-                padding: 2rem 1.5rem;
-                gap: 2.5rem;
-            }
-
-            .couple-names-large {
-                font-size: 3.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .wedding-announcement {
-                font-size: 1.2rem;
-                margin-bottom: 2.5rem;
-            }
-
-            .save-date-subtitle {
-                font-size: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .save-date-details {
-                font-size: 1rem;
-            }
-
-            .save-date-card {
-                padding: 3rem 2.5rem;
-            }
-
-            .main-dates {
-                font-size: 3rem;
-                margin-bottom: 1rem;
-            }
-
-            .year-text {
-                font-size: 1.7rem;
-                margin-bottom: 2.5rem;
-                letter-spacing: 3px;
-            }
-
-            .event-mini {
-                padding: 1.5rem;
-                flex-direction: column;
-                text-align: center;
-                gap: 0.8rem;
-            }
-
-            .event-mini-title {
-                justify-content: center;
-                font-size: 1.1rem;
-            }
-
-            .event-mini-date {
-                font-size: 0.95rem;
-            }
-
-            .cta-buttons {
-                gap: 1rem;
-            }
-
-            .cta-btn {
-                padding: 1.2rem 2rem;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .save-date-container {
-                padding: 1.5rem 1rem;
-                gap: 2rem;
-            }
-
-            .couple-names-large {
-                font-size: 3rem;
-            }
-
-            .save-date-card {
-                padding: 2.5rem 1.8rem;
-            }
-
-            .main-dates {
-                font-size: 2.5rem;
-            }
-
-            .year-text {
-                font-size: 1.5rem;
-                letter-spacing: 2px;
-            }
-
-            .save-text {
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-            }
-
-            .event-mini {
-                padding: 1.3rem;
-            }
-
-            .event-mini-title {
-                font-size: 1rem;
-            }
-
-            .event-mini-date {
-                font-size: 0.9rem;
-            }
-
-            .save-date-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .save-date-details {
-                font-size: 0.95rem;
-            }
-        }
-
-        .save-btn {
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.8);
-            color: #ffffff;
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(15px);
-        }
-
-        .save-btn:hover {
-            background: rgba(0, 0, 0, 0.5);
-            border-color: #ffffff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-            transform: translateY(-2px);
-        }
-
         .back-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
@@ -1078,18 +828,6 @@
             }
         }
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         /* Card entrance animations */
         .event-card {
             opacity: 0;
@@ -1108,7 +846,7 @@
         /* Mobile Responsive for Couple Cards */
         @media (max-width: 992px) {
             .couple-cards-container {
-                grid-template-columns: 1fr;
+                flex-direction: column;
                 gap: 2.5rem;
             }
 
@@ -1122,7 +860,6 @@
             .couple-about-section {
                 position: relative;
                 z-index: 3;
-                /* Higher than carousel */
                 padding: 0 2rem 4rem;
                 max-width: 1200px;
                 margin: 0 auto;
@@ -1135,10 +872,7 @@
 
             .couple-card {
                 background: rgba(26, 32, 44, 0.98);
-                /* More opaque */
                 backdrop-filter: blur(25px);
-                /* Stronger blur */
-                /* rest of existing styles */
             }
 
             .couple-avatar {
@@ -1171,23 +905,16 @@
             .detail-value {
                 font-size: 0.95rem;
             }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
         }
 
         @media (max-width: 576px) {
             .couple-about-section {
                 padding: 0 1rem 2.5rem;
-            }
-
-            .couple-about-section::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.4);
-                z-index: 2;
-                pointer-events: none;
             }
 
             .couple-section-title {
@@ -1230,287 +957,20 @@
             .detail-value {
                 font-size: 0.9rem;
             }
-        }
 
-        /* Responsive Design for Save the Date */
-
-        @media (max-width: 768px) {
-            .save-date-container {
-                padding: 2rem 1rem;
-                gap: 2rem;
+            .photo-grid {
+                grid-template-columns: 1fr;
             }
 
-            .couple-names-large {
+            .welcome-text {
+                font-size: 2rem;
+                letter-spacing: 4px;
+                margin-bottom: 2rem;
+            }
+
+            .couple-names {
                 font-size: 3rem;
                 margin-bottom: 1rem;
-            }
-
-            .wedding-announcement {
-                font-size: 1.2rem;
-                margin-bottom: 2rem;
-            }
-
-            .save-date-subtitle {
-                font-size: 1.3rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .save-date-details {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-            }
-
-            .save-date-card {
-                padding: 3rem 2rem;
-                max-width: 400px;
-            }
-
-            .main-dates {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-            }
-
-            .year-text {
-                font-size: 1.5rem;
-                margin-bottom: 2rem;
-            }
-
-            .event-preview {
-                gap: 1rem;
-            }
-
-            .event-mini {
-                padding: 1.2rem;
-            }
-
-            .cta-buttons {
-                gap: 0.8rem;
-            }
-
-            .cta-btn {
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .save-date-container {
-                padding: 1.5rem 1rem;
-            }
-
-            .couple-names-large {
-                font-size: 2.5rem;
-            }
-
-            .save-date-card {
-                padding: 2.5rem 1.5rem;
-                max-width: 350px;
-            }
-
-            .main-dates {
-                font-size: 2rem;
-            }
-
-            .year-text {
-                font-size: 1.3rem;
-            }
-
-            .event-mini-title {
-                font-size: 1rem;
-            }
-
-            .event-mini-date {
-                font-size: 0.9rem;
-            }
-        }
-
-        .welcome-text {
-            font-size: 2rem;
-            letter-spacing: 4px;
-            margin-bottom: 2rem;
-        }
-
-        .couple-names {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .wedding-date {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-        }
-
-        .couple-section-title {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .scrolling-section {
-            height: calc((100vh - 100px) / 3);
-            min-height: 150px;
-        }
-
-        .photo-item {
-            min-width: 250px;
-            height: 140px;
-            margin: 0 10px;
-        }
-
-        .photo-overlay h4 {
-            font-size: 1.2rem;
-        }
-
-        .photo-overlay p {
-            font-size: 0.8rem;
-        }
-
-        /* Events mobile styling */
-        .events-section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            padding: 0 1rem;
-        }
-
-        .events-grid {
-            gap: 2rem;
-        }
-
-        .event-header {
-            padding: 2rem 1.5rem 1.5rem;
-        }
-
-        .event-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .event-title {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .event-date {
-            font-size: 1.1rem;
-        }
-
-        .event-content {
-            padding: 2rem 1.5rem;
-        }
-
-        .detail-item {
-            flex-direction: column;
-            text-align: center;
-            padding: 1.2rem;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .detail-icon {
-            font-size: 1.3rem;
-            margin-right: 0;
-            margin-bottom: 0.8rem;
-            width: auto;
-        }
-        }
-
-        @media (max-width: 576px) {
-            .couple-section-title {
-                font-size: 1.6rem;
-                padding: 0.8rem 1.5rem;
-            }
-
-            .scrolling-section {
-                height: calc((100vh - 80px) / 3);
-                min-height: 120px;
-            }
-
-            .photo-item {
-                min-width: 200px;
-                height: 110px;
-                margin: 0 8px;
-            }
-
-            .photo-overlay {
-                padding: 0.8rem;
-            }
-
-            .photo-overlay h4 {
-                font-size: 1rem;
-            }
-
-            .photo-overlay p {
-                font-size: 0.7rem;
-            }
-
-            .container {
-                padding: 0 1rem;
-            }
-
-            .event-header {
-                padding: 1.5rem 1rem;
-            }
-
-            .event-content {
-                padding: 1.5rem 1rem;
-            }
-
-            .detail-item {
-                flex-direction: column;
-                text-align: center;
-                padding: 1rem;
-            }
-
-            .detail-icon {
-                margin-right: 0;
-                margin-bottom: 0.5rem;
-                width: auto;
-            }
-        }
-
-        /* Loading Animation */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(26, 32, 44, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-            z-index: 9999;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
             }
         }
     </style>
@@ -1530,6 +990,7 @@
 
                 <div class="navigation-buttons">
                     <a href="#" onclick="showPage('couple')" class="nav-btn">Meet the Couple</a>
+                    <a href="#" onclick="showPage('story')" class="nav-btn">Our Story</a>
                     <a href="#" onclick="showPage('savedate')" class="nav-btn">Save the Date</a>
                     <a href="#" onclick="showPage('events')" class="nav-btn">Wedding Events</a>
                 </div>
@@ -1540,16 +1001,7 @@
     <!-- Couple Page -->
     <div id="couple" class="page">
         <section class="couple-section">
-            <!-- About Section with Background Carousel -->
             <div class="couple-about-section">
-                <!-- Background Carousel -->
-                <div class="scrolling-carousel-section">
-                    <div class="scrolling-container scroll-left" id="section1">
-                        <!-- Photos will be dynamically added here -->
-                    </div>
-                </div>
-
-                <!-- Content overlay -->
                 <h2 class="couple-section-title">Meet the Couple</h2>
 
                 <div class="couple-cards-container">
@@ -1605,6 +1057,28 @@
                 </div>
 
                 <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 2;">
+                    <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Our Story Page - Clean photo gallery only -->
+    <div id="story" class="page">
+        <section class="story-section">
+            <div class="container">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">
+                    A beautiful journey of love, laughter, and unforgettable memories that brought us together.
+                </p>
+
+                <div class="photo-gallery">
+                    <div class="photo-grid" id="photoGrid">
+                        <!-- Photos will be added here -->
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
                     <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
                 </div>
             </div>
@@ -1759,427 +1233,108 @@
         </section>
     </div>
 
-    <!-- Loading Animation -->
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p>Loading...</p>
-    </div>
-
     <script>
-        // Dynamic Photo Data - You can easily modify this array
-        const photoSections = {
-            section1: [
-                {
-                    src: "https://via.placeholder.com/280x160/667eea/ffffff?text=Childhood+Meenu",
-                    title: "Little Meenu",
-                    description: "Sweet childhood memories ✨"
-                },
-                {
-                    src: "https://via.placeholder.com/280x160/ff9a9e/ffffff?text=School+Days",
-                    title: "School Days",
-                    description: "Growing up with dreams 🎓"
-                },
-                {
-                    src: "https://via.placeholder.com/280x160/a8edea/ffffff?text=College+Life",
-                    title: "College Years",
-                    description: "Making lifelong friends 🎓"
-                },
-                {
-                    src: "https://via.placeholder.com/280x160/fecfef/ffffff?text=First+Job",
-                    title: "Career Begins",
-                    description: "Starting the journey 💼"
-                },
-                {
-                    src: "https://via.placeholder.com/280x160/fed6e3/ffffff?text=Family+Time",
-                    title: "Family Moments",
-                    description: "Love and togetherness ❤️"
-                }
-            ]
-        };
-
-        // Global photo scroller instance
-        let photoScroller;
-
-        // Dynamic Scrolling Photo System
-        class DynamicPhotoScroller {
-            constructor() {
-                this.sections = ['section1'];
-                this.containers = {};
-                this.animationSpeeds = {
-                    section1: 60, // seconds for full cycle
-                };
-                this.init();
-            }
-
-            init() {
-                console.log('Initializing photo scroller with sections:', this.sections);
-
-                this.sections.forEach(sectionId => {
-                    const container = document.getElementById(sectionId); // Make sure this matches your HTML id
-                    console.log(`Found container for ${sectionId}:`, container); // This should show the actual element
-
-                    if (!container) {
-                        console.error(`Container not found: ${sectionId}`);
-                        return;
-                    }
-
-                    this.containers[sectionId] = container;
-                    this.populateSection(sectionId);
-                    this.startAnimation(sectionId);
-                });
-            }
-
-            populateSection(sectionId) {
-                const container = this.containers[sectionId];
-                const photos = photoSections[sectionId];
-
-                console.log(`Populating ${sectionId} with ${photos ? photos.length : 0} photos`);
-
-                if (!container || !photos) {
-                    console.error(`Missing container or photos for ${sectionId}`);
-                    return;
-                }
-
-                // Clear existing content
-                container.innerHTML = '';
-
-                // Create exactly 2 sets for infinite scrolling (50% animation)
-                for (let set = 0; set < 2; set++) {
-                    photos.forEach(photo => {
-                        const photoElement = this.createPhotoElement(photo);
-                        container.appendChild(photoElement);
-                    });
-                }
-            }
-
-            createPhotoElement(photo) {
-                const photoDiv = document.createElement('div');
-                photoDiv.className = 'photo-item';
-
-                photoDiv.innerHTML = `
-                    <img src="${photo.src}" alt="${photo.title}" loading="lazy">
-                    <div class="photo-overlay">
-                        <h4>${photo.title}</h4>
-                        <p>${photo.description}</p>
-                    </div>
-                `;
-
-                return photoDiv;
-            }
-
-            startAnimation(sectionId) {
-                const container = this.containers[sectionId];
-                const speed = this.animationSpeeds[sectionId];
-
-                // Add the scroll animation class
-                container.classList.add('scroll-left');
-                container.style.animationDuration = `${speed}s`;
-            }
-
-            adjustAnimation(sectionId) {
-                // Repopulate section on resize to ensure smooth scrolling
-                this.populateSection(sectionId);
-                this.startAnimation(sectionId);
-            }
-
-            // Method to add new photos dynamically
-            addPhotos(sectionId, newPhotos) {
-                if (photoSections[sectionId]) {
-                    photoSections[sectionId].push(...newPhotos);
-                    this.populateSection(sectionId);
-                    this.startAnimation(sectionId);
-                }
-            }
-
-            // Method to update animation speed
-            updateSpeed(sectionId, newSpeed) {
-                this.animationSpeeds[sectionId] = newSpeed;
-                this.startAnimation(sectionId);
-            }
-        }
-
-        // Page navigation function
+        // Simple page navigation with working photo code
         function showPage(pageId) {
-            console.log('Navigating to page:', pageId);
-
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
 
-            // Show loading
-            const loading = document.getElementById('loading');
-            if (loading) {
-                loading.style.display = 'block';
+            // Show target page
+            document.getElementById(pageId).classList.add('active');
+
+            // Add photos if story page - WORKING CODE FROM CLEAN VERSION
+            if (pageId === 'story') {
+                const grid = document.getElementById('photoGrid');
+                if (grid && grid.children.length === 0) {
+                    const photos = [
+                        { src: "images/photo_2025-07-15 23.38.18.jpeg", title: "Little Meenu", desc: "Sweet childhood memories ✨" },
+                        { src: "images/photo_2025-07-15 23.38.24.jpeg", title: "School Days", desc: "Growing up with dreams 🎓" },
+                        { src: "images/photo_2025-07-15 23.38.31.jpeg", title: "College Years", desc: "Making lifelong friends 🎓" },
+                        { src: "images/photo_2025-07-15 23.38.32.jpeg", title: "Career Begins", desc: "Starting the journey 💼" },
+                        { src: "images/photo_2025-07-15 23.38.34.jpeg", title: "Family Moments", desc: "Love and togetherness ❤️" },
+                        { src: "images/photo_2025-07-15 23.38.36.jpeg", title: "Adventures", desc: "Exploring new places 🌍" },
+                        { src: "images/photo_2025-07-15 23.38.37.jpeg", title: "Celebrations", desc: "Special moments 🎉" },
+                        { src: "images/photo_2025-07-15 23.38.40.jpeg", title: "Friendship", desc: "With the best people 👯‍♀️" },
+                        { src: "images/photo_2025-07-15 23.38.42.jpeg", title: "Happy Times", desc: "Joy and laughter 😊" },
+                        { src: "images/photo_2025-07-15 23.38.43.jpeg", title: "Memories", desc: "Treasured moments 💕" },
+                        { src: "images/photo_2025-07-15 23.38.45.jpeg", title: "Life's Journey", desc: "Every step counts 🌟" },
+                        { src: "images/photo_2025-07-15 23.38.46.jpeg", title: "Beautiful Days", desc: "Sunshine and smiles ☀️" },
+                        { src: "images/photo_2025-07-15 23.38.48.jpeg", title: "Special Occasions", desc: "Moments to remember 🎈" },
+                        { src: "images/photo_2025-07-15 23.38.50.jpeg", title: "Love & Laughter", desc: "The best medicine 💝" },
+                        { src: "images/photo_2025-07-15 23.38.52.jpeg", title: "New Beginnings", desc: "Fresh starts 🌱" },
+                        { src: "images/photo_2025-07-15 23.38.57.jpeg", title: "Achievements", desc: "Proud moments 🏆" },
+                        { src: "images/photo_2025-07-15 23.39.00.jpeg", title: "Growth", desc: "Becoming stronger 💪" },
+                        { src: "images/photo_2025-07-15 23.39.02.jpeg", title: "Inspiration", desc: "Dreams coming true ✨" },
+                        { src: "images/photo_2025-07-15 23.39.08.jpeg", title: "Pure Joy", desc: "Happiness overflowing 🌈" },
+                        { src: "images/photo_2025-07-15 23.39.11.jpeg", title: "Forever Young", desc: "Age is just a number 🎂" },
+                        { src: "images/photo_2025-07-15 23.39.13.jpeg", title: "Blessed Life", desc: "Grateful for everything 🙏" }
+                    ];
+                    
+                    photos.forEach(photo => {
+                        const div = document.createElement('div');
+                        div.className = 'gallery-photo';
+                        div.innerHTML = `<img src="${photo.src}" alt="${photo.title}"><div class="photo-overlay"><h4>${photo.title}</h4><p>${photo.desc}</p></div>`;
+                        grid.appendChild(div);
+                    });
+                    console.log('Photos added successfully to Our Story page');
+                }
             }
 
-            // Simulate loading delay
-            setTimeout(() => {
-                if (loading) {
-                    loading.style.display = 'none';
-                }
-
-                const targetPage = document.getElementById(pageId);
-                if (targetPage) {
-                    targetPage.classList.add('active');
-                }
-
-                // Initialize photo scroller if switching to couple page
-                if (pageId === 'couple') {
-                    setTimeout(() => {
-                        if (!photoScroller) {
-                            photoScroller = new DynamicPhotoScroller();
-                            console.log('✅ Dynamic photo scroller initialized!');
-                        }
-                    }, 100);
-                }
-
-                // Scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 500);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Show individual event pages
-        function showEventPage(eventId) {
-            showPage(eventId);
-        }
-
-        // Add entrance animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
-                }
-            });
-        }, observerOptions);
-
-        // Observe cards for animations
-        document.querySelectorAll('.event-card').forEach(card => {
-            observer.observe(card);
-        });
-
-        // Custom Particle System
+        // Simple particle system
         class ParticleSystem {
-            constructor(canvasId) {
-                this.canvas = document.getElementById(canvasId);
+            constructor() {
+                this.canvas = document.getElementById('particles-canvas');
+                if (!this.canvas) return;
                 this.ctx = this.canvas.getContext('2d');
                 this.particles = [];
-                this.mouseX = 0;
-                this.mouseY = 0;
+                this.init();
+            }
 
-                this.setupCanvas();
-                this.createParticles();
-                this.setupEventListeners();
+            init() {
+                this.canvas.width = window.innerWidth;
+                this.canvas.height = window.innerHeight;
+                
+                for (let i = 0; i < 50; i++) {
+                    this.particles.push({
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        size: Math.random() * 3 + 1,
+                        speedY: Math.random() * 2 + 1,
+                        opacity: Math.random() * 0.5 + 0.3
+                    });
+                }
+                
                 this.animate();
-            }
-
-            setupCanvas() {
-                this.resizeCanvas();
-                window.addEventListener('resize', () => this.resizeCanvas());
-
-                // Force initial resize after a short delay to ensure parent dimensions are set
-                setTimeout(() => this.resizeCanvas(), 100);
-            }
-
-            resizeCanvas() {
-                const container = this.canvas.parentElement;
-                this.canvas.width = container.offsetWidth || window.innerWidth;
-                this.canvas.height = container.offsetHeight || window.innerHeight;
-
-                // Ensure minimum height for hero sections
-                if (this.canvas.height < window.innerHeight) {
-                    this.canvas.height = window.innerHeight;
-                }
-            }
-
-            createParticles() {
-                const particleCount = Math.floor((this.canvas.width * this.canvas.height) / 12000);
-
-                // Ensure minimum particles for visual impact
-                const minParticles = 50;
-                const maxParticles = 150;
-                const finalCount = Math.max(minParticles, Math.min(maxParticles, particleCount));
-
-                for (let i = 0; i < finalCount; i++) {
-                    this.particles.push(this.createParticle());
-                }
-            }
-
-            createParticle() {
-                const colors = ['rgba(255, 255, 255, 0.8)', 'rgba(255, 215, 0, 0.6)', 'rgba(255, 182, 193, 0.7)', 'rgba(230, 230, 250, 0.6)'];
-                const shapes = ['circle', 'star'];
-
-                return {
-                    x: Math.random() * this.canvas.width,
-                    y: this.canvas.height + Math.random() * 200,
-                    size: Math.random() * 4 + 1,
-                    speedX: (Math.random() - 0.5) * 2,
-                    speedY: Math.random() * 3 + 1,
-                    opacity: Math.random() * 0.8 + 0.2,
-                    color: colors[Math.floor(Math.random() * colors.length)],
-                    shape: shapes[Math.floor(Math.random() * shapes.length)],
-                    rotation: Math.random() * Math.PI * 2,
-                    rotationSpeed: (Math.random() - 0.5) * 0.1,
-                    pulse: Math.random() * Math.PI * 2,
-                    pulseSpeed: Math.random() * 0.02 + 0.01
-                };
-            }
-
-            setupEventListeners() {
-                this.canvas.addEventListener('mousemove', (e) => {
-                    const rect = this.canvas.getBoundingClientRect();
-                    this.mouseX = e.clientX - rect.left;
-                    this.mouseY = e.clientY - rect.top;
-                });
-
-                this.canvas.addEventListener('click', () => {
-                    for (let i = 0; i < 5; i++) {
-                        const particle = this.createParticle();
-                        particle.x = this.mouseX + (Math.random() - 0.5) * 50;
-                        particle.y = this.mouseY + (Math.random() - 0.5) * 50;
-                        particle.speedY = -(Math.random() * 3 + 2);
-                        this.particles.push(particle);
-                    }
-                });
-            }
-
-            drawCircle(particle) {
-                this.ctx.beginPath();
-                this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-                this.ctx.fillStyle = particle.color;
-                this.ctx.fill();
-
-                // Add glow effect
-                this.ctx.shadowBlur = 15;
-                this.ctx.shadowColor = particle.color;
-                this.ctx.fill();
-                this.ctx.shadowBlur = 0;
-            }
-
-            drawStar(particle) {
-                const spikes = 5;
-                const outerRadius = particle.size;
-                const innerRadius = particle.size * 0.5;
-
-                this.ctx.save();
-                this.ctx.translate(particle.x, particle.y);
-                this.ctx.rotate(particle.rotation);
-
-                this.ctx.beginPath();
-                for (let i = 0; i < spikes * 2; i++) {
-                    const radius = i % 2 === 0 ? outerRadius : innerRadius;
-                    const angle = (i * Math.PI) / spikes;
-                    const x = Math.cos(angle) * radius;
-                    const y = Math.sin(angle) * radius;
-
-                    if (i === 0) {
-                        this.ctx.moveTo(x, y);
-                    } else {
-                        this.ctx.lineTo(x, y);
-                    }
-                }
-                this.ctx.closePath();
-
-                this.ctx.fillStyle = particle.color;
-                this.ctx.shadowBlur = 10;
-                this.ctx.shadowColor = particle.color;
-                this.ctx.fill();
-                this.ctx.shadowBlur = 0;
-
-                this.ctx.restore();
-            }
-
-            updateParticle(particle) {
-                // Update position
-                particle.y -= particle.speedY;
-                particle.x += particle.speedX;
-
-                // Update rotation and pulse
-                particle.rotation += particle.rotationSpeed;
-                particle.pulse += particle.pulseSpeed;
-
-                // Pulse effect
-                const pulseSize = Math.sin(particle.pulse) * 0.5 + 1;
-                const originalSize = particle.size / pulseSize;
-                particle.size = originalSize * pulseSize;
-
-                // Mouse interaction
-                const dx = this.mouseX - particle.x;
-                const dy = this.mouseY - particle.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 100) {
-                    const force = (100 - distance) / 100;
-                    particle.x -= (dx / distance) * force * 2;
-                    particle.y -= (dy / distance) * force * 2;
-                    particle.opacity = Math.min(1, particle.opacity + force * 0.3);
-                }
-
-                // Reset particle if it goes off screen
-                if (particle.y < -50 || particle.x < -50 || particle.x > this.canvas.width + 50) {
-                    const newParticle = this.createParticle();
-                    Object.assign(particle, newParticle);
-                }
             }
 
             animate() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-                this.particles.forEach(particle => {
-                    this.updateParticle(particle);
-
-                    this.ctx.globalAlpha = particle.opacity;
-
-                    if (particle.shape === 'star') {
-                        this.drawStar(particle);
-                    } else {
-                        this.drawCircle(particle);
-                    }
+                
+                this.particles.forEach(p => {
+                    p.y -= p.speedY;
+                    if (p.y < 0) p.y = this.canvas.height;
+                    
+                    this.ctx.globalAlpha = p.opacity;
+                    this.ctx.fillStyle = 'white';
+                    this.ctx.beginPath();
+                    this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    this.ctx.fill();
                 });
-
-                this.ctx.globalAlpha = 1;
-
+                
                 requestAnimationFrame(() => this.animate());
             }
         }
 
-        // Initialize systems
-        document.addEventListener('DOMContentLoaded', function () {
-            console.log('🎨 Initializing wedding website systems...');
-
-            try {
-                // Wait a bit for the page to fully render
-                setTimeout(() => {
-                    new ParticleSystem('particles-canvas');
-                    console.log('✅ Custom particle system loaded successfully!');
-                }, 250);
-            } catch (error) {
-                console.error('❌ System initialization failed:', error);
-            }
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new ParticleSystem();
+            console.log('Wedding website initialized successfully');
         });
-
-        // Helper function to add new photos (for future use)
-        function addNewPhotos(sectionNumber, photos) {
-            if (photoScroller) {
-                const sectionId = `section${sectionNumber}`;
-                photoScroller.addPhotos(sectionId, photos);
-                console.log(`✅ Added ${photos.length} new photos to ${sectionId}`);
-            }
-        }
-
-        // Helper function to update scroll speed (for future use)
-        function updateScrollSpeed(sectionNumber, speed) {
-            if (photoScroller) {
-                const sectionId = `section${sectionNumber}`;
-                photoScroller.updateSpeed(sectionId, speed);
-                console.log(`✅ Updated ${sectionId} speed to ${speed}s`);
-            }
-        }
     </script>
 </body>
 
