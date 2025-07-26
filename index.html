@@ -386,7 +386,7 @@
             margin: 0 auto;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 
+            box-shadow:
                 0 30px 80px rgba(0, 0, 0, 0.5),
                 0 0 0 1px rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
@@ -397,7 +397,7 @@
 
         .video-container:hover {
             transform: rotate(0deg) scale(1.02);
-            box-shadow: 
+            box-shadow:
                 0 40px 100px rgba(0, 0, 0, 0.6),
                 0 0 0 1px rgba(255, 255, 255, 0.2);
         }
@@ -417,7 +417,8 @@
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio */
             background: linear-gradient(135deg, #667eea, #764ba2);
         }
 
@@ -488,11 +489,14 @@
         }
 
         @keyframes pulseGlow {
-            0%, 100% { 
+
+            0%,
+            100% {
                 transform: scale(1);
                 opacity: 0.9;
             }
-            50% { 
+
+            50% {
                 transform: scale(1.1);
                 opacity: 1;
             }
@@ -734,28 +738,79 @@
                 opacity: 0;
                 transform: translateY(50px) rotate(10deg) scale(0.8);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0) rotate(var(--rotation, 0deg)) scale(1);
             }
         }
 
-        .gallery-photo:nth-child(1) { animation-delay: 0.1s; --rotation: -2deg; }
-        .gallery-photo:nth-child(2) { animation-delay: 0.2s; --rotation: 1deg; }
-        .gallery-photo:nth-child(3) { animation-delay: 0.3s; --rotation: 3deg; }
-        .gallery-photo:nth-child(4) { animation-delay: 0.4s; --rotation: -1deg; }
-        .gallery-photo:nth-child(5) { animation-delay: 0.5s; --rotation: 2deg; }
-        .gallery-photo:nth-child(6) { animation-delay: 0.6s; --rotation: -3deg; }
-        .gallery-photo:nth-child(7) { animation-delay: 0.7s; --rotation: 1deg; }
-        .gallery-photo:nth-child(8) { animation-delay: 0.8s; --rotation: -2deg; }
-        .gallery-photo:nth-child(9) { animation-delay: 0.9s; --rotation: 3deg; }
-        .gallery-photo:nth-child(10) { animation-delay: 1.0s; --rotation: -1deg; }
-        .gallery-photo:nth-child(n+11) { animation-delay: 1.1s; --rotation: 0deg; }
+        .gallery-photo:nth-child(1) {
+            animation-delay: 0.1s;
+            --rotation: -2deg;
+        }
+
+        .gallery-photo:nth-child(2) {
+            animation-delay: 0.2s;
+            --rotation: 1deg;
+        }
+
+        .gallery-photo:nth-child(3) {
+            animation-delay: 0.3s;
+            --rotation: 3deg;
+        }
+
+        .gallery-photo:nth-child(4) {
+            animation-delay: 0.4s;
+            --rotation: -1deg;
+        }
+
+        .gallery-photo:nth-child(5) {
+            animation-delay: 0.5s;
+            --rotation: 2deg;
+        }
+
+        .gallery-photo:nth-child(6) {
+            animation-delay: 0.6s;
+            --rotation: -3deg;
+        }
+
+        .gallery-photo:nth-child(7) {
+            animation-delay: 0.7s;
+            --rotation: 1deg;
+        }
+
+        .gallery-photo:nth-child(8) {
+            animation-delay: 0.8s;
+            --rotation: -2deg;
+        }
+
+        .gallery-photo:nth-child(9) {
+            animation-delay: 0.9s;
+            --rotation: 3deg;
+        }
+
+        .gallery-photo:nth-child(10) {
+            animation-delay: 1.0s;
+            --rotation: -1deg;
+        }
+
+        .gallery-photo:nth-child(n+11) {
+            animation-delay: 1.1s;
+            --rotation: 0deg;
+        }
 
         /* Funky floating animation */
         @keyframes funkyFloat {
-            0%, 100% { transform: translateY(0px) rotate(var(--rotation, 0deg)); }
-            50% { transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) + 2deg)); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(var(--rotation, 0deg));
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) + 2deg));
+            }
         }
 
         .gallery-photo:nth-child(odd) {
@@ -795,7 +850,7 @@
             max-height: 90vh;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 
+            box-shadow:
                 0 50px 100px rgba(0, 0, 0, 0.8),
                 0 0 0 1px rgba(255, 255, 255, 0.1);
             transform: scale(0.8) rotate(5deg);
@@ -1009,18 +1064,19 @@
                 padding: 1.5rem;
             }
         }
+
         @media (max-width: 768px) {
             .photo-grid {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                 grid-auto-rows: 150px;
                 gap: 0.8rem;
             }
-            
+
             .gallery-photo:nth-child(3n+1) {
                 grid-row: span 2;
                 grid-column: span 1;
             }
-            
+
             .gallery-photo:nth-child(5n+2) {
                 grid-row: span 1;
                 grid-column: span 2;
@@ -1032,7 +1088,7 @@
                 grid-template-columns: repeat(2, 1fr);
                 grid-auto-rows: 120px;
             }
-            
+
             .gallery-photo:nth-child(3n+1),
             .gallery-photo:nth-child(5n+2),
             .gallery-photo:nth-child(7n+3),
@@ -1661,19 +1717,12 @@
                             <p>A beautiful journey captured in moments</p>
                         </div>
                         <div class="video-wrapper">
-                            <!-- Placeholder for now - replace with actual video later -->
-                            <div class="video-placeholder">
-                                <div class="video-placeholder-icon">🎬</div>
-                                <h4>Your Video Here</h4>
-                                <p>This is where your beautiful love story video will appear. Upload your video and replace this placeholder!</p>
-                            </div>
-                            <!-- 
                             Future video element:
                             <video class="video-player" controls>
-                                <source src="your-video.mp4" type="video/mp4">
+                                <source src="images/video.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            -->
+                            
                         </div>
                     </div>
                 </div>
@@ -1893,20 +1942,21 @@
                         { src: "images/photo_2025-07-15 23.39.02.jpeg", title: "Inspiration", desc: "Dreams coming true ✨" },
                         { src: "images/photo_2025-07-15 23.39.08.jpeg", title: "Pure Joy", desc: "Happiness overflowing 🌈" },
                         { src: "images/photo_2025-07-15 23.39.11.jpeg", title: "Forever Young", desc: "Age is just a number 🎂" },
-                        { src: "images/photo_2025-07-15 23.39.13.jpeg", title: "Blessed Life", desc: "Grateful for everything 🙏" }
+                        { src: "images/photo_2025-07-15 23.39.13.jpeg", title: "Blessed Life", desc: "Grateful for everything 🙏" },
+                        { src: "images/image.png", title: "Together", desc: "Shopping" }
                     ];
-                    
+
                     // Store photos data for lightbox
                     photosData = photos;
-                    
+
                     photos.forEach((photo, index) => {
                         const div = document.createElement('div');
                         div.className = 'gallery-photo';
                         div.innerHTML = `<img src="${photo.src}" alt="${photo.title}"><div class="photo-overlay"><h4>${photo.title}</h4><p>${photo.desc}</p></div>`;
-                        
+
                         // Add click event for lightbox
                         div.addEventListener('click', () => openLightbox(index));
-                        
+
                         grid.appendChild(div);
                     });
                     console.log('Photos added successfully to Our Story page');
@@ -1921,12 +1971,12 @@
             currentPhotoIndex = index;
             const lightbox = document.getElementById('photoLightbox');
             const photo = photosData[index];
-            
+
             document.getElementById('lightboxImage').src = photo.src;
             document.getElementById('lightboxTitle').textContent = photo.title;
             document.getElementById('lightboxDesc').textContent = photo.desc;
             document.getElementById('lightboxCounter').textContent = `${index + 1} / ${photosData.length}`;
-            
+
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         }
@@ -1951,23 +2001,23 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Close button
             document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-            
+
             // Navigation buttons
             document.getElementById('lightboxNext').addEventListener('click', nextPhoto);
             document.getElementById('lightboxPrev').addEventListener('click', prevPhoto);
-            
+
             // Close on background click
             document.getElementById('photoLightbox').addEventListener('click', (e) => {
                 if (e.target.id === 'photoLightbox') {
                     closeLightbox();
                 }
             });
-            
+
             // Keyboard navigation
             document.addEventListener('keydown', (e) => {
                 const lightbox = document.getElementById('photoLightbox');
                 if (lightbox.classList.contains('active')) {
-                    switch(e.key) {
+                    switch (e.key) {
                         case 'Escape':
                             closeLightbox();
                             break;
@@ -1980,7 +2030,7 @@
                     }
                 }
             });
-            
+
             new ParticleSystem();
             console.log('Wedding website with photo lightbox initialized successfully');
         });
@@ -1998,7 +2048,7 @@
             init() {
                 this.canvas.width = window.innerWidth;
                 this.canvas.height = window.innerHeight;
-                
+
                 for (let i = 0; i < 50; i++) {
                     this.particles.push({
                         x: Math.random() * this.canvas.width,
@@ -2008,24 +2058,24 @@
                         opacity: Math.random() * 0.5 + 0.3
                     });
                 }
-                
+
                 this.animate();
             }
 
             animate() {
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-                
+
                 this.particles.forEach(p => {
                     p.y -= p.speedY;
                     if (p.y < 0) p.y = this.canvas.height;
-                    
+
                     this.ctx.globalAlpha = p.opacity;
                     this.ctx.fillStyle = 'white';
                     this.ctx.beginPath();
                     this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                     this.ctx.fill();
                 });
-                
+
                 requestAnimationFrame(() => this.animate());
             }
         }
