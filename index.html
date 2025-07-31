@@ -1611,6 +1611,134 @@
                 margin-bottom: 1rem;
             }
         }
+
+        /* Countdown Timer Styles */
+        .countdown-container {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .countdown-title {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: #f7fafc;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .time-unit {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 0.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .time-unit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .time-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .time-label {
+            font-size: 0.8rem;
+            color: #e2e8f0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+
+        .event-name {
+            font-size: 1rem;
+            color: #a0aec0;
+            margin-top: 1rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        /* Mobile responsive timer */
+        @media (max-width: 576px) {
+            .countdown-container {
+                padding: 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .countdown-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .countdown-timer {
+                gap: 0.8rem;
+            }
+
+            .time-unit {
+                padding: 0.8rem 0.3rem;
+            }
+
+            .time-number {
+                font-size: 1.5rem;
+            }
+
+            .time-label {
+                font-size: 0.7rem;
+            }
+
+            .event-name {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Pulse animation for urgency */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+
+        .time-unit.urgent {
+            animation: pulse 2s ease-in-out infinite;
+        }
     </style>
 </head>
 
@@ -1625,6 +1753,65 @@
             <div class="hero-content">
                 <h1 class="welcome-text">WELCOME</h1>
                 <h2 class="couple-names">Vicky & Meenu</h2>
+
+                <div class="countdown-container">
+                    <div class="countdown-title" id="countdownTitle">Days to Marriage</div>
+                    <div class="countdown-timer" id="countdown">
+                        <div class="time-unit">
+                            <span class="time-number" id="days">00</span>
+                            <span class="time-label">Days</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="hours">00</span>
+                            <span class="time-label">Hours</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="minutes">00</span>
+                            <span class="time-label">Minutes</span>
+                        </div>
+                        <div class="time-unit">
+                            <span class="time-number" id="seconds">00</span>
+                            <span class="time-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    // Simple countdown timer that definitely works
+                    function updateCountdown() {
+                        // Target date: August 28, 2025, 10:30 AM
+                        const targetDate = new Date('2025-08-28T10:30:00').getTime();
+                        const now = new Date().getTime();
+                        const distance = targetDate - now;
+
+                        if (distance < 0) {
+                            // Event has passed
+                            document.getElementById('days').textContent = '00';
+                            document.getElementById('hours').textContent = '00';
+                            document.getElementById('minutes').textContent = '00';
+                            document.getElementById('seconds').textContent = '00';
+                            return;
+                        }
+
+                        // Calculate time units
+                        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Update display with zero padding
+                        document.getElementById('days').textContent = String(days).padStart(2, '0');
+                        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                    }
+
+                    // Update immediately and then every second
+                    updateCountdown();
+                    setInterval(updateCountdown, 1000);
+
+                    console.log('Countdown timer started - should refresh every second');
+                </script>
 
                 <div class="navigation-buttons">
                     <a href="#" onclick="showPage('couple')" class="nav-btn">Meet the Couple</a>
@@ -1722,7 +1909,7 @@
                                 <source src="images/video.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -2080,9 +2267,75 @@
             }
         }
 
+        class CountdownTimer {
+            constructor() {
+                // Set the marriage date - August 28, 2025, 10:30 AM (Muhurtam ceremony)
+                this.targetDate = new Date('2025-08-28T10:30:00').getTime();
+                this.init();
+            }
+
+            init() {
+                this.updateCountdown();
+                // Update every second
+                setInterval(() => this.updateCountdown(), 1000);
+            }
+
+            updateCountdown() {
+                const now = new Date().getTime();
+                const distance = this.targetDate - now;
+
+                if (distance < 0) {
+                    // Event has passed
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    document.querySelector('.countdown-title').textContent = 'We Are Married!';
+                    document.querySelector('.event-name').textContent = 'Congratulations to the happy couple! 🎉💕';
+                    return;
+                }
+
+                // Calculate time units
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Update display with padding
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+                // Add urgency effect when less than 7 days
+                const timeUnits = document.querySelectorAll('.time-unit');
+                if (days < 7) {
+                    timeUnits.forEach(unit => unit.classList.add('urgent'));
+                } else {
+                    timeUnits.forEach(unit => unit.classList.remove('urgent'));
+                }
+
+                // Change title based on proximity
+                const countdownTitle = document.querySelector('.countdown-title');
+                if (days === 0) {
+                    countdownTitle.textContent = 'Today We Get Married!';
+                } else if (days === 1) {
+                    countdownTitle.textContent = 'Tomorrow We Get Married!';
+                } else if (days < 7) {
+                    countdownTitle.textContent = 'Almost Time to Say "I Do"!';
+                } else if (days < 30) {
+                    countdownTitle.textContent = 'Days to Marriage';
+                } else {
+                    countdownTitle.textContent = 'Days to Marriage';
+                }
+            }
+        }
+
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', () => {
             new ParticleSystem();
+            console.log('Countdown timer initialized');
+            new CountdownTimer();
             console.log('Wedding website initialized successfully');
         });
     </script>
