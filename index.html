@@ -1739,6 +1739,218 @@
         .time-unit.urgent {
             animation: pulse 2s ease-in-out infinite;
         }
+
+        /* Mini Gallery Styles for Couple Section */
+        .couple-mini-gallery {
+            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mini-gallery-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .mini-gallery-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #a0aec0;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        .mini-photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .mini-gallery-photo {
+            background: rgba(26, 32, 44, 0.95);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            aspect-ratio: 1;
+        }
+
+        .mini-gallery-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #ff9a9e);
+            z-index: 1;
+        }
+
+        .mini-gallery-photo:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        .mini-gallery-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+            filter: saturate(0.9) contrast(1.1);
+        }
+
+        .mini-gallery-photo:hover img {
+            transform: scale(1.1);
+            filter: saturate(1.1) contrast(1.2) brightness(1.1);
+        }
+
+        .mini-photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .mini-gallery-photo:hover .mini-photo-overlay {
+            transform: translateY(0);
+        }
+
+        .mini-photo-overlay h5 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: #ffffff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+        }
+
+        .mini-photo-overlay p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            color: #e2e8f0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Entrance animations for mini gallery */
+        .mini-gallery-photo {
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            animation: miniPhotoFadeIn 0.6s ease-out forwards;
+        }
+
+        @keyframes miniPhotoFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .mini-gallery-photo:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .mini-gallery-photo:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .mini-gallery-photo:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .mini-gallery-photo:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .mini-gallery-photo:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .mini-gallery-photo:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        .mini-gallery-photo:nth-child(7) {
+            animation-delay: 0.7s;
+        }
+
+        .mini-gallery-photo:nth-child(8) {
+            animation-delay: 0.8s;
+        }
+
+        .mini-gallery-photo:nth-child(9) {
+            animation-delay: 0.9s;
+        }
+
+        .mini-gallery-photo:nth-child(10) {
+            animation-delay: 1.0s;
+        }
+
+        /* Mobile responsive for mini gallery */
+        @media (max-width: 768px) {
+            .mini-gallery-title {
+                font-size: 2rem;
+            }
+
+            .mini-gallery-subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+            }
+
+            .mini-photo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .couple-mini-gallery {
+                margin-top: 3rem;
+            }
+
+            .mini-gallery-title {
+                font-size: 1.8rem;
+            }
+
+            .mini-photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+
+            .mini-photo-overlay h5 {
+                font-size: 1.1rem;
+            }
+
+            .mini-photo-overlay p {
+                font-size: 0.7rem;
+            }
+        }
     </style>
 </head>
 
@@ -1881,11 +2093,26 @@
                     </div>
                 </div>
 
-                <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 2;">
-                    <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
+                <!-- NEW MINI GALLERY SECTION -->
+                <div class="couple-mini-gallery">
+                    <h3 class="mini-gallery-title">Through the Years</h3>
+                    <p class="mini-gallery-subtitle">A glimpse into our individual journeys before we found each other
+                    </p>
+
+                    <div class="mini-photo-grid" id="couplePhotoGrid">
+                        <!-- Photos will be dynamically added here -->
+                    </div>
                 </div>
+
             </div>
         </section>
+    </div>
+
+    <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 2;">
+        <a href="#" onclick="showPage('home')" class="back-btn">← Back to Home</a>
+    </div>
+    </div>
+    </section>
     </div>
 
     <!-- Our Story Page - Clean photo gallery only -->
@@ -2087,11 +2314,13 @@
     </div>
 
     <script>
-        // Simple page navigation with working photo code
         let currentPhotoIndex = 0;
-        let photosData = [];
+        let couplePhotosData = [];
+        let storyPhotosData = [];
+        let currentGalleryType = 'story'; // Track which gallery is active
 
-        function showPage(pageId) {
+        // Updated showPage function with separate galleries
+        function showPageWithMiniGallery(pageId) {
             // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -2100,15 +2329,52 @@
             // Show target page
             document.getElementById(pageId).classList.add('active');
 
-            // Add photos if story page - WORKING CODE FROM CLEAN VERSION
+            // Add photos to couple mini gallery
+            if (pageId === 'couple') {
+                const grid = document.getElementById('couplePhotoGrid');
+                if (grid && grid.children.length === 0) {
+                    // Selected photos for couple section - mix of both Vicky and Meenu
+                    couplePhotosData = [
+                        { src: "images/photo_2025-07-15 23.38.18.jpeg", title: "Little Meenu", desc: "Sweet childhood ✨" },
+                        { src: "images/photo_2025-08-01 00.05.19.jpeg", title: "Young Vicky", desc: "Childhood wonder 🌟" },
+                        { src: "images/photo_2025-07-15 23.38.24.jpeg", title: "School Days", desc: "Growing up 🎓" },
+                        { src: "images/photo_2025-08-01 00.05.54.jpeg", title: "Birthday Joy", desc: "Celebrating life 🎂" },
+                        { src: "images/photo_2025-07-15 23.38.31.jpeg", title: "College Years", desc: "Making friends 👯‍♀️" },
+                        { src: "images/photo_2025-08-01 00.23.41.jpeg", title: "Achievement", desc: "Victory moment 🏆" },
+                        { src: "images/photo_2025-07-15 23.38.32.jpeg", title: "Career Start", desc: "New beginnings 💼" },
+                        { src: "images/photo_2025-08-01 00.40.05.jpeg", title: "Adventures", desc: "Mountain high 🏔️" },
+                        { src: "images/image.png", title: "Together", desc: "Shopping memories 🛍️💕" },
+                        { src: "images/photo_2025-08-01 00.48.38.jpeg", title: "Goa Vibes", desc: "Ocean dreams 🌊" }
+                    ];
+
+                    couplePhotosData.forEach((photo, index) => {
+                        const div = document.createElement('div');
+                        div.className = 'mini-gallery-photo';
+                        div.innerHTML = `
+                    <img src="${photo.src}" alt="${photo.title}">
+                    <div class="mini-photo-overlay">
+                        <h5>${photo.title}</h5>
+                        <p>${photo.desc}</p>
+                    </div>
+                `;
+
+                        // Add click event for couple lightbox
+                        div.addEventListener('click', () => {
+                            openCoupleLightbox(index);
+                        });
+
+                        grid.appendChild(div);
+                    });
+                    console.log('Mini gallery added to couple section');
+                }
+            }
+
+            // Handle story page photos (with reduced set)
             if (pageId === 'story') {
                 const grid = document.getElementById('photoGrid');
                 if (grid && grid.children.length === 0) {
-                    const photos = [
-                        { src: "images/photo_2025-07-15 23.38.18.jpeg", title: "Little Meenu", desc: "Sweet childhood memories ✨" },
-                        { src: "images/photo_2025-07-15 23.38.24.jpeg", title: "School Days", desc: "Growing up with dreams 🎓" },
-                        { src: "images/photo_2025-07-15 23.38.31.jpeg", title: "College Years", desc: "Making lifelong friends 🎓" },
-                        { src: "images/photo_2025-07-15 23.38.32.jpeg", title: "Career Begins", desc: "Starting the journey 💼" },
+                    // Remaining photos for story section
+                    storyPhotosData = [
                         { src: "images/photo_2025-07-15 23.38.34.jpeg", title: "Family Moments", desc: "Love and togetherness ❤️" },
                         { src: "images/photo_2025-07-15 23.38.36.jpeg", title: "Adventures", desc: "Exploring new places 🌍" },
                         { src: "images/photo_2025-07-15 23.38.37.jpeg", title: "Celebrations", desc: "Special moments 🎉" },
@@ -2126,31 +2392,24 @@
                         { src: "images/photo_2025-07-15 23.39.08.jpeg", title: "Pure Joy", desc: "Happiness overflowing 🌈" },
                         { src: "images/photo_2025-07-15 23.39.11.jpeg", title: "Forever Young", desc: "Age is just a number 🎂" },
                         { src: "images/photo_2025-07-15 23.39.13.jpeg", title: "Blessed Life", desc: "Grateful for everything 🙏" },
-                        { src: "images/image.png", title: "Shopping Together", desc: "Making memories one store at a time 🛍️💕" },
-                        { src: "images/photo_2025-08-01 00.05.19.jpeg", title: "Childhood Wonder", desc: "Young Vicky's innocent smile ✨" },
-                        { src: "images/photo_2025-08-01 00.05.54.jpeg", title: "Birthday Joy", desc: "Another year of blessings 🎂" },
-                        { src: "images/photo_2025-08-01 00.17.11.jpeg", title: "Growing Strong", desc: "Vicky's journey through the years 💪" },
-                        { src: "images/photo_2025-08-01 00.54.05.jpeg", title: "Wedding Guest", desc: "Celebrating love at a friend's wedding 💒" },
-                        { src: "images/photo_2025-08-01 00.23.41.jpeg", title: "Victory Moment", desc: "Achievement unlocked! 🏆" },
-                        { src: "images/photo_2025-08-01 00.37.36.jpeg", title: "Food Adventures", desc: "Good times and great food 🍽️" },
-                        { src: "images/photo_2025-08-01 00.40.05.jpeg", title: "Mountain High", desc: "Conquering new heights 🏔️" },
-                        { src: "images/photo_2025-08-01 00.40.03.jpeg", title: "Ooty Dreams", desc: "Love for the hills and cool breeze 🌄" },
-                        { src: "images/photo_2025-08-01 00.42.43.jpeg", title: "Pink Perfection", desc: "Coimbatore memories in style 💗" },
-                        { src: "images/photo_2025-08-01 00.48.32.jpeg", title: "Picture Perfect", desc: "Official moments captured 📸" },
-                        { src: "images/photo_2025-08-01 00.48.38.jpeg", title: "Goa Vibes", desc: "Ocean adventures and sandy smiles 🌊" },
-                        { src: "images/photo_2025-08-01 00.51.44.jpeg", title: "Runner's High", desc: "Post-workout glow in Bengaluru 🏃‍♂️" },
+                        { src: "images/photo_2025-08-01 00.17.11.jpeg", title: "Growing Strong", desc: "Journey through years 💪" },
+                        { src: "images/photo_2025-08-01 00.54.05.jpeg", title: "Wedding Guest", desc: "Celebrating love 💒" },
+                        { src: "images/photo_2025-08-01 00.37.36.jpeg", title: "Food Adventures", desc: "Good times 🍽️" },
+                        { src: "images/photo_2025-08-01 00.40.03.jpeg", title: "Ooty Dreams", desc: "Hills and breeze 🌄" },
+                        { src: "images/photo_2025-08-01 00.42.43.jpeg", title: "Pink Perfection", desc: "Coimbatore style 💗" },
+                        { src: "images/photo_2025-08-01 00.48.32.jpeg", title: "Picture Perfect", desc: "Official moments 📸" },
+                        { src: "images/photo_2025-08-01 00.51.44.jpeg", title: "Runner's High", desc: "Post-workout glow 🏃‍♂️" }
                     ];
 
-                    // Store photos data for lightbox
-                    photosData = photos;
-
-                    photos.forEach((photo, index) => {
+                    storyPhotosData.forEach((photo, index) => {
                         const div = document.createElement('div');
                         div.className = 'gallery-photo';
                         div.innerHTML = `<img src="${photo.src}" alt="${photo.title}"><div class="photo-overlay"><h4>${photo.title}</h4><p>${photo.desc}</p></div>`;
 
-                        // Add click event for lightbox
-                        div.addEventListener('click', () => openLightbox(index));
+                        // Add click event for story lightbox
+                        div.addEventListener('click', () => {
+                            openStoryLightbox(index);
+                        });
 
                         grid.appendChild(div);
                     });
@@ -2161,74 +2420,83 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Lightbox functions
-        function openLightbox(index) {
+        // Separate lightbox functions for couple photos
+        function openCoupleLightbox(index) {
             currentPhotoIndex = index;
+            currentGalleryType = 'couple';
             const lightbox = document.getElementById('photoLightbox');
-            const photo = photosData[index];
+            const photo = couplePhotosData[index];
 
             document.getElementById('lightboxImage').src = photo.src;
             document.getElementById('lightboxTitle').textContent = photo.title;
             document.getElementById('lightboxDesc').textContent = photo.desc;
-            document.getElementById('lightboxCounter').textContent = `${index + 1} / ${photosData.length}`;
+            document.getElementById('lightboxCounter').textContent = `${index + 1} / ${couplePhotosData.length}`;
 
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
+        // Separate lightbox functions for couple photos
+        function openCoupleLightbox(index) {
+            currentPhotoIndex = index;
+            currentGalleryType = 'couple';
+            const lightbox = document.getElementById('photoLightbox');
+            const photo = couplePhotosData[index];
+
+            document.getElementById('lightboxImage').src = photo.src;
+            document.getElementById('lightboxTitle').textContent = photo.title;
+            document.getElementById('lightboxDesc').textContent = photo.desc;
+            document.getElementById('lightboxCounter').textContent = `${index + 1} / ${couplePhotosData.length}`;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Separate lightbox functions for story photos
+        function openStoryLightbox(index) {
+            currentPhotoIndex = index;
+            currentGalleryType = 'story';
+            const lightbox = document.getElementById('photoLightbox');
+            const photo = storyPhotosData[index];
+
+            document.getElementById('lightboxImage').src = photo.src;
+            document.getElementById('lightboxTitle').textContent = photo.title;
+            document.getElementById('lightboxDesc').textContent = photo.desc;
+            document.getElementById('lightboxCounter').textContent = `${index + 1} / ${storyPhotosData.length}`;
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Updated navigation functions that work with both galleries
+        function nextPhoto() {
+            const photosArray = currentGalleryType === 'couple' ? couplePhotosData : storyPhotosData;
+            currentPhotoIndex = (currentPhotoIndex + 1) % photosArray.length;
+
+            if (currentGalleryType === 'couple') {
+                openCoupleLightbox(currentPhotoIndex);
+            } else {
+                openStoryLightbox(currentPhotoIndex);
+            }
+        }
+
+        function prevPhoto() {
+            const photosArray = currentGalleryType === 'couple' ? couplePhotosData : storyPhotosData;
+            currentPhotoIndex = (currentPhotoIndex - 1 + photosArray.length) % photosArray.length;
+
+            if (currentGalleryType === 'couple') {
+                openCoupleLightbox(currentPhotoIndex);
+            } else {
+                openStoryLightbox(currentPhotoIndex);
+            }
+        }
+
+        // Updated closeLightbox function (keeping the original)
         function closeLightbox() {
             const lightbox = document.getElementById('photoLightbox');
             lightbox.classList.remove('active');
             document.body.style.overflow = ''; // Restore scrolling
         }
-
-        function nextPhoto() {
-            currentPhotoIndex = (currentPhotoIndex + 1) % photosData.length;
-            openLightbox(currentPhotoIndex);
-        }
-
-        function prevPhoto() {
-            currentPhotoIndex = (currentPhotoIndex - 1 + photosData.length) % photosData.length;
-            openLightbox(currentPhotoIndex);
-        }
-
-        // Event listeners for lightbox
-        document.addEventListener('DOMContentLoaded', () => {
-            // Close button
-            document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
-
-            // Navigation buttons
-            document.getElementById('lightboxNext').addEventListener('click', nextPhoto);
-            document.getElementById('lightboxPrev').addEventListener('click', prevPhoto);
-
-            // Close on background click
-            document.getElementById('photoLightbox').addEventListener('click', (e) => {
-                if (e.target.id === 'photoLightbox') {
-                    closeLightbox();
-                }
-            });
-
-            // Keyboard navigation
-            document.addEventListener('keydown', (e) => {
-                const lightbox = document.getElementById('photoLightbox');
-                if (lightbox.classList.contains('active')) {
-                    switch (e.key) {
-                        case 'Escape':
-                            closeLightbox();
-                            break;
-                        case 'ArrowRight':
-                            nextPhoto();
-                            break;
-                        case 'ArrowLeft':
-                            prevPhoto();
-                            break;
-                    }
-                }
-            });
-
-            new ParticleSystem();
-            console.log('Wedding website with photo lightbox initialized successfully');
-        });
 
         // Simple particle system
         class ParticleSystem {
@@ -2345,6 +2613,57 @@
             console.log('Countdown timer initialized');
             new CountdownTimer();
             console.log('Wedding website initialized successfully');
+            window.showPage = showPageWithMiniGallery;
+
+            const closeBtn = document.getElementById('lightboxClose');
+            if (closeBtn) {
+                closeBtn.removeEventListener('click', closeLightbox); // Remove old listener
+                closeBtn.addEventListener('click', closeLightbox); // Add new listener
+            }
+
+            // Navigation buttons
+            const nextBtn = document.getElementById('lightboxNext');
+            const prevBtn = document.getElementById('lightboxPrev');
+
+            if (nextBtn) {
+                nextBtn.removeEventListener('click', nextPhoto); // Remove old listener
+                nextBtn.addEventListener('click', nextPhoto); // Add new listener
+            }
+
+            if (prevBtn) {
+                prevBtn.removeEventListener('click', prevPhoto); // Remove old listener
+                prevBtn.addEventListener('click', prevPhoto); // Add new listener
+            }
+
+            // Close on background click
+            const lightbox = document.getElementById('photoLightbox');
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    if (e.target.id === 'photoLightbox') {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                const lightbox = document.getElementById('photoLightbox');
+                if (lightbox && lightbox.classList.contains('active')) {
+                    switch (e.key) {
+                        case 'Escape':
+                            closeLightbox();
+                            break;
+                        case 'ArrowRight':
+                            nextPhoto();
+                            break;
+                        case 'ArrowLeft':
+                            prevPhoto();
+                            break;
+                    }
+                }
+            });
+
+            console.log('Updated lightbox event listeners attached');
         });
     </script>
 </body>
